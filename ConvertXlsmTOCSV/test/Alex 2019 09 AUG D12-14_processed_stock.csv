@@ -1,0 +1,450 @@
+,id,update_date,product_type,sf_code,origin,inward,product_name,product_name_jp,new_balance,unit,bbd,location
+0,,2019-08-10,DRY,PAR12,text:'AUS',2019-05-14 00:00:00,82 L Roller Pack (Black Bin Bag),82L ゴミ袋　黒,53.0,ctn,2099-12-31,Alex
+1,,2019-08-10,DRY,Nul02,text:'AUS',2019-04-02 00:00:00,BLEACH 6% 5L,,15.34,ctn,2099-12-31,Alex
+2,,2019-08-10,DRY,DH33,text:'CHA',2019-01-29 00:00:00,Lunch Box 306,弁当箱 306,1.0,ctn,2020-12-10 00:00:00,Alex
+3,,2019-08-10,DRY,SUSHI03,text:'AUS',2018-07-08 00:00:00,Kono Food Noodle Tray,製麺用　麺トレイ　,23.0,tray,2099-12-31,Alex
+4,,2019-08-10,DRY,Nul03,text:'AUS',2019-04-02 00:00:00,BLITZ NEUTRAL FLOOR CLEANER 5L,,12.0,ctn,2099-12-31,Alex
+5,,2019-08-10,DRY,Nul01,text:'AUS',2019-07-30 00:00:00,Methylated Spirits 5L,,12.0,ctn,2099-12-31,Alex
+6,,2019-08-10,DRY,RED10,text:'AUS',2019-02-15 00:00:00,Caramel Neg D.S -30kg,Caramel Negative 30kg,1.0,ctn,2020-04-30 00:00:00,Alex
+7,,2019-08-10,DRY,Nul01,text:'AUS',2019-04-02 00:00:00,Methylated Spirits 5L,,1.0,ctn,2099-12-31,Alex
+8,,2019-08-10,DRY,PLATE,text:'JPN',2018-05-31 00:00:00,PLATE,お皿 CD,1.0,plt,2099-12-31,Alex
+9,,2019-08-10,DRY,VT02,text:'VIT',2019-01-03 00:00:00,Carton Pad,ラーメン箱　中敷き,11.0,bdl,2099-12-31,Alex
+10,,2019-08-10,DRY,CDY10,text:'CHA',2018-10-12 00:00:00,Roased Seaweed 10sheets(Blue),のり　10sheets Blue,5.0,ctn,2019-09-10 00:00:00,Alex
+11,,2019-08-10,DRY,VFK06,text:'CHI',2019-01-17 00:00:00,Dry Bread Crumb DEXLFP    1kg JAN19,パン粉 (VIT)   1kg,13.0,ctn,2019-12-18 00:00:00,Alex
+12,,2019-08-10,DRY,JT600,text:'JPN',2019-02-15 00:00:00,JAPANESE GREEN TEA Genmai-Cha 10g x 100P,抹茶入玄米茶ティーバッグ10gx100P,5.0,ctn,2019-11-30 00:00:00,Alex
+13,,2019-08-10,DRY,JT342,text:'JPN',2019-02-15 00:00:00,Curry Powder 2kg,S&B カレーパウダー 2kg,3.0,ctn,2021-11-07 00:00:00,Alex
+14,,2019-08-10,DRY,JT396A,text:'JPN',2019-02-08 00:00:00,Plastic Bag TERIYAKI BEEF 2kg,印刷袋テリヤキビーフ 2kg,6.0,ctn,2020-02-07,Alex
+15,,2019-08-10,DRY,MYO02,text:'MAY',2019-07-19 00:00:00,Pure Vegetable Oil BIB JULY 21,ベジタブル油 BIB,32.0,ctn,2020-06-30 00:00:00,Alex
+16,,2019-08-10,DRY,VT04,text:'VIT',2019-01-03 00:00:00,Carton Blocker Pad 6.5 x 33.3cm,ラーメン箱　しきり　6.5 x 33.3cm,4.0,ctn,2099-12-31,Alex
+17,,2019-08-10,DRY,JF22,text:'AUS',2018-06-04 00:00:00,Nagai Roasted seaweed 42/100 sheets JFC special price,ナガイ　のり 100sheet　JFC,1.0,ctn,2019-07-18 00:00:00,Alex
+18,,2019-08-10,DRY,YMT03,text:'THI',1999-01-01 00:00:00,Sweet Chili Sauce 2.4kg (2L) (ST),スイートチリソース 2.4kg (2L)（ST）,2.0,ctn,2020-04-01 00:00:00,Alex
+19,,2019-08-10,DRY,YS48,text:'JPN',2018-09-04 00:00:00,Sanjirushi Gluten Free Soy Sauce 18L,サンジルシ　グルテンフリー　醤油　18L,2.0,ctn,2019-12-26 00:00:00,Alex
+20,,2019-08-10,DRY,JET6,text:'AUS',2017-06-02 00:00:00,Takeaway SF-T-02S Docket Book,SF-T-02S ドケットブック,5.0,ctn,2099-12-31,Alex
+21,,2019-08-10,DRY,JT393,text:'JPN',2014-11-11 00:00:00,Plastic Bag MUJI,印刷袋白無地（何にでも使える）,10.83,ctn,2099-12-31,Alex
+22,,2019-08-10,DRY,CP03a,text:'AUS',2017-05-18 00:00:00,HD NAT Loose Sheets,チキンカツ用シート,5395.0,pack,2099-12-31,Alex
+23,,2019-08-10,DRY,JT08A,text:'JPN',2018-07-10 00:00:00,Fry Mix (NT2.5),フライミックス (パン粉商品下ごしらえ粉 ),2.0,ctn,2019-05-01 00:00:00,Alex
+24,,2019-08-10,DRY,QP07,text:'THI',2013-08-16 00:00:00,QP Reduced Fat Mayonnaise 1kg Thai,QP 低脂肪マヨネーズ 1kg,3.0,ctn,2014-03-24 00:00:00,Alex
+25,,2019-08-10,DRY,YS24,text:'JPN',2012-04-24 00:00:00,Kokumi Tsuyu 1.8L,ヤマサこく味つゆ 1.8L,4.0,ctn,2012-10-27 00:00:00,Alex
+26,,2019-08-10,DRY,YS26,text:'JPN',1999-01-01 00:00:00,Konbu Shoyu 500ml,昆布しょうゆ 500ml,1.0,ctn,2014-02-19 00:00:00,Alex
+27,,2019-08-10,DRY,CP04a,text:'AUS',2015-03-03 00:00:00,HDPE Plain Natural Liner Bag (Chicken Katsu),チキンカツ袋,2.869,ctn,2017-01-08 00:00:00,Alex
+28,,2019-08-10,DRY,JT380,text:'JPN',1999-01-01 00:00:00,Miso Dipping Sauce (Spicy) 100g,ダイショー 野菜をつまんでみそ　ピリ辛みそ味,1.0,ctn,2014-12-13 00:00:00,Alex
+29,,2019-08-10,DRY,YM13,text:'THI',2014-05-21 00:00:00,Sesame Sauce (Yamamori),ごまだれ 500ml,3.8337,ctn,2015-07-18 00:00:00,Alex
+30,,2019-08-10,DRY,YM12,text:'THI',2013-01-17 00:00:00,Okonomiyaki Sauce (Yamamori),お好み焼きソース 500ml,5.0,ctn,2014-11-07 00:00:00,Alex
+31,,2019-08-10,DRY,YM19,text:'THI',2014-10-09 00:00:00,Tempura Mix Powder,天ぷら粉 400g,3.9,ctn,2017-03-25 00:00:00,Alex
+32,,2019-08-10,DRY,YM19,text:'THI',2014-10-09 00:00:00,Tempura Mix Powder,天ぷら粉 400g,2.0,ctn,2017-06-25 00:00:00,Alex
+33,,2019-08-10,DRY,VFK03,text:'VIT',2019-01-17 00:00:00,Dry Bread Crumb DEXLFP JAN10,パン粉 (VIT),11.0,ctn,2019-12-17 00:00:00,Alex
+34,,2019-08-10,DRY,CDY08,text:'CHA',2019-06-04 00:00:00,Sushi Ginger White(SD),しょうが白(SD),54.0,ctn,2099-12-31,Alex
+35,,2019-08-10,DRY,YMT01,text:'THI',2019-04-05 00:00:00,Special Soy Sauce for Chicken,テリヤキソース(チキン用）,33.0,ctn,2020-02-21 00:00:00,Alex
+36,,2019-08-10,DRY,HJL01a,text:'AUS',2019-05-21 00:00:00,Sodium bicarbonate 25kg,重曹25㎏,20.0,bag ,2021-01-17 00:00:00,Alex
+37,,2019-08-10,DRY,PLATE,text:'JPN',2019-03-19 00:00:00,PLATE,,1.0,plt,2020-03-17,Alex
+38,,2019-08-10,DRY,CDY17,text:'CHA',2019-07-08 00:00:00,Dried Seaweed AOSA 100g Green label,のりアオサ　100ｇ,5.75,ctn,2020-06-03 00:00:00,Alex
+39,,2019-08-10,DRY,JT46A,text:'JPN',2019-07-30 00:00:00,Rice Vineger Mild 20lt (TF) No design,内堀酢 (米酢) 20lt (無地箱),7.0,ctn,2021-06-03 00:00:00,Alex
+40,,2019-08-10,DRY,JT342,text:'JPN',2019-05-21 00:00:00,Curry Powder 2kg,S&B カレーパウダー 2kg,5.0,ctn,2022-01-23 00:00:00,Alex
+41,,2019-08-10,DRY,CDY08,text:'CHA',2019-04-02 00:00:00,Sushi Ginger White(SD) APR11,しょうが白(SD),10.0,ctn,2020-01-03 00:00:00,Alex
+42,,2019-08-10,DRY,YZL02a,text:'AUS',1999-01-01 00:00:00,Fish Shape Soy Sauce 3ml x 500 Red cap,ミニしょうゆ（魚）3ml x 500 赤,2.0,pack,2021-09-03 00:00:00,Alex
+43,,2019-08-10,DRY,YS33A,text:'JPN',2019-05-27 00:00:00,Seasoning Sauce (Kombu Ponzu) 1L JUNE 10,ヤマサ　昆布ぽん酢　1L,5.0,ctn,2020-02-27 00:00:00,Alex
+44,,2019-08-10,DRY,BBC03a,text:'AUS',2019-06-18 00:00:00,Round Lids,コンテナ Round Lid (B8/B16用),0.6,ctn,2099-12-31,Alex
+45,,2019-08-10,DRY,BBC10a,text:'AUS',2019-05-17 00:00:00,20oz/560ml Round Container,コンテナ B20 (Round),1.0,ctn,2099-12-31,Alex
+46,,2019-08-10,DRY,BBC01a,text:'AUS',2019-04-30 00:00:00,8 oz / 225ml Round Container,コンテナ B8 (Round),2.5,ctn,2020-04-28,Alex
+47,,2019-08-10,DRY,BV45a,text:'AUS',2019-03-22 00:00:00,SOY SAUCE LESS SALT  AKARI,減塩醤油,26.0,ctn,2019-04-16 00:00:00,Alex
+48,,2019-08-10,DRY,CDY18,text:'CHA',2019-07-08 00:00:00,Roasted Seaweed Hand Roll Sushi FILM 100sht,のり手巻き寿司フィルム　100枚,1.0,ctn,2020-06-03 00:00:00,Alex
+49,,2019-08-10,DRY,GCA01e,text:'AUS',2019-06-25 00:00:00,Sugar 25kg Bundaberg,砂糖 25kg,12.0,ctn,2099-12-31,Alex
+50,,2019-08-10,DRY,YS38,text:'JPN',2019-05-27 00:00:00,Soy Sauce Sushi Train 10L JUNE 5,ヤマサ　スシトレイン用醤油 10L,16.0,ctn,2020-04-01 00:00:00,Alex
+51,,2019-08-10,DRY,CDY13,text:'CHA',2019-07-08 00:00:00,Roasted Seaweed KIZAMI 100g,きざみ海苔　100ｇ　,4.0,ctn,2020-06-03 00:00:00,Alex
+52,,2019-08-10,DRY,YS47,text:'JPN',2017-09-15 00:00:00,Dispenser Red Cap,ヤマサ　醤油キャップ　赤　150ml,610.0,pc,2099-12-31,Alex
+53,,2019-08-10,DRY,CP05Aa,text:'AUS',2018-10-24 00:00:00,HD PLAIN LOOSE SHEETS (Silver tray),シルバートレー用シート,2.0,ctn,2099-12-31,Alex
+54,,2019-08-10,DRY,DH46,text:'CHA',2019-01-29 00:00:00,Ika Ichiya Boshi Package,イカ一夜干し パッケージ,4.0,ctn,2099-12-31,Alex
+55,,2019-08-10,DRY,SPL596,text:'AUS',2019-02-20 00:00:00,Magic Five 500ml (Mayu Bottle),,21.0,bottle,2099-12-31,Alex
+56,,2019-08-10,DRY,GCA03e,text:'AUS',2019-07-16 00:00:00,Brown Sugar 25kg,ブラウンシュガー 25kg,4.0,ctn,2099-12-31,Alex
+57,,2019-08-10,DRY,HKW01a,text:'AUS',2019-07-09 00:00:00,Colflo 67 (Only for Plenus),モディファイドスターチ for Plenus,4.0,ctn,2021-04-03 00:00:00,Alex
+58,,2019-08-10,DRY,KSG03,text:'JPN',2019-06-18 00:00:00,Bamboo Leaves (3000),笹の葉 3000枚,2.0,ctn,2099-12-31,Alex
+59,,2019-08-10,DRY,JT449,text:'JPN',2019-06-18 00:00:00,Japanese Confectionery Hi-Chew (Strawberry) ,森永　ハイチュウ　ストロベリー,2.0,ctn,2020-01-31 00:00:00,Alex
+60,,2019-08-10,DRY,YMT01,text:'THI',2019-04-05 00:00:00,Special Soy Sauce for Chicken,テリヤキソース(チキン用）,36.0,ctn,2020-02-21 00:00:00,Alex
+61,,2019-08-10,DRY,MAU01a,text:'AUS',2019-08-01 00:00:00,Kangaroo Noodle flour white 25kg,カンガルー小麦粉　麺用　25kg,22.0,ctn,2020-01-23 00:00:00,Alex
+62,,2019-08-10,DRY,JT445,text:'JPN',2019-04-10 00:00:00,Japanese Soup (Bonito) 1kg (500gx2),ヤマキ　だしの素大徳顆粒1kg　ANZ,1.0,ctn,2020-05-23 00:00:00,Alex
+63,,2019-08-10,DRY,JT450,text:'JPN',1999-01-01 00:00:00,Japanese Confectionery Hi-Chew (Grape) ,森永　ハイチュウ 　グレープ,5.5,pack,2020-02-28 00:00:00,Alex
+64,,2019-08-10,DRY,JT450,text:'JPN',2019-06-18 00:00:00,Japanese Confectionery Hi-Chew (Grape) ,森永　ハイチュウ 　グレープ,3.0,ctn,2020-02-28 00:00:00,Alex
+65,,2019-08-10,DRY,JT451,text:'JPN',2019-06-18 00:00:00,Japanese Confectionery Hi-Chew (Green Apple) ,森永　ハイチュウ 　グリーンアップル,1.0,ctn,2020-01-31 00:00:00,Alex
+66,,2019-08-10,DRY,JT1067,text:'JPN',2019-06-18 00:00:00,Non Alcoholic Drink Asahi Dry Zero 350ml,アサヒ　ドライゼロ 350ml,2.0,ctn,2020-03-31 00:00:00,Alex
+67,,2019-08-10,DRY,JT221,text:'JPN',2019-06-18 00:00:00,Japanese Mustard 43g,S&B 和風ねりからし チューブ 43g,9.7,ctn,2020-02-02 00:00:00,Alex
+68,,2019-08-10,DRY,TF49,text:'AUIS',2019-08-03 00:00:00,Bread Crumbs Japanese Panko 200g,日本のパン粉 200g,17.0,ctn,2020-07-31 00:00:00,Alex
+69,,2019-08-10,DRY,YM06,text:'THI',2019-06-28 00:00:00,Tonkatsu Sauce 業務用,トンカツソース 業務用,1.0,ctn,2021-04-30 00:00:00,Alex
+70,,2019-08-10,DRY,YM28,text:'THI',2019-06-28 00:00:00,Teriyaki Sauce (Vegetarian) ,テリヤキソース (ベジタリアン),2.0,ctn,2020-01-07 00:00:00,Alex
+71,,2019-08-10,DRY,YM05,text:'THI',2019-01-18 00:00:00,Wster Sauce 小売用 JAN5,ウスターソース 小売用,5.0,ctn,2020-01-17,Alex
+72,,2019-08-10,DRY,PAR14,text:'AUS',2019-08-06 00:00:00,Rubber Band No.18,ゴム No.18,1.0,ctn,2099-12-31,Alex
+73,,2019-08-10,DRY,SUSHI02,text:'AUS',2019-07-10 00:00:00,Home Made Plum Wine ( Production  10/07/19),自家製梅酒　（製造日(2019年7月10日),5.0,ctn,2099-12-31,Alex
+74,,2019-08-10,DRY,UKF06A,text:'THI',2019-04-05 00:00:00,Tempura Mix (TM-49 500g) APR4,天ぷら粉 500g Thai,20.0,ctn,2020-02-26 00:00:00,Alex
+75,,2019-08-10,DRY,MYO02,text:'MAY',2019-07-19 00:00:00,Pure Vegetable Oil BIB JULY 19,ベジタブル油 BIB,52.0,ctn,2020-06-30 00:00:00,Alex
+76,,2019-08-10,DRY,JT568,text:'JPN',2018-11-09 00:00:00,super Vinegar 20L,スーパービネガー２０L,11.0,ctn,2020-09-09 00:00:00,Alex
+77,,2019-08-10,DRY,BBC08a,text:'AUS',2019-04-05 00:00:00,Rectanglar Lid (B500/1000用) Freezer Grade,コンテナ Rectanglar Lid (B500/1000用),2.0,ctn,2099-12-31,Alex
+78,,2019-08-10,DRY,BBC06a,text:'AUS',1999-01-01 00:00:00,B500 (Rec),コンテナ B500 (Rec),1.0,ctn,2099-12-31,Alex
+79,,2019-08-10,DRY,PAR18,text:'AUS',2019-03-08 00:00:00,Livingstone Powdered Latex Gloves BLUE S size,Latex Powdered Gloves Blue S size,1.0,ctn,2099-12-31,Alex
+80,,2019-08-10,DRY,PAR16,text:'AUS',2019-03-08 00:00:00,Livingstone Powdered Latex Gloves BLUE M size,Latex Powdered Gloves Blue M size,2.0,ctn,2099-12-31,Alex
+81,,2019-08-10,DRY,YS03,text:'JPN',2019-01-31 00:00:00,Usukuchi Soy Sauce 18L,ヤマサ　薄口醤油１８L APR⑬,5.0,ctn,2019-10-31 00:00:00,Alex
+82,,2019-08-10,DRY,JT540,text:'JPN',2018-04-27 00:00:00,Matcha Genmai-Cha (TB)　(1.5g/1000p),抹茶入り玄米茶(1.5g/1000p),1.0,ctn,2019-03-22 00:00:00,Alex
+83,,2019-08-10,DRY,JT414,text:'JPN',2018-07-13 00:00:00,Plastic Pack ML-6H,卵パック,1.0,ctn,2099-12-31,Alex
+84,,2019-08-10,DRY,JT459,text:'JPN',2017-07-07 00:00:00,Malted Rice-Steamed(MIYAKO KOJI) 500g,みやここうじ　500g,8.0,ctn,2018-04-01 00:00:00,Alex
+85,,2019-08-10,DRY,GCA02c,text:'THI',2019-06-13 00:00:00,Dairy Salt 25kg,塩 25kg,21.0,ctn,2099-12-31,Alex
+86,,2019-08-10,DRY,CDY03,text:'CHA',2019-07-08 00:00:00,Roased Seaweed 1/7cut 100sheets  (中国産) July 4,のり7切100枚(軍艦のり）  (中国産),10.0,ctn,2020-06-03 00:00:00,Alex
+87,,2019-08-10,DRY,APC02,text:'AUS',2018-05-28 00:00:00,12OZ Smoothe double wall Kraft Coffee Cup (Sushi Break),スシブレイク味噌汁カップ（クラフトTAコーヒーカップ）,9.0,ctn,2099-12-31,Alex
+88,,2019-08-10,DRY,MYO04A,text:'MAY',2018-10-25 00:00:00,BIB PACKING - Long Card Board-,,2.0,ctn,2099-12-31,Alex
+89,,2019-08-10,DRY,YS01,text:'JPN',2019-05-27 00:00:00,Yamasa Soy Sauce 18L JUNE 15,ヤマサ　醤油１８L,6.0,ctn,2020-04-01 00:00:00,Alex
+90,,2019-08-10,DRY,NS06,text:'THI',2019-05-24 00:00:00,NS-GREEN PANDA Wheat Flour MAY 8,中華麺用粉（グリーンパンダ）,8.0,bag,2019-10-16 00:00:00,Alex
+91,,2019-08-10,DRY,EBP04,text:'JPN',2019-06-06 00:00:00,BBQ Sawdust Briquette (Good quality),オガ炭 (箱)  良品質,20.0,ctn,2099-12-31,Alex
+92,,2019-08-10,DRY,JT45,text:'JPN',2016-07-13 00:00:00,Miso Zuke no Moto1kg,味噌漬けの素1kg（長期熟成）,3.0,ctn,2016-12-06 00:00:00,Alex
+93,,2019-08-10,DRY,QP12,text:'THI',2018-05-23 00:00:00,Egg Tray (20pc),卵トレイ,10.0,ctn,2099-12-31,Alex
+94,,2019-08-10,DRY,JT651,text:'JPN',2018-09-20 00:00:00,Ramen Soup Kyushu Flavour 1.8L,九州風ラーメンスープ 1.8L,8.0,ctn,2019-09-19,Alex
+95,,2019-08-10,DRY,JET4,text:'AUS',2015-07-10 00:00:00,Senkyaku Banrai TF-Q-01 Docket Book,千客万来　TF-Q-01 ドケットブック（大サイズ：四枚綴り 25枚入り）,2.7,ctn,2016-07-08,Alex
+96,,2019-08-10,DRY,DW19,text:'AUS',2019-03-29 00:00:00,UMAMI VEGETABLE OIL Tin 20L,UMAMI ベジタブルオイル　缶　20L,2.0,ctn,2020-03-27,Alex
+97,,2019-08-10,DRY,QP01,text:'THI',2019-06-28 00:00:00,QP Mayonnaise 1kg Thai JUNE 10,QP マヨネーズ 1kg,36.0,ctn,2019-11-24 00:00:00,Alex
+98,,2019-08-10,DRY,VNR5,text:'VIT',2019-07-02 00:00:00,Vietnam Rice Yellow (TF) JUL 16,ベトナム米 (プレミアムジャポニカライス）,54.0,bag,2020-06-03 00:00:00,Alex
+99,,2019-08-10,DRY,YMT03,text:'THI',2019-04-05 00:00:00,Sweet Chili Sauce 2.4kg (2L) (ST),スイートチリソース 2.4kg (2L)（ST）,28.0,ctn,2020-02-22 00:00:00,Alex
+100,,2019-08-10,DRY,JET8a,text:'AUS',2019-04-24 00:00:00,Large Size Restaurant Docket Book SF-T-01,SF-T-01 ドケットブック（大サイズ：三枚綴り 50枚入り）,27.0,ctn,2020-04-22,Alex
+101,,2019-08-10,DRY,JT27,text:'JPN',2019-05-21 00:00:00,Dried Bonito Flake 500g  ,かつお節 500g (業務用） ,35.0,ctn,2020-03-27 00:00:00,Alex
+102,,2019-08-10,DRY,GCA01e,text:'AUS',2019-08-08 00:00:00,Sugar 25kg Bundaberg,砂糖 25kg,48.0,ctn,2020-06-30 00:00:00,Alex
+103,,2019-08-10,DRY,MYO02,text:'MAY',2019-07-19 00:00:00,Pure Vegetable Oil BIB JULY 18,ベジタブル油 BIB,52.0,ctn,2020-06-30 00:00:00,Alex
+104,,2019-08-10,DRY,VNR5,text:'VIT',2019-07-02 00:00:00,Vietnam Rice Yellow (TF) JUL 8,ベトナム米 (プレミアムジャポニカライス）,2.0,bag,2020-06-03 00:00:00,Alex
+105,,2019-08-10,DRY,JT46,text:'JPN',2019-07-30 00:00:00,Rice Vineger Mild 20lt (ST),内堀酢 (米酢) 20lt (ST),36.0,ctn,2021-06-03 00:00:00,Alex
+106,,2019-08-10,DRY,CP01f,text:'AUS',2019-02-05 00:00:00,HDPE Plain Natural Liner Bag (Shari),しゃり袋,2.0,ctn,2099-12-31,Alex
+107,,2019-08-10,DRY,QP09,text:'THI',1999-01-01 00:00:00,QP Mayonnaise Mild Type 10G FEB13,QP マヨネーズマイルドタイプ 10g,1.0,ctn,2018-02-21 00:00:00,Alex
+108,,2019-08-10,DRY,QP09,text:'THI',1999-01-01 00:00:00,QP Mayonnaise Mild Type 10G FEB13,QP マヨネーズマイルドタイプ 10g,3.0,ctn,2018-04-15 00:00:00,Alex
+109,,2019-08-10,DRY,QP09,text:'THI',1999-01-01 00:00:00,QP Mayonnaise Mild Type 10G FEB13,QP マヨネーズマイルドタイプ 10g,1.0,ctn,2018-05-01 00:00:00,Alex
+110,,2019-08-10,DRY,KSG01,text:'JPN',2019-02-07 00:00:00,Rice Pack Z20-20D (TF),ライスパック Z20-20D,6.0,ctn,2099-12-31,Alex
+111,,2019-08-10,DRY,NFS46,text:'AUS',2019-08-01 00:00:00,Champion Trophy premium noodle flour,チャンピオン トロフィー20㎏,14.0,ctn,2020-02-27 00:00:00,Alex
+112,,2019-08-10,DRY,VT02,text:'VIT',2019-01-03 00:00:00,Carton Pad,ラーメン箱　中敷き,18.0,bdl,2099-12-31,Alex
+113,,2019-08-10,DRY,TF89,text:'THI',2019-07-04 00:00:00,Marinucci Premium Black PS 7x5 Tray,プレミアム　ブラックトレイ,1.0,ctn,2099-12-31,Alex
+114,,2019-08-10,DRY,UKF06Arepack,text:'THI',2019-04-05 00:00:00,Tempura Mix (TM-49 500g) APR4 REPACKED,天ぷら粉 500g Thai,1.0,ctn,2020-02-26 00:00:00,Alex
+115,,2019-08-10,DRY,MYO04A,text:'MAY',2019-04-24 00:00:00,BIB PACKING - Long Card Board-,,2.0,ctn,2020-04-30 00:00:00,Alex
+116,,2019-08-10,DRY,MYO04B,text:'MAY',2019-04-24 00:00:00,BIB PACKING - Square Card Board-,,4.0,ctn,2020-04-30 00:00:00,Alex
+117,,2019-08-10,DRY,MYO04C,text:'MAY',2019-04-24 00:00:00,BIB PACKING - Blue Bag-,,3.0,ctn,2020-04-30 00:00:00,Alex
+118,,2019-08-10,DRY,JT414,text:'JPN',2018-01-24 00:00:00,Plastic PACK ML-6H,卵パック,1.0,ctn,2099-12-31,Alex
+119,,2019-08-10,DRY,YZL05,text:'AUS',2018-12-07 00:00:00,Mini Wasabi 3g ,ミニ わさび,0.25,ctn,2019-06-27 00:00:00,Alex
+120,,2019-08-10,DRY,YS41,text:'JPN',2015-09-22 00:00:00,Dispenser Black Cap,ヤマサ　スシトレイン用キャップ　150ml (グルテンフリー)（SEP19）,483.0,pc,2099-12-31,Alex
+121,,2019-08-10,DRY,JT451,text:'JPN',2018-07-13 00:00:00,Japanese Confectionery Hi-Chew (Green Apple) ,森永　ハイチュウ 　グリーンアップル,0.83,ctn,2019-03-01 00:00:00,Alex
+122,,2019-08-10,DRY,YS40,text:'JPN',2019-03-19 00:00:00,Dispenser Green Cap,ヤマサ　スシトレイン用キャップ　150ml,0.95,ctn,2099-12-31,Alex
+123,,2019-08-10,DRY,DH34,text:'CHA',2017-08-01 00:00:00,Lunch Box 307,弁当箱 307,3.75,ctn,2099-12-31,Alex
+124,,2019-08-10,DRY,YM01A,text:'THI',2019-06-28 00:00:00,T/A Soy sauce JUNE10,ST/Take Away Soy,2.0,ctn,2020-09-27 00:00:00,Alex
+125,,2019-08-10,DRY,YM01A,text:'THI',2019-06-28 00:00:00,T/A Soy sauce JUNE10,ST/Take Away Soy,58.0,ctn,2020-11-01 00:00:00,Alex
+126,,2019-08-10,DRY,VNR5,text:'VIT',2019-07-02 00:00:00,Vietnam Rice Yellow (TF) JUL 13,ベトナム米 (プレミアムジャポニカライス）,54.0,bag,2020-06-03 00:00:00,Alex
+127,,2019-08-10,DRY,VFK03,text:'AUS',2019-01-17 00:00:00,Dry Bread Crumb DEXLFP JAN9,パン粉 (VIT),32.0,ctn,2019-12-17 00:00:00,Alex
+128,,2019-08-10,DRY,PLATE,text:'JPN',2018-11-15 00:00:00,PLATE,お皿 CH,1.0,plt,2099-12-31,Alex
+129,,2019-08-10,DRY,Red02b,text:'AUS',2019-06-25 00:00:00,CORN STARCH,コーンスターチ（片栗粉）,27.0,ctn,2020-12-02 00:00:00,Alex
+130,,2019-08-10,DRY,JT636,text:'JPN',2018-08-24 00:00:00,Plastic Container TY-2 Body,コンテナ TY-2 本体 白,0.66,ctn,2099-12-31,Alex
+131,,2019-08-10,DRY,JT637,text:'JPN',2018-08-24 00:00:00,Plastic Container TY-2 Lid DOBUTSU,コンテナ TY-2 蓋 動物柄,0.66,ctn,2099-12-31,Alex
+132,,2019-08-10,DRY,JT641,text:'JPN',2018-08-24 00:00:00,Plastic Container TSR Body,コンテナ TSRカレー本体 白,1.0,ctn,2099-12-31,Alex
+133,,2019-08-10,DRY,JT642,text:'JPN',2018-08-24 00:00:00,Plastic Container TSR Lid ,コンテナ TSRカレー蓋 透明,1.0,ctn,2099-12-31,Alex
+134,,2019-08-10,DRY,JT643,text:'JPN',2018-08-24 00:00:00,Plastic Container TSR  CHU Body,コンテナ TSRカレー中子 白,1.0,ctn,2099-12-31,Alex
+135,,2019-08-10,DRY,JT644,text:'JPN',2018-08-24 00:00:00,Plastic Container TSR CHU Lid ,コンテナ TSRカレー中子 蓋,1.0,ctn,2099-12-31,Alex
+136,,2019-08-10,DRY,JT632,text:'JPN',2018-08-24 00:00:00,Plastic Container TY-1 Body,コンテナ TY-1 本体,0.53,ctn,2099-12-31,Alex
+137,,2019-08-10,DRY,JT633,text:'JPN',2018-08-24 00:00:00,Plastic Container TY-1 Lid KUMA,コンテナ TY-1 蓋 クマ,0.55,ctn,2099-12-31,Alex
+138,,2019-08-10,DRY,JT634,text:'JPN',2018-08-24 00:00:00,Plastic Container TY-1 Lid NEKO,コンテナ TY-1 蓋 ネコ,0.55,ctn,2099-12-31,Alex
+139,,2019-08-10,DRY,JT635,text:'JPN',2018-08-24 00:00:00,Plastic Container TY-1 Lid PANDA,コンテナ TY-1 蓋 パンダ,0.55,ctn,2099-12-31,Alex
+140,,2019-08-10,DRY,JET5,text:'AUS',2018-01-22 00:00:00,Large Restaurant SF-Q-01 Docket Book,SF-Q-01 ドケットブック（大サイズ：四枚綴り 25枚入り）,1.0,ctn,2099-12-31,Alex
+141,,2019-08-10,DRY,VIS01c,text:'AUS',2019-05-29 00:00:00,Tsukune Box VISY 25pc/bdl,VISY　つくね箱　,12.0,ctn,2099-12-31,Alex
+142,,2019-08-10,DRY,PLATE,text:'AUS',2018-11-15 00:00:00,PLATE,お皿 CG,1.0,plt,2099-12-31,Alex
+143,,2019-08-10,DRY,PLATE,text:'AUS',1999-01-01 00:00:00,PLATE,お皿 BE,1.0,plt,2099-12-31,Alex
+144,,2019-08-10,DRY,RED05,text:'AUS',2019-07-16 00:00:00,White Sugar SUGMAN5100,砂糖 25㎏ SUGMAN5100,9.0,ctn,2021-05-01 00:00:00,Alex
+145,,2019-08-10,DRY,MYO04B,text:'MAY',2018-10-25 00:00:00,BIB PACKING - Square Card Board-,,2.0,ctn,2099-12-31,Alex
+146,,2019-08-10,DRY,JT250,text:'JPN',2012-01-24 00:00:00,Plastic Tray Gyoza 16Kai(Lid),餃子トレイ 16Kai,4.0,pack,2099-12-31,Alex
+147,,2019-08-10,DRY,JT445,text:'JPN',2019-02-08 00:00:00,Japanese Soup (Bonito) 1kg (500gx2),ヤマキ　だしの素大徳顆粒1kg　ANZ,1.0,ctn,2020-05-23 00:00:00,Alex
+148,,2019-08-10,DRY,CDY05,text:'CHA',2018-10-12 00:00:00,Moist Wipe (Sushi Train),おしぼり（Sushi Train),1.0,ctn,2099-12-31,Alex
+149,,2019-08-10,DRY,CDY11,text:'CHA',2019-04-02 00:00:00,Pickled Ginger Pink 5g APR10,しょうがピンク,14.0,ctn,2020-01-01 00:00:00,Alex
+150,,2019-08-10,DRY,NML08a,text:'AUS',2019-07-25 00:00:00,Hon Mirin Alcohol14% 18L,本味醂 18L NTC　14%アルコール,4.0,ctn,2020-12-02 00:00:00,Alex
+151,,2019-08-10,DRY,PLATE,text:'JPN',2018-05-31 00:00:00,PLATE,お皿 BZ,1.0,plt,2099-12-31,Alex
+152,,2019-08-10,DRY,NML09a,text:'AUS',2019-07-26 00:00:00,RYORI SHU 18L,料理酒 18L NTC,36.0,ctn,2020-09-25 00:00:00,Alex
+153,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 QQ,1.0,plt,2099-12-31,Alex
+154,,2019-08-10,DRY,Red03c,text:'AUS',2019-06-25 00:00:00,POTATO STARCH Polish (Green) POSTAR6500,片栗粉（ポテトスターチ）PL (Green),21.0,ctn,2023-10-10 00:00:00,Alex
+155,,2019-08-10,DRY,VSE06,text:'VIT',2017-05-23 00:00:00,White Eva Boots (size 10),長靴ホワイト (size 10) ⑫,1.0,pair,2099-12-31,Alex
+156,,2019-08-10,DRY,VSE02,text:'VIT',2017-05-23 00:00:00,White Eva Boots (size 6),長靴ホワイト (size 6) ③,11.0,pair,2099-12-31,Alex
+157,,2019-08-10,DRY,VSE01,text:'VIT',2017-05-23 00:00:00,White Eva Boots (size 5),長靴ホワイト (size 5) ①,6.0,pair,2099-12-31,Alex
+158,,2019-08-10,DRY,VSE04,text:'VIT',2017-05-23 00:00:00,White Eva Boots (size 8),長靴ホワイト (size 8) ⑦,10.0,pair,2099-12-31,Alex
+159,,2019-08-10,DRY,VSE05,text:'VIT',2017-05-23 00:00:00,White Eva Boots (size 9),長靴ホワイト (size 9) ⑨,9.0,pair,2099-12-31,Alex
+160,,2019-08-10,DRY,VSE03,text:'VIT',2017-05-23 00:00:00,White Eva Boots (size 7),長靴ホワイト (size 7) ⑭,11.0,pair,2099-12-31,Alex
+161,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AU,1.0,plt,2099-12-31,Alex
+162,,2019-08-10,DRY,PLATE,text:'AUS',1999-01-01 00:00:00,PLATE,お皿 AW,1.0,plt,2099-12-31,Alex
+163,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AC,1.0,plt,2099-12-31,Alex
+164,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AO,1.0,plt,2099-12-31,Alex
+165,,2019-08-10,DRY,YS40,text:'JPN',1999-01-01 00:00:00,Dispenser Green Cap,ヤマサ　スシトレイン用キャップ　150ml,1.0,pack,2020-12-11 00:00:00,Alex
+166,,2019-08-10,DRY,YS40,text:'JPN',1999-01-01 00:00:00,Dispenser Green Cap,ヤマサ　スシトレイン用キャップ　150ml,1.0,pack,2020-12-11 00:00:00,Alex
+167,,2019-08-10,DRY,SM03A,text:'AUS',2019-04-11 00:00:00,Citron Honey Tea ,ゆず茶,0.92,ctn,2020-12-11 00:00:00,Alex
+168,,2019-08-10,DRY,YS33A,text:'JPN',2019-03-19 00:00:00,Seasoning Sauce (Kombu Ponzu) 1L,ヤマサ　昆布ぽん酢　1L,1.0,ctn,2019-11-30 00:00:00,Alex
+169,,2019-08-10,DRY,JT342,text:'JPN',2018-09-20 00:00:00,Curry Powder 2kg,S&B カレーパウダー 2kg,1.5,ctn,2021-07-11 00:00:00,Alex
+170,,2019-08-10,DRY,YS03,text:'JPN',2018-11-13 00:00:00,Usukuchi Soy Sauce 18L,ヤマサ　薄口醤油１８L,3.0,ctn,2019-08-31 00:00:00,Alex
+171,,2019-08-10,DRY,YS48,text:'JPN',2018-11-13 00:00:00,Sanjirushi Gluten Free Soy Sauce 18L,サンジルシ　グルテンフリー　醤油　18L,9.0,ctn,2020-03-13 00:00:00,Alex
+172,,2019-08-10,DRY,OLS33,text:'JPN',2018-09-25 00:00:00,Galvanised Steel Mesh 39.8ｘ19.8cm ,スクエア網200個　39.8ｘ19.8cm （198×398mm）05P30SEP17,1.0,ctn,2099-12-31,Alex
+173,,2019-08-10,DRY,YS39,text:'JPN',2017-09-15 00:00:00,Dispenser Glass Bottle (ST),ヤマサ　スシトレイン用瓶　150ml,3.0,ctn,2099-12-31,Alex
+174,,2019-08-10,DRY,JT424,text:'JPN',2017-01-18 00:00:00,Can for Seaweed Small,のり缶　半切用,11.0,pc,2099-12-31,Alex
+175,,2019-08-10,DRY,JT510,text:'JPN',2018-01-24 00:00:00,Green Tea Powder HAGOROMO 20g,宇治抹茶　羽衣　20g,1.0,ctn,2018-05-14 00:00:00,Alex
+176,,2019-08-10,DRY,JT486,text:'JPN',2018-01-24 00:00:00,Roasted Green Tea Powder 5kg HOUJICHA,粉末ほうじ茶　5kg,2.0,ctn,2018-12-14 00:00:00,Alex
+177,,2019-08-10,DRY,JT256,text:'JPN',2018-01-24 00:00:00,Roasted Green Tea 100g IYEMON Sencha,伊衛門　抹茶入り煎茶 100g,1.0,ctn,2018-08-12 00:00:00,Alex
+178,,2019-08-10,DRY,JT458,text:'JPN',2015-10-08 00:00:00,Ina Agar L(Jelly powder mix) 500g,イナアガーL　500g,3.0,ctn,2016-08-16 00:00:00,Alex
+179,,2019-08-10,DRY, JT839,text:'JPN',2017-09-27 00:00:00,Salted Plum 　1Kg,カリ紅小梅漬-国産　小小玉　1kg,2.0,ctn,2018-09-26,Alex
+180,,2019-08-10,DRY,JT473,text:'JPN',2016-01-13 00:00:00,Lunch Box H-151-31,重箱用ハッポー十字切（白木調,50.0,pc,2099-12-31,Alex
+181,,2019-08-10,DRY,PLATE,text:'JPN',2017-11-08 00:00:00,PLATE,お皿 BU,1.0,plt,2099-12-31,Alex
+182,,2019-08-10,DRY,PLATE,text:'VIT',1999-01-01 00:00:00,PLATE,お皿 TT,1.0,plt,2099-12-31,Alex
+183,,2019-08-10,DRY,PLATE,text:'JPN',2017-11-08 00:00:00,PLATE,お皿 BX,1.0,plt,2099-12-31,Alex
+184,,2019-08-10,DRY,SM05a,text:'AUS',2017-12-15 00:00:00,Portable Gas Cooker red ,ポータブルガスクッカー　赤,3.0,ctn,2018-12-14,Alex
+185,,2019-08-10,DRY,JT408,text:'JPN',2017-08-30 00:00:00,Japanese Green Tea SENCHA 1kg LO-A,煎茶１ｋｇ　LO-A,1.0,ctn,2018-07-18 00:00:00,Alex
+186,,2019-08-10,DRY,CDY14,text:'CHA',2018-03-29 00:00:00,Freeze-dry Miso Soup New ,フリーズドライ味噌汁 New 無地,1.0,ctn,2018-04-23 00:00:00,Alex
+187,,2019-08-10,DRY,JT436,text:'JPN',2019-02-07 00:00:00,BBQ Galvanised Mesh 24.5cm ,金網平型 24.5cm,10.0,ctn,2099-12-31,Alex
+188,,2019-08-10,DRY,OLS54,text:'JPN',2019-02-07 00:00:00,Plastic cup for shaved ice,かき氷用プラスチックカップ,1200.0,pc,2099-12-31,Alex
+189,,2019-08-10,DRY,PLATE,text:'JPN',2018-05-31 00:00:00,PLATE,お皿 CB,1.0,plt,2099-12-31,Alex
+190,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AY,1.0,plt,2099-12-31,Alex
+191,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AQ,1.0,plt,2099-12-31,Alex
+192,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AA,1.0,plt,2099-12-31,Alex
+193,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AD,1.0,plt,2099-12-31,Alex
+194,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AS,1.0,plt,2099-12-31,Alex
+195,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AM,1.0,plt,2099-12-31,Alex
+196,,2019-08-10,DRY,PLATE,text:'AUS',1999-01-01 00:00:00,PLATE,お皿 GG,1.0,plt,2099-12-31,Alex
+197,,2019-08-10,DRY,DW16a,text:'AUS',2019-08-01 00:00:00,Modify Tapioka Starch25kg (GELPROA65),モディファイドタピオカスターチ　25kg,9.0,ctn,2099-12-31,Alex
+198,,2019-08-10,DRY,BBC02a,text:'AUS',2019-07-16 00:00:00,16 oz / 450ml Round Container,コンテナ B16 (Round),1.0,ctn,2099-12-31,Alex
+199,,2019-08-10,DRY,BBC03a,text:'AUS',2019-07-16 00:00:00,Round Lids,コンテナ Round Lid (B8/B16用),3.0,ctn,2099-12-31,Alex
+200,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 BW,1.0,plt,2099-12-31,Alex
+201,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 HH,1.0,plt,2099-12-31,Alex
+202,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AG,1.0,plt,2099-12-31,Alex
+203,,2019-08-10,DRY,PLATE,text:'JPN',2017-11-08 00:00:00,PLATE,お皿 BN,1.0,plt,2099-12-31,Alex
+204,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AH,1.0,plt,2099-12-31,Alex
+205,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 YY,1.0,plt,2099-12-31,Alex
+206,,2019-08-10,DRY,PLATE,text:'JPN',2017-11-08 00:00:00,PLATE,お皿 BR,1.0,plt,2099-12-31,Alex
+207,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AZ,1.0,plt,2099-12-31,Alex
+208,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AI,1.0,plt,2099-12-31,Alex
+209,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AE,1.0,plt,2099-12-31,Alex
+210,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AX,1.0,plt,2099-12-31,Alex
+211,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 BC,1.0,plt,2099-12-31,Alex
+212,,2019-08-10,DRY,PLATE,text:'VIT',1999-01-01 00:00:00,PLATE,お皿 BF,1.0,plt,2099-12-31,Alex
+213,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 BQ,1.0,plt,2099-12-31,Alex
+214,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 BP,1.0,plt,2099-12-31,Alex
+215,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 BK,1.0,plt,2099-12-31,Alex
+216,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 BG,1.0,plt,2099-12-31,Alex
+217,,2019-08-10,DRY,VFK03,text:'VIT',2019-01-17 00:00:00,Dry Bread Crumb DEXLFP JAN17,パン粉 (VIT),32.0,ctn,2019-12-17 00:00:00,Alex
+218,,2019-08-10,DRY,PLATE,text:'AUS',2017-11-08 00:00:00,PLATE,お皿 BA,1.0,plt,2099-12-31,Alex
+219,,2019-08-10,DRY,VFK03,text:'VIT',2019-01-17 00:00:00,Dry Bread Crumb DEXLFP JAN13,パン粉 (VIT),32.0,ctn,2019-12-17 00:00:00,Alex
+220,,2019-08-10,DRY,VFK03,text:'VIT',2019-01-17 00:00:00,Dry Bread Crumb DEXLFP JAN14,パン粉 (VIT),32.0,ctn,2019-12-17 00:00:00,Alex
+221,,2019-08-10,DRY,PLATE,text:'JPN',2018-05-31 00:00:00,PLATE,お皿 CA,1.0,plt,2099-12-31,Alex
+222,,2019-08-10,DRY,VFK03,text:'VIT',2019-01-17 00:00:00,Dry Bread Crumb DEXLFP JAN12,パン粉 (VIT),32.0,ctn,2019-12-17 00:00:00,Alex
+223,,2019-08-10,DRY,VFK03,text:'VIT',2019-01-17 00:00:00,Dry Bread Crumb DEXLFP JAN11,パン粉 (VIT),32.0,ctn,2019-12-17 00:00:00,Alex
+224,,2019-08-10,DRY,NML14c,text:'AUS',2019-06-21 00:00:00,Tuna Flake in Brine 3.12kg,ツナフレーク 3.12kg,28.0,ctn,2021-02-04 00:00:00,Alex
+225,,2019-08-10,DRY,QSW06,text:'CHA',2019-05-06 00:00:00,Roasted Peanuts with Chili 90g,麻辣ピーナッツ（カラピー） 90g,25.4,ctn,2020-01-12 00:00:00,Alex
+226,,2019-08-10,DRY,PLATE,text:'JPN',2018-12-12 00:00:00,PLATE,お皿 CJ,1.0,plt,2099-12-31,Alex
+227,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 BS,1.0,plt,2099-12-31,Alex
+228,,2019-08-10,DRY,TPM01,text:'AUS',2019-06-18 00:00:00,JAR BODY 500ml -White (500WP),いくら用 JAR BODY　500ml ,15.0,ctn,2099-12-31,Alex
+229,,2019-08-10,DRY,TPM02,text:'AUS',2019-06-18 00:00:00,JAR - LID 95mm -White (9530Wh) ,いくら用  LID　500ml ,5.0,ctn,2099-12-31,Alex
+230,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 BI,1.0,plt,2099-12-31,Alex
+231,,2019-08-10,DRY,TF48,text:'AUS',2019-08-03 00:00:00,Vinegar Sushi 18LT,すし酢 18L,5.0,ctn,2020-07-31 00:00:00,Alex
+232,,2019-08-10,DRY,DW10a,text:'AUS',2019-07-25 00:00:00,Tonkotsu Sauce Ariake 1.8L,とんこつスープ 1.8L,1.0,ctn,2021-01-17 00:00:00,Alex
+233,,2019-08-10,DRY,UKF06A,text:'THI',2018-09-10 00:00:00,Tempura Mix (TM-49 500g),天ぷら粉 500g Thai,6.0,ctn,2019-05-17 00:00:00,Alex
+234,,2019-08-10,DRY,SPL597,text:'AUS',2019-02-20 00:00:00,PE F69 sample (PET small),,1.0,ctn,2099-12-31,Alex
+235,,2019-08-10,DRY,JT1058A,text:'JPN',2019-07-30 00:00:00,Moukoou Kansui　500g,蒙古王かんすい　15kg,1.0,ctn,2099-12-31,Alex
+236,,2019-08-10,DRY,SM04b,text:'AUS',2019-06-03 00:00:00,Butane Gas 220g,ブタンガス 220g,3.0,ctn,2020-04-11 00:00:00,Alex
+237,,2019-08-10,DRY,MDR03,text:'AUS',2019-01-07 00:00:00,Vital Wheat Gluten 25kg,小麦 グルテン 25kg,5.0,ctn,2020-12-13 00:00:00,Alex
+238,,2019-08-10,DRY,JT837,text:'JPN',2019-06-18 00:00:00,kaneko Soy Sauce (Special Blend) 20L,しょうゆ（混合）20L,4.0,ctn,2020-05-13 00:00:00,Alex
+239,,2019-08-10,DRY,KFP01b,text:'AUS',2019-06-06 00:00:00,CJ Freshway CORN MALT SYRUP,水あめ,25.0,ctn,2021-03-11 00:00:00,Alex
+240,,2019-08-10,DRY,PLATE,text:'JPN',2018-06-27 00:00:00,PLATE,お皿 CE,1.0,plt,2099-12-31,Alex
+241,,2019-08-10,DRY,PLATE,text:'JPN',2017-11-08 00:00:00,PLATE,お皿 BY,1.0,plt,2099-12-31,Alex
+242,,2019-08-10,DRY,EBP03a,text:'AUS',2019-04-03 00:00:00,White Charcoal,備長炭 (無地箱),36.0,ctn,2099-12-31,Alex
+243,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 BT,1.0,plt,2099-12-31,Alex
+244,,2019-08-10,DRY,PLATE,text:'THI',1999-01-01 00:00:00,PLATE,お皿 AP,1.0,plt,2099-12-31,Alex
+245,,2019-08-10,DRY,PLATE,text:'JPN',2017-11-08 00:00:00,PLATE,お皿 BH,1.0,plt,2099-12-31,Alex
+246,,2019-08-10,DRY,PLATE,text:'JPN',2017-11-08 00:00:00,PLATE,お皿 BV,1.0,plt,2099-12-31,Alex
+247,,2019-08-10,DRY,PLATE,text:'VIT',1999-01-01 00:00:00,PLATE,お皿 AL,1.0,plt,2099-12-31,Alex
+248,,2019-08-10,DRY,PLATE,text:'AUS',1999-01-01 00:00:00,PLATE,お皿 AR,1.0,plt,2099-12-31,Alex
+249,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 UU,1.0,plt,2099-12-31,Alex
+250,,2019-08-10,DRY,PLATE,text:'AUS',1999-01-01 00:00:00,PLATE,お皿 BD,1.0,plt,2099-12-31,Alex
+251,,2019-08-10,DRY,PLATE,text:'JPN',2019-02-06 00:00:00,PLATE,お皿 CP,1.0,plt,2099-12-31,Alex
+252,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 BJ,1.0,plt,2099-12-31,Alex
+253,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AT,1.0,plt,2099-12-31,Alex
+254,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 LL,1.0,plt,2099-12-31,Alex
+255,,2019-08-10,DRY,VFK03,text:'VIT',2019-01-17 00:00:00,Dry Bread Crumb DEXLFP JAN8,パン粉 (VIT),16.0,ctn,2019-12-17 00:00:00,Alex
+256,,2019-08-10,DRY,JT167,text:'JPN',2010-12-17 00:00:00,Rice Container SP-20D Body & Lid,積水シャリコンテナ,12.0,pc,2099-12-31,Alex
+257,,2019-08-10,DRY,PLATE,text:'JPN',1999-01-01 00:00:00,PLATE,お皿 AF,1.0,plt,2099-12-31,Alex
+258,,2019-08-10,DRY,PLATE,text:'AUS',1999-01-01 00:00:00,PLATE,お皿 SS,1.0,plt,2099-12-31,Alex
+259,,2019-08-10,DRY,PLATE,text:'VIT',1999-01-01 00:00:00,PLATE,お皿 BM,1.0,plt,2099-12-31,Alex
+260,,2019-08-10,DRY,PLATE,text:'JPN',2017-11-08 00:00:00,PLATE,お皿 BO,1.0,plt,2099-12-31,Alex
+261,,2019-08-10,DRY,PLATE,text:'JPN',2018-12-12 00:00:00,PLATE,お皿 CO,1.0,plt,2099-12-31,Alex
+262,,2019-08-10,DRY,CDY01,text:'CHA',2019-07-08 00:00:00,Roasted Seaweed 100sht  (中国産) July 6,のり全形100枚新タイプ　(中国産),9.0,ctn,2020-06-03 00:00:00,Alex
+263,,2019-08-10,DRY,CDY02,text:'CHA',2019-07-08 00:00:00,Roasted Seaweed Half Cut 100sht (中国産) July 5,のり半形100枚新タイプ　(中国産),4.0,ctn,2020-06-03 00:00:00,Alex
+264,,2019-08-10,DRY,PLATE,text:'VIT',1999-01-01 00:00:00,PLATE,お皿 KK,1.0,plt,2099-12-31,Alex
+265,,2019-08-10,DRY,PLATE,text:'JPN',2018-12-12 00:00:00,PLATE,お皿 CK,1.0,plt,2099-12-31,Alex
+266,,2019-08-10,DRY,PLATE,text:'JPN',2018-12-12 00:00:00,PLATE,お皿 CM,1.0,plt,2099-12-31,Alex
+267,,2019-08-10,DRY,NFS36,text:'AUS',2019-08-01 00:00:00,Bulldog Pork Sauce 1.8L,ブルドッグ　トンカツソース1.8L,2.0,ctn,2021-03-25 00:00:00,Alex
+268,,2019-08-10,DRY,YS02,text:'JPN',2019-07-09 00:00:00,Konbu Tsuyu 1.8L July 7,ヤマサ　昆布つゆ　1.8L,51.0,ctn,2020-05-08 00:00:00,Alex
+269,,2019-08-10,DRY,Blue01Ac,text:'AUS',2019-08-13 00:00:00,Blue mountain water 600ml,ブルーマウンテインウォーター600ml,10.0,ctn,2099-12-31,Alex
+270,,2019-08-10,DRY,BBC07a,text:'AUS',2019-07-24 00:00:00,B1000 (Rec),コンテナ B1000 (Rec),3.0,ctn,2099-12-31,Alex
+271,,2019-08-10,DRY,BBC08a,text:'AUS',2019-07-24 00:00:00,Rectanglar Lid (B500/1000用) Freezer Grade,コンテナ Rectanglar Lid (B500/1000用),2.0,ctn,2099-12-31,Alex
+272,,2019-08-10,DRY,VIS02Ab,text:'AUS',2019-06-12 00:00:00,Teriyaki Chichen VISY  25pc/bdl,Visy テリヤキチキン箱,1.0,ctn,2020-06-10,Alex
+273,,2019-08-10,DRY,JT837,text:'JPN',2019-02-07 00:00:00,kaneko Soy Sauce (Special Blend) 20L,しょうゆ（混合）20L,31.0,ctn,2019-11-14 00:00:00,Alex
+274,,2019-08-10,DRY,NML09a,text:'AUS',2019-07-19 00:00:00,RYORI SHU 18L,料理酒 18L NTC,31.0,ctn,2020-08-17 00:00:00,Alex
+275,,2019-08-10,DRY,UKF07,text:'THI',2019-05-04 00:00:00,Tempura Mix (TM-49) 15kg APR3,天ぷら粉 15kg Thai,43.0,ctn,2020-02-26 00:00:00,Alex
+276,,2019-08-10,DRY,Blue01Ac,text:'AUS',2019-08-13 00:00:00,Blue mountain water 600ml,ブルーマウンテインウォーター600ml,50.0,ctn,2099-12-31,Alex
+277,,2019-08-10,DRY,JT157,text:'JPN',2019-05-21 00:00:00,Japanese Lemonade 200ml,ラムネ　日本の味　瓶 200ml,56.0,ctn,2020-02-12 00:00:00,Alex
+278,,2019-08-10,DRY,Par09,empty:'',2018-07-04 00:00:00,BUBBLE BAG 2 10mm x 215mm X 300mm,バブルバッグ 2　210mm x 215mm X 300mm,1.0,ctn,2019-07-03,Alex
+279,,2019-08-10,DRY,JT48a,text:'JPN',2019-05-21 00:00:00,Roasted Sesame White 1kg   ,白ごま 1kg  ,22.0,ctn,2019-11-26 00:00:00,Alex
+280,,2019-08-10,DRY,RED11,text:'AUS',2019-05-01 00:00:00,Caramel PS 111 -30kg,,14.0,ctn,2020-04-29,Alex
+281,,2019-08-10,DRY,QP06,text:'THI',2019-06-28 00:00:00,QP Mayonnaise Mild Type 1kg Thai (Japanese Style ),QP マヨネーズマイルドタイプ 1kg (ジャパニーズスタイル）,14.0,ctn,2019-11-27 00:00:00,Alex
+282,,2019-08-10,DRY,QP05B,text:'THI',2019-06-28 00:00:00,QP Mayonnaise Mini 12g Thai,QP マヨネーズ ミニ 12g,9.0,ctn,2019-11-24 00:00:00,Alex
+283,,2019-08-10,DRY,QP03A,text:'THI',2019-06-28 00:00:00,QP Roasted Sesame Sauce(NO MSG) JUNE 1,QP 焙煎ごまドレッシング(NO MSG),48.0,ctn,2020-05-27 00:00:00,Alex
+284,,2019-08-10,DRY,YM20,text:'THI',2019-05-24 00:00:00,Unagi Tare (NO MSG) MAY6,ウナギタレ業務用 (NO MSG),54.0,ctn,2020-09-01 00:00:00,Alex
+285,,2019-08-10,DRY,YS01,text:'JPN',2019-05-27 00:00:00,Yamasa Soy Sauce 18L JUNE 16,ヤマサ　醤油１８L,48.0,ctn,2020-04-01 00:00:00,Alex
+286,,2019-08-10,DRY,CDY05,text:'CHA',2019-05-16 00:00:00,Moist Wipe (Sushi Train),おしぼり（Sushi Train),8.0,ctn,2019-07-29 00:00:00,Alex
+287,,2019-08-10,DRY,VIS01c,text:'AUS',2019-05-29 00:00:00,Tsukune Box VISY 25pc/bdl,VISY　つくね箱　,1.0,ctn,2099-12-31,Alex
+288,,2019-08-10,DRY,UKF06A,text:'THI',2019-04-05 00:00:00,Tempura Mix  500g  REPACKED,天ぷら粉 500g  リパック済,7.0,ctn,2020-02-26 00:00:00,Alex
+289,,2019-08-10,DRY,GCA01e,text:'AUS',2019-06-25 00:00:00,Sugar 25kg Bundaberg,砂糖 25kg,6.0,ctn,2099-12-31,Alex
+290,,2019-08-10,DRY,YS09,text:'JPN',2018-06-12 00:00:00,Mini Soy Sauce 5ml,ヤマサ　ミニ醤油 5ml,5.0,ctn,2019-08-15 00:00:00,Alex
+291,,2019-08-10,DRY,QP03A,text:'THI',2019-03-01 00:00:00,QP Roasted Sesame Sauce(NO MSG) MAR3,QP 焙煎ごまドレッシング(NO MSG),3.0,ctn,2020-02-01 00:00:00,Alex
+292,,2019-08-10,DRY,JT252,text:'JPN',2018-12-12 00:00:00,Roasted Seaweed 100sht Onigiri,のり 100枚”おにぎりシート”　,1.8,ctn,2019-07-31 00:00:00,Alex
+293,,2019-08-10,DRY,JT600,text:'JPN',2018-12-12 00:00:00,JAPANESE GREEN TEA Genmai-Cha 10g x 100P,抹茶入玄米茶ティーバッグ10gx100P,4.0,ctn,2019-10-30 00:00:00,Alex
+294,,2019-08-10,DRY,JT504,text:'JPN',2016-03-23 00:00:00,Aluminium Bag (Green Tea 500g),500g用アルミ蒸着袋 10 x 37cm (奥行4.5cm)　,1.0,ctn,2099-12-31,Alex
+295,,2019-08-10,DRY,YS38,text:'JPN',2018-12-05 00:00:00,Soy Sauce Sushi Train 10L DEC3,ヤマサ　スシトレイン用醤油 10L,5.0,ctn,2020-09-26 00:00:00,Alex
+296,,2019-08-10,DRY,JT838,text:'JPN',2018-09-25 00:00:00,kaneko Light Soy Sauce 20L,うすくちしょうゆ（混合） 20L,5.0,ctn,2019-09-24,Alex
+297,,2019-08-10,DRY,JT504,text:'JPN',2016-03-23 00:00:00,Aluminium Bag (Green Tea 500g),500g用アルミ蒸着袋 10 x 37cm (奥行4.5cm)　,1.0,ctn,2099-12-31,Alex
+298,,2019-08-10,DRY,JT456,text:'JPN',2015-08-19 00:00:00,Rice PACKage (Hikari Komachi 5kg),米用袋　ひかりこまち　5kg,1650.0,pack,2099-12-31,Alex
+299,,2019-08-10,DRY,QP12,text:'THI',2018-03-13 00:00:00,Egg Tray (20PC),卵トレイ,4.0,ctn,2099-12-31,Alex
+300,,2019-08-10,DRY,JT568,text:'JPN',2019-04-10 00:00:00,super Vinegar 20L,スーパービネガー２０L,20.0,ctn,2021-03-02 00:00:00,Alex
+301,,2019-08-10,DRY,JT360,text:'JPN',2019-04-10 00:00:00,Skewer 10.5cm 250pc,鉄砲串　10.5cm 250pc,2.0,ctn,2020-04-08,Alex
+302,,2019-08-10,DRY,CP01f,text:'AUS',2019-07-01 00:00:00,HDPE Plain Natural Liner Bag (Shari),しゃり袋,14.0,ctn,2099-12-31,Alex
+303,,2019-08-10,DRY,CP01f,text:'AUS',2019-07-01 00:00:00,HDPE Plain Natural Liner Bag (Shari),しゃり袋,1.0,ctn,2099-12-31,Alex
+304,,2019-08-10,DRY,CP06b,text:'AUS',2019-07-01 00:00:00,MDPE NAT P.O.R. TROLLEY BAGS,テリヤキソース用袋,3.0,roll,2099-12-31,Alex
+305,,2019-08-10,DRY,Blue01Ab,text:'AUS',2019-06-03 00:00:00,Blue mountain water 600ml,ブルーマウンテインウォーター600ml,49.0,ctn,2021-01-17 00:00:00,Alex
+306,,2019-08-10,DRY,QP05B,text:'THI',2019-06-28 00:00:00,QP Mayonnaise Mini 12g Thai JUNE 2,QP マヨネーズ ミニ 12g,75.0,ctn,2019-11-24 00:00:00,Alex
+307,,2019-08-10,DRY,CDY05,text:'CHA',2019-05-16 00:00:00,Moist Wipe (Sushi Train),おしぼり（Sushi Train),9.0,ctn,2019-07-29 00:00:00,Alex
+308,,2019-08-10,DRY,DW18a,text:'AUS',2019-07-17 00:00:00,Oriental Funmatsu (Powdered) Kansui Blue,オリエンタル　粉末　かん水　青,1.0,ctn,2099-12-31,Alex
+309,,2019-08-10,DRY,DW21,text:'AUS',2019-07-17 00:00:00,Cooking Salt 10kg,クッキング塩,3.0,ctn,2099-12-31,Alex
+310,,2019-08-10,DRY,QP03A,text:'THI',2019-05-24 00:00:00,QP Roasted Sesame Sauce(NO MSG) ,QP 焙煎ごまドレッシング(NO MSG),24.0,ctn,2020-04-24 00:00:00,Alex
+311,,2019-08-10,DRY,KSG02,text:'JPN',2019-06-18 00:00:00,Rice Pack Z40-20D (ST),ライスパック Z40-20D,1.0,ctn,2099-12-31,Alex
+312,,2019-08-10,DRY,YS03,text:'JPN',2019-05-27 00:00:00,Usukuchi Soy Sauce 18L JUNE 11,ヤマサ　薄口醤油１８L,8.0,ctn,2020-04-01 00:00:00,Alex
+313,,2019-08-10,DRY,VT01,text:'VT',2019-01-03 00:00:00,Master Carton - Plain -,ラーメン箱,22.0,bdl,2099-12-31,Alex
+314,,2019-08-10,DRY,YMT02,text:'THI',2019-02-18 00:00:00,Special Soy Sauce for Beef,テリヤキソース(ビーフ用）,43.0,ctn,2019-12-20 00:00:00,Alex
+315,,2019-08-10,DRY,JT445,text:'JPN',2019-07-30 00:00:00,Japanese Soup (Bonito) 1kg (500gx2),ヤマキ　だしの素大徳顆粒1kg　ANZ,10.0,ctn,2020-09-11 00:00:00,Alex
+316,,2019-08-10,DRY,JT395B,text:'JPN',2019-07-30 00:00:00,Plastic Bag TERIYAKI CHICKEN 2kg,印刷袋テリヤキチキン 2kg,28.0,ctn,2099-12-31,Alex
+317,,2019-08-10,DRY,CP02e,text:'AUS',2019-07-01 00:00:00,HDPE Plain Natural Liner Bag (Karaage),からあげ袋,29.0,ctn,2099-12-31,Alex
+318,,2019-08-10,DRY,JT436,text:'JPN',2018-12-12 00:00:00,BBQ Galvanised Mesh 24.5cm ,金網平型 24.5cm,1.0,ctn,2099-12-31,Alex
+319,,2019-08-10,DRY,JT249,text:'JPN',2012-01-24 00:00:00,Plastic Tray Gyoza 10-1A(Lid),餃子トレイ 10-1A,8.0,pack,2099-12-31,Alex
+320,,2019-08-10,DRY,JT560,text:'JPN',2017-07-07 00:00:00,Rice Container SP-20D Body,エスレンコンテナ（シャリ箱）本体,3.0,ctn,2099-12-31,Alex
+321,,2019-08-10,DRY,JT561,text:'JPN',2017-07-07 00:00:00,Rice Container SP-20D Lid,エスレンコンテナ（シャリ箱）蓋,1.5,ctn,2099-12-31,Alex
+322,,2019-08-10,DRY,JT930,text:'JPN',2019-07-30 00:00:00,Non Alcoholic Drink All-Free Beer 350ml,オールフリー 缶 350ml,1.0,ctn,2020-03-01 00:00:00,Alex
+323,,2019-08-10,DRY,QP06,text:'THI',2019-04-05 00:00:00,QP Mayonnaise Mild Type 1kg Thai (Japanese Style ) APR2,QP マヨネーズマイルドタイプ 1kg (ジャパニーズスタイル）,54.0,ctn,2019-09-04 00:00:00,Alex
+324,,2019-08-10,DRY,CDY15,text:'CHA',2018-06-04 00:00:00,Pickled Radish Strips (Red) AKATAKUWAN,赤たくわん,70.0,ctn,2099-12-31,Alex
+325,,2019-08-10,DRY,CDY02,text:'CHA',2019-02-12 00:00:00,Roasted Seaweed Half Cut 100sht (中国産) FEB4,のり半形100枚新タイプ　(中国産),11.0,ctn,2020-01-08 00:00:00,Alex
+326,,2019-08-10,DRY,BBC02a,text:'AUS',2019-08-13 00:00:00,16 oz / 450ml Round Container,コンテナ B16 (Round),8.0,ctn,2099-12-31,Alex
+327,,2019-08-10,DRY,BBC07a,text:'AUS',2019-08-12 00:00:00,B1000 (Rec),コンテナ B1000 (Rec),2.0,ctn,2020-01-08 00:00:00,Alex
+328,,2019-08-10,DRY,BBC06a,text:'AUS',2019-08-12 00:00:00,B500 (Rec),コンテナ B500 (Rec),4.0,ctn,2020-01-08 00:00:00,Alex
+329,,2019-08-10,DRY,BBC01a,text:'AUS',2019-08-12 00:00:00,8 oz / 225ml Round Container,コンテナ B8 (Round),4.0,ctn,2020-01-08 00:00:00,Alex
+330,,2019-08-10,DRY,BBC03a,text:'AUS',2019-08-12 00:00:00,Round Lids,コンテナ Round Lid (B8/B16用),16.0,ctn,2020-01-08 00:00:00,Alex
+331,,2019-08-10,DRY,DW19,text:'AUS',2019-08-13 00:00:00,UMAMI VEGETABLE OIL Tin 20L,UMAMI ベジタブルオイル　缶　20L,2.0,ctn,2099-12-31,Alex
+332,,2019-08-10,DRY,DW17a,text:'AUS',2019-08-13 00:00:00,Oriental Funmatsu (Powdered) Kansui Red,オリエンタル　粉末　かん水　赤,1.0,ctn,2099-12-31,Alex
+333,,2019-08-10,DRY,VIS03c,text:'AUS',2019-02-26 00:00:00,Chichen Katsu VISY 480 x 255 x 100 B/grade : 560K-C,Visy チキンカツ箱,2.0,ctn,2099-12-31,Alex
+334,,2019-08-10,DRY,JT46,text:'JPN',2019-07-30 00:00:00,Rice Vineger Mild 20lt (ST),内堀酢 (米酢) 20lt (ST),2.0,ctn,2021-06-03 00:00:00,Alex
+335,,2019-08-10,DRY,YM29,text:'THI',2019-06-28 00:00:00,Teriyaki Sauce 12ml Sachet (Vegetarian),てりやきソース12ｍｌサチェット(ベジタリアン),40.0,ctn,2099-12-31,Alex
+336,,2019-08-10,DRY,QSW06,text:'AUS',2019-05-06 00:00:00,Roasted Peanuts with Chili 90g,麻辣ピーナッツ（カラピー） 90g,5.0,ctn,2020-01-12 00:00:00,Alex
+337,,2019-08-10,DRY,PAR15,text:'AUS',2019-07-11 00:00:00,TUFFEX Packaging Tape Clear,クリアテープ,7.0,ctn,2099-12-31,Alex
+338,,2019-08-10,DRY,KSG01,text:'JPN',2019-06-18 00:00:00,Rice Pack Z20-20D (TF),ライスパック Z20-20D,10.0,ctn,2099-12-31,Alex
+339,,2019-08-10,DRY,TGP03,text:'AUS',2019-06-07 00:00:00,Latex Low Powder Gloves Large,,1.0,ctn,2099-12-31,Alex
+340,,2019-08-10,DRY,OLS33,text:'JPN',2019-05-21 00:00:00,Galvanised Steel Mesh 39.8ｘ19.8cm ,スクエア網200個　39.8ｘ19.8cm （198×398mm）05P30SEP17,2.0,ctn,2020-05-19,Alex
+341,,2019-08-10,DRY,JT394,text:'JPN',2019-02-08 00:00:00,Plastic Bag TSUKUNE 1000PC,印刷袋つくね,12.0,ctn,2099-12-31,Alex
+342,,2019-08-10,DRY,JT46,text:'JPN',2019-07-30 00:00:00,Rice Vineger Mild 20lt (ST),内堀酢 (米酢) 20lt (ST),8.0,ctn,2021-06-03 00:00:00,Alex
+343,,2019-08-10,DRY,JT46,text:'JPN',1999-01-01 00:00:00,Rice Vineger Mild 20lt (ST) Mild (Gold),内堀酢 (米酢) 20lt (ST),11.0,ctn,2021-04-03 00:00:00,Alex
+344,,2019-08-10,DRY,JT46A,text:'JPN',2019-07-30 00:00:00,Rice Vineger Mild 20lt (TF) No design,内堀酢 (米酢) 20lt (無地箱),15.0,ctn,2021-06-03 00:00:00,Alex
+345,,2019-08-10,DRY,VIS03c,text:'AUS',2019-02-26 00:00:00,Chichen Katsu VISY 480 x 255 x 100 B/grade : 560K-C,Visy チキンカツ箱,4.0,ctn,2099-12-31,Alex
+346,,2019-08-10,DRY,SM03Ab,text:'AUS',2019-07-30 00:00:00,Citron Honey Tea ,ゆず茶,3.0,ctn,2021-03-06 00:00:00,Alex
+347,,2019-08-10,DRY,GCA03e,text:'AUS',2019-07-30 00:00:00,Brown Sugar 25kg,ブラウンシュガー 25kg,3.0,ctn,2099-12-31,Alex
+348,,2019-08-10,DRY,GCA06,text:'AUS',2019-07-30 00:00:00,Tapioka Starch Era 500g,タピオカスターチ,2.0,ctn,2021-01-23 00:00:00,Alex
+349,,2019-08-10,DRY,VIS03c,text:'AUS',2019-08-07 00:00:00,Chichen Katsu VISY 480 x 255 x 100 B/grade : 560K-C,Visy チキンカツ箱,24.0,ctn,2099-12-31,Alex
+350,,2019-08-10,DRY,PLATE,empty:'',1999-01-01 00:00:00,PLATE,,1.0,plt,1999-12-31,Alex
+351,,2019-08-10,DRY,RED05,text:'AUS',2019-06-17 00:00:00,White Sugar SUGMAN5100,砂糖 25㎏ SUGMAN5100,48.0,ctn,2021-05-01 00:00:00,Alex
+352,,2019-08-10,DRY,VIS02Ab,text:'AUS',2019-06-12 00:00:00,Teriyaki Chichen VISY  25pc/bdl,Visy テリヤキチキン箱,24.0,ctn,2099-12-31,Alex
+353,,2019-08-10,DRY,NML08a,text:'AUS',2019-07-19 00:00:00,Hon Mirin Alcohol14% 18L,本味醂 18L NTC　14%アルコール,36.0,ctn,2020-12-02 00:00:00,Alex
+354,,2019-08-10,DRY,DH40,text:'CHA',2017-12-05 00:00:00,Container J-100 (Sea Urchin),コンテナ　J-100 (うに),7.0,ctn,2019-10-28 00:00:00,Alex
+355,,2019-08-10,DRY,IMV03,text:'AUS',2019-08-09 00:00:00,Butan Gas 220g,ブタンガス 220g,10.0,ctn,2099-12-31,Alex
+356,,2019-08-10,DRY,JT652,text:'JPN',2018-09-20 00:00:00,BBQ Galvanised Mesh Dome 28cm x 0.2cm,金網　ドーム型　28cm　高さ20㎜　,7.0,ctn,2099-12-31,Alex
+357,,2019-08-10,DRY,PLATE,text:'JPN',2018-11-15 00:00:00,PLATE,お皿 CI,1.0,plt,2099-12-31,Alex
+358,,2019-08-10,DRY,VT03,text:'VIT',2019-01-03 00:00:00,Carton Blocker Pad 6.5 x 52.5cm,ラーメン箱　しきり　6.5 x 52.5cm,11.0,ctn,2099-12-31,Alex
+359,,2019-08-10,DRY,JT638,text:'JPN',2018-09-20 00:00:00,Plastic Container AJIRO Body,コンテナ アジロ弁当本体,1.0,ctn,2099-12-31,Alex
+360,,2019-08-10,DRY,JT639,text:'JPN',2018-09-20 00:00:00,Plastic Container AJIRO Lid ,コンテナ アジロ弁当共蓋,1.0,ctn,2099-12-31,Alex
+361,,2019-08-10,DRY,JT640,text:'JPN',2018-09-20 00:00:00,Plastic Container AJIRO Partition,コンテナ アジロ弁当中仕切り,1.0,ctn,2099-12-31,Alex
+362,,2019-08-10,DRY,JT645,text:'JPN',2018-09-20 00:00:00,Plastic Container AJIRO Small Body,コンテナ アジロ弁当 小 本体,1.0,ctn,2099-12-31,Alex
+363,,2019-08-10,DRY,JT646,text:'JPN',2018-09-20 00:00:00,Plastic Container AJIRO Small Lid ,コンテナ アジロ弁当 小 共蓋,1.0,ctn,2099-12-31,Alex
+364,,2019-08-10,DRY,PLATE,text:'JPN',2018-07-31 00:00:00,PLATE,お皿 CF,1.0,plt,2099-12-31,Alex
+365,,2019-08-10,DRY,PLATE,text:'JPN',2019-06-17 00:00:00,PLATE,仮 6,1.0,plt,2099-12-31,Alex
+366,,2019-08-10,DRY,NS02,text:'THI',2019-05-24 00:00:00,NS-FRESH Wheat Flour MAY 8,中華麺用粉,33.0,bag,2019-10-19 00:00:00,Alex
+367,,2019-08-10,DRY,PLATE,text:'JPN',2018-12-12 00:00:00,PLATE,お皿 CN,1.0,plt,2099-12-31,Alex
+368,,2019-08-10,DRY,YS02,text:'JPN',2019-07-09 00:00:00,Konbu Tsuyu 1.8L July 1,ヤマサ　昆布つゆ　1.8L,1.0,ctn,2020-05-08 00:00:00,Alex
+369,,2019-08-10,DRY,Nul03,text:'AUS',2019-07-11 00:00:00,BLITZ NEUTRAL FLOOR CLEANER 5L,,0.75,ctn,2099-12-31,Alex
+370,,2019-08-10,DRY,YS46,text:'JPN',2019-07-09 00:00:00,Dispenser Glass Bottle(NB),ヤマサ　醤油瓶　150ml,0.98,ctn,2099-12-31,Alex
+371,,2019-08-10,DRY,NML27,text:'AUS',2019-07-09 00:00:00,Kombu Dashi Base(LQD)1L Maruhachi S,昆布だしベース　マルハチ,0.6,ctn,2019-08-21 00:00:00,Alex
+372,,2019-08-10,DRY,RC05,text:'JPN',1999-01-01 00:00:00,Rice Cooker Hitachi RZ-DMD10Y Red,炊飯器　日立　5.5号　RZ-DMD10Y レッド,1.0,pc,2099-12-31,Alex
+373,,2019-08-10,DRY,GOM01,text:'AUS',2015-04-13 00:00:00,Hokkai Seaweed Konbu 80g,北海こんぶ　80g   ,9.0,pc,2016-04-11,Alex
+374,,2019-08-10,DRY,KSG06,text:'JPN',2019-05-21 00:00:00,Kyogi sheet,うす経木,23.0,pack,2020-04-01 00:00:00,Alex
+375,,2019-08-10,DRY,YS05,text:'JPN',2019-05-09 00:00:00,Konbu Tsuyu 1L,ヤマサ　昆布つゆ 1L,2.0,btl,2020-05-07,Alex
+376,,2019-08-10,DRY,BV57,text:'AUS',2018-04-03 00:00:00,SOY SAUCE (BAG IN BOX) AKARI,醤油18L AKARI,1.0,ctn,2019-04-17 00:00:00,Alex
+377,,2019-08-10,DRY,BV45a,text:'AUS',2018-04-03 00:00:00,SOY SAUCE LESS SALT  AKARI,減塩醤油,1.0,ctn,2019-04-16 00:00:00,Alex
+378,,2019-08-10,DRY,YMT05,text:'THI',2017-06-08 00:00:00,Sushi Sashimi Soy Sauce  2.2kg,寿司さしみ醤油 2.2kg,1.0,ctn,2018-01-25 00:00:00,Alex
+379,,2019-08-10,DRY,DH34,text:'CHA',2017-08-01 00:00:00,Lunch Box 307,弁当箱 307,1.0,pack,2099-12-31,Alex
+380,,2019-08-10,DRY,JT103,text:'JPN',2018-09-20 00:00:00,Retort Boiled Noodle 150g,ゆで焼そば原麺(無地袋) 150g,1.0,ctn,2019-01-08 00:00:00,Alex
+381,,2019-08-10,DRY,JT103,text:'JPN',2018-09-24 00:00:00,Retort Boiled Noodle 150g,ゆで焼そば原麺(無地袋) 150g,1.0,ctn,2019-09-23,Alex
+382,,2019-08-10,DRY,OLS04,text:'JPN',2015-12-08 00:00:00,Safety Shoese(aqua Neo),防水安全靴アクアネオ（マジック）,2.0,ctn,2099-12-31,Alex
+383,,2019-08-10,DRY,OLS04,text:'VIT',2016-08-10 00:00:00,Safety Shoese(aqua Neo),防水安全靴アクアネオ（マジック）,2.0,ctn,2099-12-31,Alex
+384,,2019-08-10,DRY,JT251,text:'JPN',2018-11-21 00:00:00,Milled Rice (Yaehara) 2kg,八重原米　2kg,2.0,inner bag,2019-11-20,Alex
+385,,2019-08-10,DRY,JT526,text:'JPN',2018-01-24 00:00:00,Milled Rice (YUMEPIRIKA) 5kg,精米 函館育ち ゆめぴりか 5㎏,1.0,inner bag,2018-10-12 00:00:00,Alex
+386,,2019-08-10,DRY,PD01,text:'JPN',1999-01-01 00:00:00,Milled Rice (KINME) 4.525kg Blue bag,金芽米 4.525ｋｇ,9.0,bag,1999-12-31,Alex
+387,,2019-08-10,DRY,PD01,text:'JPN',1999-01-01 00:00:00,Milled Rice (KINME) 4.525kg Yellow bag,金芽米 4.525ｋｇ,8.0,bag,1999-12-31,Alex
+388,,2019-08-10,DRY,NF06,text:'VIT',2014-09-03 00:00:00,Batter VM560,バッター (VIT),13.0,ctn,2014-12-21 00:00:00,Alex
+389,,2019-08-10,DRY,JT480,text:'JPN',1999-01-01 00:00:00,Milled Rice(Miyagi)  2kg 17.01.05,精米　宮城農業高校米　2kg,1.0,inner bag,1999-12-31,Alex
+390,,2019-08-10,DRY,JT413,text:'JPN',1999-01-01 00:00:00,Milled Rice (KAZUSA KOSHIHIKARI) 5KG 10.07.2019,カズサ　こしひかり 　米5kg　,3.0,inner bag,1999-12-31,Alex
+391,,2019-08-10,DRY,JT650,text:'JPN',2018-08-21 00:00:00,Milled Rice(KOSHIHIKARI from Niigata pref) 5kg,精米　新潟県産　コシヒカリ5ｋｇ,1.0,inner bag,2019-07-10 00:00:00,Alex
+392,,2019-08-10,DRY,JFT08a,text:'AUS',2017-11-14 00:00:00,Akita Komachi Rice 10kg,米　あきたこまち　10㎏,3.0,inner bag,2018-09-05 00:00:00,Alex
+393,,2019-08-10,DRY,JT1022,text:'JPN',1999-01-01 00:00:00,Milled Rice(TOYAMA UOZU KOSHIHIKARI)  5kg,精米 富山県 魚津産 こしひかり 5㎏,1.0,inner bag,2020-06-03 00:00:00,Alex
+394,,2019-08-10,DRY,JT1023,text:'JPN',2019-07-30 00:00:00,Milled Rice(TOYAMA UOZU KOSHIHIKARI)  2kg,精米 富山県 魚津産 こしひかり 2㎏,4.0,bag,2020-06-03 00:00:00,Alex
+395,,2019-08-10,DRY,JT1023,text:'JPN',2019-07-30 00:00:00,Milled Rice(TOYAMA UOZU KOSHIHIKARI)  2kg,精米 富山県 魚津産 こしひかり 2㎏,8.0,bag,2020-06-03 00:00:00,Alex
+396,,2019-08-10,DRY,JT529,text:'JPN',2019-07-30 00:00:00,Milled Rice (NANATSU BOSHI) 2kg,精米 函館育ち ななつぼし 2㎏,6.0,bag,2020-06-03 00:00:00,Alex
+397,,2019-08-10,DRY,JT529,text:'JPN',2019-07-30 00:00:00,Milled Rice (NANATSU BOSHI) 2kg,精米 函館育ち ななつぼし 2㎏,2.0,bag,2020-06-03 00:00:00,Alex
+398,,2019-08-10,DRY,JT253,text:'JPN',2019-05-21 00:00:00,Milled Rice (Yaehara) 5kg,八重原米　5kg,5.0,bag,2020-05-19,Alex
+399,,2019-08-10,DRY,JT1022,text:'JPN',2019-07-30 00:00:00,Milled Rice(TOYAMA UOZU KOSHIHIKARI)  5kg,精米 富山県 魚津産 こしひかり 5㎏,5.0,bag,2020-06-03 00:00:00,Alex
+400,,2019-08-10,DRY,JT1022,text:'JPN',2019-07-30 00:00:00,Milled Rice(TOYAMA UOZU KOSHIHIKARI)  5kg,精米 富山県 魚津産 こしひかり 5㎏,15.0,bag,2020-06-03 00:00:00,Alex
+401,,2019-08-10,DRY,JT251,text:'JPN',2019-05-21 00:00:00,Milled Rice (Yaehara) 2kg,八重原米　2kg,39.0,bag,2020-05-19,Alex
+402,,2019-08-10,DRY,GOM03a,text:'AUS',2019-07-29 00:00:00,Black Rice 5Kg,黒米　5kg,2.0,ctn,2020-04-25 00:00:00,Alex
+403,,2019-08-10,DRY,GCA07,text:'AUS',2019-07-16 00:00:00,America sweet rice (short grain sticky rice),,1.0,ctn,2099-12-31,Alex
+404,,2019-08-10,DRY,NML15,text:'AUS',2019-06-21 00:00:00,Brown Rice 25kg Sunrice,玄米　サンライス,5.0,bag,2020-04-15 00:00:00,Alex
+405,,2019-08-10,DRY,SPL325,text:'JPN',2018-01-24 00:00:00,Hokaido Rice 5kg (Sample),,1.75,ctn,2018-10-12 00:00:00,Alex
+406,,2019-08-10,DRY,CDY11,text:'CHA',2017-03-28 00:00:00,Pickled Ginger Pink 5g,しょうがピンク Mar⑧ Lot: 22082017,4.0,pack,2017-08-22 00:00:00,Alex
+407,,2019-08-10,DRY,CDY11,text:'CHA',2017-03-28 00:00:00,Pickled Ginger Pink 5g,しょうがピンク Mar⑧ Lot: 22082017,12.0,ctn,2017-08-22 00:00:00,Alex
+408,,2019-08-10,DRY,CDY11,text:'CHA',2017-06-20 00:00:00,Pickled Ginger Pink 5g,しょうがピンク JUN10,2.0,ctn,2017-11-16 00:00:00,Alex
+409,,2019-08-10,DRY,NF05,text:'VIT',2014-09-03 00:00:00,Breader VR1080BR,ブレッダー (VIT),25.0,ctn,2014-12-26 00:00:00,Alex
+410,,2019-08-10,DRY,JT526,text:'JPN',2019-07-30 00:00:00,Milled Rice (YUMEPIRIKA) 5kg,精米 函館育ち ゆめぴりか 5㎏,9.0,bag,2020-06-03 00:00:00,Alex
+411,,2019-08-10,DRY,JT526,text:'JPN',2019-07-30 00:00:00,Milled Rice (YUMEPIRIKA) 5kg,精米 函館育ち ゆめぴりか 5㎏,11.0,ctn,2020-06-03 00:00:00,Alex
+412,,2019-08-10,DRY,JT528,text:'JPN',2019-07-30 00:00:00,Milled Rice (NANATSU BOSHI) 5kg,精米 函館育ち ななつぼし 5㎏,11.0,bag,2020-06-03 00:00:00,Alex
+413,,2019-08-10,DRY,JT528,text:'JPN',2019-07-30 00:00:00,Milled Rice (NANATSU BOSHI) 5kg,精米 函館育ち ななつぼし 5㎏,9.0,ctn,2020-06-03 00:00:00,Alex
+414,,2019-08-10,DRY,JT253,text:'JPN',2019-07-30 00:00:00,Milled Rice (Yaehara) 5kg,八重原米　5kg,48.0,ctn,2020-06-03 00:00:00,Alex
+415,,2019-08-10,DRY,NF01,text:'VIT',2014-09-03 00:00:00,Dusting Powder VD320,打ち粉 (VIT),10.0,ctn,2014-12-30 00:00:00,Alex
+416,,2019-08-10,DRY,NF05,text:'VIT',2014-09-03 00:00:00,Breader VR1080BR,ブレッダー (VIT),18.0,ctn,2014-12-26 00:00:00,Alex
+417,,2019-08-10,DRY,JT253,text:'JPN',2019-05-21 00:00:00,Milled Rice (Yaehara) 5kg,八重原米　5kg,13.0,ctn,2020-05-19,Alex
+418,,2019-08-10,DRY,JT251,text:'JPN',2019-02-15 00:00:00,Milled Rice (Yaehara) 2kg,八重原米　2kg,1.0,ctn,2020-12-17 00:00:00,Alex
+419,,2019-08-10,DRY,JT529,text:'JPN',2019-02-15 00:00:00,Milled Rice (NANATSU BOSHI) 2kg,精米 函館育ち ななつぼし 2㎏,1.0,ctn,2019-12-14 00:00:00,Alex
+420,,2019-08-10,DRY,JT253,text:'JPN',2019-05-21 00:00:00,Milled Rice (Yaehara) 5kg,八重原米　5kg,32.0,bag,2020-05-19,Alex
+421,,2019-08-10,DRY,VNR1,text:'VIT',2019-07-02 00:00:00,Vietnam Rice Blue (ST) JUL 20,ベトナム米 (黄金の稲穂）,54.0,bag,2020-06-03 00:00:00,Alex
+422,,2019-08-10,DRY,VNR1,text:'VIT',2019-07-02 00:00:00,Vietnam Rice Blue (ST) JUL 1,ベトナム米 (黄金の稲穂）,54.0,bag,2020-06-03 00:00:00,Alex
+423,,2019-08-10,DRY,JT527,text:'JPN',2019-07-30 00:00:00,Milled Rice (YUMEPIRIKA) 2kg,精米 函館育ち ゆめぴりか 2㎏,3.0,bag,2020-06-03 00:00:00,Alex
+424,,2019-08-10,DRY,VNR1,text:'VIT',2019-07-02 00:00:00,Vietnam Rice Blue (ST) JUL 2,ベトナム米 (黄金の稲穂）,54.0,bag,2020-06-03 00:00:00,Alex
+425,,2019-08-10,DRY,VNR1,text:'VIT',2019-07-02 00:00:00,Vietnam Rice Blue (ST) JUL 6,ベトナム米 (黄金の稲穂）,54.0,bag,2020-06-03 00:00:00,Alex
+426,,2019-08-10,DRY,VNR1,text:'VIT',2019-07-02 00:00:00,Vietnam Rice Blue (ST) JUL 3,ベトナム米 (黄金の稲穂）,54.0,bag,2020-06-03 00:00:00,Alex
+427,,2019-08-10,DRY,VNR1,text:'VIT',2019-07-02 00:00:00,Vietnam Rice Blue (ST) JUL 19,ベトナム米 (黄金の稲穂）,54.0,bag,2020-06-03 00:00:00,Alex
+428,,2019-08-10,DRY,JT413,text:'JPN',2019-07-30 00:00:00,Milled Rice (KAZUSA KOSHIHIKARI) 5KG,カズサ　こしひかり 　米5kg　,4.0,bag,2020-06-05 00:00:00,Alex
+429,,2019-08-10,DRY,JT413,text:'JPN',2019-07-30 00:00:00,Milled Rice (KAZUSA KOSHIHIKARI) 5KG,カズサ　こしひかり 　米5kg　,3.0,ctn,2020-06-05 00:00:00,Alex
+430,,2019-08-10,DRY,JT251,text:'JPN',2019-04-10 00:00:00,Milled Rice (Yaehara) 2kg,八重原米　2kg,4.0,ctn,2021-02-18 00:00:00,Alex
+431,,2019-08-10,DRY,JT251,text:'JPN',2019-07-30 00:00:00,Milled Rice (Yaehara) 2kg,八重原米　2kg,30.0,ctn,2020-06-03 00:00:00,Alex
+432,,2019-08-10,DRY,JT253,text:'JPN',2019-07-30 00:00:00,Milled Rice (Yaehara) 5kg,八重原米　5kg,12.0,ctn,2020-06-03 00:00:00,Alex
+433,,2019-08-10,DRY,VNR1,text:'VIT',2019-07-02 00:00:00,Vietnam Rice Blue (ST) JUL 5,ベトナム米 (黄金の稲穂）,54.0,bag,2020-06-03 00:00:00,Alex
+434,,2019-08-10,DRY,JT524,text:'JPN',2019-07-30 00:00:00,Milled Rice (FUKKURINKO) 5kg,精米 函館育ち ふっくりんこ 5㎏,2.0,bag,2020-06-03 00:00:00,Alex
+435,,2019-08-10,DRY,JT524,text:'JPN',2019-07-30 00:00:00,Milled Rice (FUKKURINKO) 5kg,精米 函館育ち ふっくりんこ 5㎏,2.0,bag,2020-06-03 00:00:00,Alex
+436,,2019-08-10,DRY,JT524,text:'JPN',2019-07-30 00:00:00,Milled Rice (FUKKURINKO) 5kg,精米 函館育ち ふっくりんこ 5㎏,10.0,bag,2020-06-03 00:00:00,Alex
+437,,2019-08-10,DRY,JT524,text:'JPN',2019-07-30 00:00:00,Milled Rice (FUKKURINKO) 5kg,精米 函館育ち ふっくりんこ 5㎏,10.0,bag,2020-06-03 00:00:00,Alex
+438,,2019-08-10,DRY,VNR5,text:'VIT',2019-07-02 00:00:00,Vietnam Rice Yellow (TF) JUL 10,ベトナム米 (プレミアムジャポニカライス）,54.0,bag,2020-06-03 00:00:00,Alex
+439,,2019-08-10,DRY,VNR5,text:'VIT',2019-07-02 00:00:00,Vietnam Rice Yellow (TF) JUL 9,ベトナム米 (プレミアムジャポニカライス）,54.0,bag,2020-06-03 00:00:00,Alex
+440,,2019-08-10,DRY,VNR5,text:'VIT',2019-07-02 00:00:00,Vietnam Rice Yellow (TF) JUL 7,ベトナム米 (プレミアムジャポニカライス）,54.0,bag,2020-06-03 00:00:00,Alex
+441,,2019-08-10,DRY,OLS38,text:'JPN',2017-11-21 00:00:00,Rubber Shoes for Ladies,レディース用 ２WAYサンダル,7.0,pc,2099-12-31,Alex
+442,,2019-08-10,DRY,OLS39,text:'JPN',2017-11-21 00:00:00,Rubber Sandals,ラバーサンダル,15.0,pc,2099-12-31,Alex
+443,,2019-08-10,DRY,OLS37,text:'JPN',2017-11-21 00:00:00,Dry Net 3 layer,折りたたみ式ドライネット3段,3.0,pc,2099-12-31,Alex
+444,,2019-08-10,DRY,OLS34,text:'JPN',2017-11-21 00:00:00,Galvanised Steel Mesh 20cm,小丸網200個　（φ200mm）,1.0,pc,2099-12-31,Alex
+445,,2019-08-10,DRY,OLS35,text:'JPN',2017-11-21 00:00:00,Smoked vinegar 11L,木酢液国産　原液100% (11L),1.0,pc,2018-11-20,Alex
+446,,2019-08-10,DRY,SUSHI02,text:'AUS',2019-07-10 00:00:00,Home Made Plum Wine ( Production  10/07/19),自家製梅酒　（製造日(2019年7月10日),1.0,ctn,2099-12-31,Alex
+447,,2019-08-10,DRY,OLS53,empty:'',2018-11-06 00:00:00,Scale 5kg,タニタ　デジタルクッキングスケール 5kg,1.0,pc,2099-12-31,Alex
+448,,2019-08-10,DRY,OLS50,text:'JPN',2018-11-06 00:00:00,Scale 3kg,タニタ　デジタルクッキングスケール 3kg,2.0,pc,2099-12-31,Alex
