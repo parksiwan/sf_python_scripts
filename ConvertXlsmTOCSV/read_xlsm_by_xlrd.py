@@ -2,6 +2,7 @@ from dateutil.parser import parse
 import xlrd 
 import os
 import datetime
+import glob
 import pandas as pd
 import numpy as np
 
@@ -40,24 +41,33 @@ def convert_excel_date(excel_book, excel_date):
 
 def main():
     # Change directory
-    os.chdir('/home/siwanpark/MyProjects/sf_python_scripts/ConvertXlsmTOCSV/test/')
-    # Give the location of the file 
-    file_path = "Alex 2019 09 AUG D12-14.xlsm"
-    file_name = file_path.split('.')[0]
-    df, update_date = generate_data_frame(file_path)
-    df1 = df.copy(deep=True)   
-    generate_usage_file_to_upload(df, file_name, update_date)
-    generate_stock_file_to_upload(df1, file_name, update_date)
+    #(filename=r"\\192.168.20.50\AlexServer\輸入共有\輸入共有フォルダー\SF Product Name & Code List(商品名確認票）\SF Product Name & Code List (商品名確認表)_for_test.xlsx", data_only=True)
+    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan")
+    #os.chdir('/home/siwanpark/ExcelData/Alex/')
+    excel_files = glob.glob('*.xls*')
+    print(excel_files)
+    for excel_file in excel_files:
+        # Give the location of the file 
+        #file_path = "Alex 2019 09 AUG D12-14.xlsm"
+        #print(excel_file)
+        file_name = excel_file.split('.')[0]
+        df, update_date = generate_data_frame(excel_file)  #generate data frame
+        df1 = df.copy(deep=True)   
+        generate_usage_file_to_upload(df, file_name, update_date)        
+        generate_stock_file_to_upload(df1, file_name, update_date)
+        os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan")
 
 def generate_data_frame(file_path):    
     loc = (file_path)     
     wb = xlrd.open_workbook(loc) 
-    sheet = wb.sheet_by_index(0) 
-    update_date = sheet.cell_value(1, 10) 
+    sheet = wb.sheet_by_index(0)     
+    update_date = sheet.cell_value(1, 9).split(':')[1]
+    
+    update_date = update_date.strip()
 
     #for i in range(3, sheet.nrows):  
     stock_list = []
-    i = 3
+    i = 4
     while sheet.cell(i, 1).value != 'end':    
         # Convert excel date to python date       
         if sheet.cell(i, 5).ctype == 3:
@@ -82,12 +92,14 @@ def generate_data_frame(file_path):
     return result, update_date
 
 
-def generate_usage_file_to_upload(df, file_name, update_date):
+def generate_usage_file_to_upload(df, file_name, update_date):    
+    #print(df)
     df['code'].replace('', np.nan, inplace=True)
     df['pickup'].replace('', np.nan, inplace=True)
-    df['pmemo'].replace('', np.nan, inplace=True)    
-    df.dropna(subset=['code', 'pickup', 'pmemo'], inplace=True)
-        
+    df['pmemo'].replace('', np.nan, inplace=True)   
+    #df.to_csv('test1.csv')
+    df.dropna(subset=['code', 'pickup', 'pmemo'], how='any', inplace=True)        
+    #df.to_csv('test2.csv')
     df_preprocessed = df[['code', 'Movement', 'ITEM1', 'unit', 'pickup', 'pmemo']]        
     df_preprocessed['update_date'] = pd.to_datetime(update_date, format='%d/%m/%Y')
     
@@ -98,16 +110,19 @@ def generate_usage_file_to_upload(df, file_name, update_date):
     
     df_preprocessed['id'] = ''
     df_preprocessed['unit'] = df_preprocessed['unit'].str.lower()
-    df_preprocessed = df_preprocessed.reset_index()            
-    df_preprocessed_usage = df_preprocessed        
-    
+    df_preprocessed = df_preprocessed.reset_index()
+             
+    df_preprocessed_usage = df_preprocessed            
+
     data = { 'id' : df_preprocessed_usage['id'], 'update_date' : df_preprocessed_usage['update_date'], 
                 'product_type' : df_preprocessed_usage['product_type'], 'sf_code' : df_preprocessed_usage['code'], 
                 'product_name' : df_preprocessed_usage['ITEM1'], 
                 'move' : df_preprocessed_usage['Movement'], 'unit' : df_preprocessed_usage['unit'], 
                 'pickup_qty' : df_preprocessed_usage['pickup'], 'memo' : df_preprocessed_usage['pmemo']}    
-    df_processed = pd.DataFrame(data)    
+    df_processed = pd.DataFrame(data)       
     processed_file_name = file_name + '_processed_usage.csv'
+    #os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
+    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan\uploading_files")
     df_processed.to_csv(processed_file_name)
 
 
@@ -140,6 +155,8 @@ def generate_stock_file_to_upload(df, file_name, update_date):
     elif 'HAISON' in file_name:
         df_preprocessed['location'] = 'HS'  	
     elif 'Alex' in file_name:
+        df_preprocessed['location'] = 'Alex'	    
+    elif 'Daily' in file_name:
         df_preprocessed['location'] = 'Alex'	    
         
     df_preprocessed['id'] = ''
@@ -178,6 +195,8 @@ def generate_stock_file_to_upload(df, file_name, update_date):
                 'unit' : df_preprocessed['unit'], 'bbd' : df_preprocessed['bbd'], 'location' : df_preprocessed['location']}
     df_processed = pd.DataFrame(data)    
     processed_file_name = file_name + '_processed_stock.csv'
+    #os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
+    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan\uploading_files")
     df_processed.to_csv(processed_file_name)
 
 
