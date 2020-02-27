@@ -42,8 +42,8 @@ def convert_excel_date(excel_book, excel_date):
 def main():
     # Change directory
     #(filename=r"\\192.168.20.50\AlexServer\輸入共有\輸入共有フォルダー\SF Product Name & Code List(商品名確認票）\SF Product Name & Code List (商品名確認表)_for_test.xlsx", data_only=True)
-    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan")
-    #os.chdir('/home/siwanpark/ExcelData/Alex/')
+    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan")
+    os.chdir('/home/siwanpark/ExcelData/Alex/')
     excel_files = glob.glob('*.xls*')
     print(excel_files)
     for excel_file in excel_files:
@@ -55,7 +55,8 @@ def main():
         df1 = df.copy(deep=True)   
         generate_usage_file_to_upload(df, file_name, update_date)        
         generate_stock_file_to_upload(df1, file_name, update_date)
-        os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan")
+        #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan")
+        os.chdir('/home/siwanpark/ExcelData/Alex/')
 
 def generate_data_frame(file_path):    
     loc = (file_path)     
@@ -82,7 +83,7 @@ def generate_data_frame(file_path):
             bbd_date = sheet.cell(i, 18).value
             #print('{} - {}'.format(sheet.cell(i, 18).ctype, sheet.cell(i, 18).value))
         
-        stock_data = {'code' : sheet.cell(i, 4).value, 'origin' : sheet.cell(i, 0), 'Inward' : inward_date, 'Movement' : sheet.cell(i, 8).value, 
+        stock_data = {'code' : sheet.cell(i, 4).value, 'origin' : sheet.cell(i, 0).value, 'Inward' : inward_date, 'Movement' : sheet.cell(i, 8).value, 
                       'ITEM1' : sheet.cell(i, 9).value, 'ITEM2' : sheet.cell(i, 10).value, 'PreviousBalance' : sheet.cell(i, 12).value, 
                       'unit': sheet.cell(i, 13).value, 'pickup' : sheet.cell(i, 14).value, 'NewBalance' : sheet.cell(i, 15).value, 
                       'pmemo' : sheet.cell(i, 17).value, 'bbd' : bbd_date }                
@@ -121,8 +122,8 @@ def generate_usage_file_to_upload(df, file_name, update_date):
                 'pickup_qty' : df_preprocessed_usage['pickup'], 'memo' : df_preprocessed_usage['pmemo']}    
     df_processed = pd.DataFrame(data)       
     processed_file_name = file_name + '_processed_usage.csv'
-    #os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
-    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan\uploading_files")
+    os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
+    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan\uploading_files")
     df_processed.to_csv(processed_file_name)
 
 
@@ -195,8 +196,8 @@ def generate_stock_file_to_upload(df, file_name, update_date):
                 'unit' : df_preprocessed['unit'], 'bbd' : df_preprocessed['bbd'], 'location' : df_preprocessed['location']}
     df_processed = pd.DataFrame(data)    
     processed_file_name = file_name + '_processed_stock.csv'
-    #os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
-    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan\uploading_files")
+    os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
+    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan\uploading_files")
     df_processed.to_csv(processed_file_name)
 
 
