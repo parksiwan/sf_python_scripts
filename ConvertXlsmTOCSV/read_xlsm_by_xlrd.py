@@ -121,10 +121,10 @@ def generate_usage_file_to_upload(df, file_name, update_date):
                 'move' : df_preprocessed_usage['Movement'], 'unit' : df_preprocessed_usage['unit'], 
                 'pickup_qty' : df_preprocessed_usage['pickup'], 'memo' : df_preprocessed_usage['pmemo']}    
     df_processed = pd.DataFrame(data)       
-    processed_file_name = file_name + '_processed_usage.csv'
+    processed_file_name = file_name + '_processed_usage.xlsx'
     os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
     #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan\uploading_files")
-    df_processed.to_csv(processed_file_name)
+    df_processed.to_excel(processed_file_name)
 
 
 def generate_stock_file_to_upload(df, file_name, update_date):
@@ -195,10 +195,10 @@ def generate_stock_file_to_upload(df, file_name, update_date):
                 'product_name' : df_preprocessed['ITEM1'], 'product_name_jp' : df_preprocessed['ITEM2'], 'new_balance' : df_preprocessed['NewBalance'], 
                 'unit' : df_preprocessed['unit'], 'bbd' : df_preprocessed['bbd'], 'location' : df_preprocessed['location']}
     df_processed = pd.DataFrame(data)    
-    processed_file_name = file_name + '_processed_stock.csv'
+    processed_file_name = file_name + '_processed_stock.xlsx'
     os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
     #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan\uploading_files")
-    df_processed.to_csv(processed_file_name)
+    df_processed.to_excel(processed_file_name)
 
 
 if __name__ == "__main__":
