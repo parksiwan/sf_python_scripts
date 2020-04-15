@@ -101,7 +101,7 @@ def generate_usage_file_to_upload(df, file_name, update_date):
     #df.to_csv('test1.csv')
     df.dropna(subset=['code', 'pickup', 'pmemo'], how='any', inplace=True)        
     #df.to_csv('test2.csv')
-    df_preprocessed = df[['code', 'Movement', 'ITEM1', 'unit', 'pickup', 'pmemo']]        
+    df_preprocessed = df[['code', 'origin', 'Movement', 'ITEM1', 'ITEM2' 'unit', 'pickup', 'pmemo']]        
     df_preprocessed['update_date'] = pd.to_datetime(update_date, format='%d/%m/%Y')
     
     if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'SR' in file_name or 'KKS' in file_name):
@@ -117,7 +117,7 @@ def generate_usage_file_to_upload(df, file_name, update_date):
 
     data = { 'id' : df_preprocessed_usage['id'], 'update_date' : df_preprocessed_usage['update_date'], 
                 'product_type' : df_preprocessed_usage['product_type'], 'sf_code' : df_preprocessed_usage['code'], 
-                'product_name' : df_preprocessed_usage['ITEM1'], 
+                'origin' : df_preprocessed['origin'], 'product_name' : df_preprocessed_usage['ITEM1'], 'product_name_jp' : df_preprocessed['ITEM2'],
                 'move' : df_preprocessed_usage['Movement'], 'unit' : df_preprocessed_usage['unit'], 
                 'pickup_qty' : df_preprocessed_usage['pickup'], 'memo' : df_preprocessed_usage['pmemo']}    
     df_processed = pd.DataFrame(data)       

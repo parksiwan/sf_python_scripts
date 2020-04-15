@@ -34,9 +34,9 @@ def generate_data_frame_and_insert_to_db(file_path):
     
     if 'NSW' in shipment_info:
         customer = 'STNSW'
-    elif 'QLD' in shipment_info:
+    elif 'SQ' in shipment_info:
         customer = 'STQLD'
-    elif 'NSW' in shipment_info:
+    elif 'SA' in shipment_info:
         customer = 'STALD'
     else:
         customer = 'UNKNOWN'
@@ -58,7 +58,7 @@ def generate_data_frame_and_insert_to_db(file_path):
                 if sheet.cell(i, 7).value == '':
                     arrival_date = None                    
                 else:
-                    arrival_date = sheet.cell(i, 7).value
+                    arrival_date = '2099-12-31'
             
             st_packing_list = STPackingList(dispatch_date, product_type, customer, sheet.cell(i, 2).value, sheet.cell(i, 3).value, 
                                             sheet.cell(i, 5).value, sheet.cell(i, 6).value, arrival_date)
