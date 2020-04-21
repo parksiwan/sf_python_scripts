@@ -10,7 +10,7 @@ import pandas.io.sql as psql
 from pandas.tseries.offsets import MonthEnd
 from datetime import datetime, date, timedelta
 
-app = dash.Dash()
+app = dash.Dash(__name__, meta_tags=[{"name": "viewport", "content": "width=device-width"}])
 
 colors = {'Hanamaruya': 'red',
           'Mikazuki Parramatta': 'lightgreen',
@@ -123,9 +123,12 @@ def update_qty_graph(customer_name, product_code, start_date, end_date):
                                     text=i,
                                     name=i,
                                     mode='markers+lines',
-                                    marker={'size':7,
-                                           'opacity':0.5,
-                                           'line':{'width':0.2, 'color':'blue'}}))            
+                                    line=dict(shape="spline", smoothing=0.7, width=1, color="#fac1b7"),
+                                    marker=dict(symbol="diamond-open")
+                                    #marker={'size':7,
+                                    #       'opacity':0.5,
+                                    #       'line':{'width':0.2, 'color':'blue'}}
+                                    ))            
             #df5 = pd.concat([df5, df4], ignore_index=True)
         layout = go.Layout(title=product_code,
                            xaxis={'title':'Dispatch Date', 'tickformat':'%Y-%m-%d'},
@@ -148,10 +151,13 @@ def update_qty_graph(customer_name, product_code, start_date, end_date):
                                     y=df4['qty'],
                                     text=i,
                                     name=i,
-                                    mode='markers+lines',
-                                    marker={'size':7,
-                                           'opacity':0.5,
-                                           'line':{'width':0.2, 'color':'blue'}}))
+                                    mode='markers',
+                                    line=dict(shape="spline", smoothing=0.7, width=1, color="#fac1b7"),
+                                    marker=dict(symbol="diamond-open")
+                                    #marker={'size':7,
+                                    #       'opacity':0.5,
+                                    #       'line':{'width':0.2, 'color':'blue'}}
+                                    ))
             
            #df5 = pd.concat([df5, df4], ignore_index=True)
 
@@ -172,9 +178,12 @@ def update_qty_graph(customer_name, product_code, start_date, end_date):
                                 y=df4['qty'],
                                 text=df4['customer'],
                                 mode='markers+lines',
-                                marker={'size':7,
-                                       'opacity':0.5,
-                                       'line':{'width':0.2, 'color':'white'}}))
+                                line=dict(shape="spline", smoothing=0.7, width=1, color="#fac1b7"),
+                                marker=dict(symbol="diamond-open")
+                                #marker={'size':7,
+                                #       'opacity':0.5,
+                                #       'line':{'width':0.2, 'color':'white'}}
+                                       ))
         layout = go.Layout(title=product_code,
                            xaxis={'title':'Dispatch Date'},
                            yaxis={'title':'Dispatch QTY'},
@@ -271,4 +280,4 @@ def update_cost_graph(customer_name, product_code, start_date, end_date):
 
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=True)

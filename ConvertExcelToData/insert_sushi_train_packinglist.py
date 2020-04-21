@@ -37,7 +37,7 @@ def generate_data_frame_and_insert_to_db(file_path):
     elif 'SQ' in shipment_info:
         customer = 'STQLD'
     elif 'SA' in shipment_info:
-        customer = 'STALD'
+        customer = 'STADL'
     else:
         customer = 'UNKNOWN'
 
@@ -48,10 +48,11 @@ def generate_data_frame_and_insert_to_db(file_path):
     else:
         product_type = 'UNKNOWN'
 
-    #for i in range(3, sheet.nrows):      
+    #for i in range(3, sheet.nrows):    
+    print(file_path)  
     i = 15
     while sheet.cell(i, 4).value != 'TOTAL':                                    
-        if sheet.cell(i, 2).value != '':  # when actual data is found
+        if sheet.cell(i, 2).value != '' and sheet.cell(i, 5).value != '':  # when actual data is found
             if sheet.cell(i, 7).ctype == 3:
                 arrival_date = convert_excel_date(wb, sheet.cell(i, 7).value).date()                
             else:                
