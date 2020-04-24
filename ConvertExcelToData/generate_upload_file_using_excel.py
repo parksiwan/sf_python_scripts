@@ -104,7 +104,7 @@ def generate_usage_file_to_upload(df, file_name, update_date):
     df_preprocessed = df[['code', 'origin', 'Movement', 'ITEM1', 'ITEM2' 'unit', 'pickup', 'pmemo']]        
     df_preprocessed['update_date'] = pd.to_datetime(update_date, format='%d/%m/%Y')
     
-    if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'SR' in file_name or 'KKS' in file_name):
+    if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'SR' in file_name or 'KKS' in file_name or 'Daily' in file_name):
         df_preprocessed['product_type'] = 'FRZ'
     else:
         df_preprocessed['product_type'] = 'DRY'                                   
@@ -139,7 +139,7 @@ def generate_stock_file_to_upload(df, file_name, update_date):
 
     df_preprocessed['update_date'] = pd.to_datetime(update_date, format='%d/%m/%Y')  # Windows => pd.to_datetime(update_date, format='%Y-%m-%d')
     
-    if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'SR' in file_name or 'KKS' in file_name):
+    if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'SR' in file_name or 'KKS' in file_name or 'Daily' in file_name):
         df_preprocessed['product_type'] = 'FRZ'
     else:
         df_preprocessed['product_type'] = 'DRY'            
