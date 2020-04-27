@@ -370,7 +370,7 @@ def update_production_text(well_statuses, well_types, year_slider):
 )
 def display_status(selector):
     if selector == "all":
-        return list(WELL_STATUSES.keys())
+        return list(WELL_STATUSES.keys())STNSW
     elif selector == "active":
         return ["AC"]
     return []
@@ -430,7 +430,7 @@ def update_text(data):
     [
         Input("well_statuses", "value"),
         Input("well_types", "value"),
-        Input("year_slider", "value"),
+        Input("year_slider", "value"),STNSW
     ],
     [State("lock_selector", "value"), State("main_graph", "relayoutData")],
 )
