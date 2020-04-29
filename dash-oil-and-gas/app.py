@@ -212,6 +212,63 @@ app.layout = html.Div(
             className="row flex-display",
         ),
         
+        #html.Div(
+        #    [
+        #        dcc.RadioItems(
+        #           id='xaxis-type',
+        #            options=[
+        #                        {"label": "Total", "value": "all"},
+        #                        {"label": "Branch", "value": "one"},                              
+        #                    ],
+        #            value='all',
+        #            labelStyle={'display': 'inline-block'}
+        #        ),    
+        #        dcc.Dropdown(
+        #            id='yaxis-column',
+        #            options=[
+        #                        {"label": "STNSW", "value": "stnsw"},
+        #                        {"label": "STQLD", "value": "stqld"},                              
+        #                        {"label": "STADL", "value": "stadl"},                              
+        #                    ],    dcc.RadioItems(                       
+        #            value='STNSW'
+        #        ),
+        #    ],                        
+        #),
+        
+        html.Div(
+            [   
+                html.Div(
+                    [
+                        html.P("Graph Mode: ", className="control_label"),  
+                        dcc.RadioItems(
+                            id='xaxis-type',
+                            options=[
+                                        {"label": "Total", "value": "all"},
+                                        {"label": "Branch", "value": "one"},                              
+                                    ],
+                            value='all',
+                            labelStyle={'display': 'inline-block'}
+                        ),  
+                        html.P("Select Branch: ", className="control_label"), 
+                        dcc.Dropdown(
+                            id='yaxis-column',
+                            options=[
+                                        {"label": "STNSW", "value": "stnsw"},
+                                        {"label": "STQLD", "value": "stqld"},                              
+                                        {"label": "STADL", "value": "stadl"},                              
+                                    ],
+                            value='STNSW'
+                        ),
+                    ],
+                    className="two columns",
+                ),
+                html.Div(
+                    [dcc.Graph(id="yearly_comparison_graph")],
+                    className="pretty_container ten columns",
+                ),                                        
+            ],
+            className="row flex-display",
+        ),  
     ],
     id="mainContainer",
     style={"display": "flex", "flex-direction": "column"},
@@ -383,20 +440,17 @@ def time_between_inward_dispatch(well_statuses, year_slider):
 
     grouped_df = temp_df.groupby(['queuing_days']).agg('sum')    
     reindex_df = grouped_df.reset_index()    
-   
-    data = [    
-        dict(
-            type="scatter",
-            mode="lines+markers",
-            name="Queuing Time",
+    
+    data = [     
+        dict(                           
+            type="bar",
             x=reindex_df['queuing_days'],
             y=reindex_df['qty'],
-            line=dict(shape="spline", smoothing="2", color="#59C3C3"),
-            marker=dict(symbol="diamond-open"),
-        ),                                    
+            name="All Wells",
+            marker=dict(color="#59C3C3"),
+        ),
     ]
 
-    
     layout_individual["title"] = 'Queuing Time'
     
 
