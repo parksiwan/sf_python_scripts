@@ -12,6 +12,7 @@ def convert_excel_date(excel_book, excel_date):
 def read_excels_and_aggregate():
     aggregated_df = pd.DataFrame()
     os.chdir('/home/siwanpark/ExcelData/sushi_train/ST')
+    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
     excel_files = glob.glob('*.xls*')    
     for excel_file in excel_files:        
         df = generate_data_frame_and_insert_to_db(excel_file)  #generate data frame   

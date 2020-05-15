@@ -11,6 +11,7 @@ def convert_excel_date(excel_book, excel_date):
 
 
 def read_excel_and_insert_to_db():
+    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
     os.chdir('/home/siwanpark/ExcelData/')
     excel_files = glob.glob('*.xls*')    
     file_number = 1 
@@ -28,12 +29,12 @@ def generate_data_frame_and_insert_to_db(file_path):
     #dispatch_date = sheet.cell_value(6, 9)    
     #dispatch_date = update_date.strip()
     # Convert excel date to python date       
-    if sheet.cell(6, 9).ctype == 3 or sheet.cell(6, 9).ctype == 2:
-        dispatch_date = convert_excel_date(wb, sheet.cell(6, 9).value).date()
-    elif sheet.cell(6, 9).ctype == 1:
-        dispatch_date = datetime.datetime.strptime(sheet.cell(6, 9).value, "%d/%m/%Y")
+    if sheet.cell(0, 0).ctype == 3 or sheet.cell(0, 0).ctype == 2:
+        dispatch_date = convert_excel_date(wb, sheet.cell(0, 0).value).date()
+    elif sheet.cell(0, 0).ctype == 1:
+        dispatch_date = datetime.datetime.strptime(sheet.cell(0, 0).value, "%d/%m/%Y")
     else:
-        dispatch_date = sheet.cell(6, 9).value
+        dispatch_date = sheet.cell(0, 0).value
     
     shipment_info = file_path
     #print(dispatch_date)
@@ -55,21 +56,13 @@ def generate_data_frame_and_insert_to_db(file_path):
 
     #for i in range(3, sheet.nrows):    
     
-    i = 15
+    i = 3
     while sheet.cell(i, 4).value != 'TOTAL':                                    
-        if sheet.cell(i, 2).value != '' and sheet.cell(i, 2).value != '-' and sheet.cell(i, 5).value != '':  # when actual data is found
-            if sheet.cell(i, 7).ctype == 3 or sheet.cell(i, 7).ctype == 2:
-                arrival_date = convert_excel_date(wb, sheet.cell(i, 7).value).date()       
-            elif sheet.cell(i, 7).ctype == 1:
-                arrival_date = datetime.datetime.strptime(sheet.cell(i, 7).value, "%d/%m/%Y")
-            else:                
-                if sheet.cell(i, 7).value == '' or sheet.cell(i, 7).value == '=' or sheet.cell(i, 7).value == '-':
-                    arrival_date = None                    
-                else:                    
-                    arrival_date = dispatch_date
+        if sheet.cell(i, 1).value != '' and sheet.cell(i, 1).value != '-' and sheet.cell(i, 5).value != '':  # when actual data is found
             
-            st_packing_list = STPackingList(dispatch_date, product_type, customer, sheet.cell(i, 2).value, sheet.cell(i, 3).value, 
-                                            sheet.cell(i, 5).value, sheet.cell(i, 6).value, arrival_date)
+            
+            st_packing_list = STPackingList(dispatch_date, product_type, customer, sheet.cell(i, 1).value, sheet.cell(i, 0).value, 
+                                            sheet.cell(i, 5).value, sheet.cell(i, 6).value, None)
             st_packing_list.save_to_db()
             
         i += 1

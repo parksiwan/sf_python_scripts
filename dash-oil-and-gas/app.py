@@ -128,32 +128,27 @@ app.layout = html.Div(
                                         html.Div(
                                             [html.H6(id="well_text"), html.P(id="total_dispatch")],
                                             id="div1",                                            
-                                            className="mini_container",
+                                            #className="mini_container",
                                         ),
                                         html.Div(
                                             [html.H6(id="gasText"), html.P(id="date_range")],
                                             id="div2",
-                                            className="mini_container",
+                                            #className="mini_container",
                                         ),
-                                    ],
-                                    className="row container-display",
-                                ),
-                                html.Div(
-                                    [
                                         html.Div(
                                             [html.H6(id="oilText"), html.P(id="avg_dispatch_week")],
                                             id="div3",
-                                            className="mini_container",
+                                            #className="mini_container",
                                         ),
                                         html.Div(
                                             [html.H6(id="waterText"), html.P(id="avg_dispatch_month")],
                                             id="div4",
-                                            className="mini_container",
+                                            #className="mini_container",
                                         ),
                                     ],
-                                    className="row container-display",
-                                ),
-                            ]                                                      
+                                    className="mini_container",                                    
+                                ),                                
+                            ]                                                     
                         ),
                         html.P(
                             "Filter by dispatch date (or select range in histogram):",
@@ -321,7 +316,7 @@ def generate_summary(well_statuses, year_slider):
     total_dispatch = "Total Dispatch : " + str(total_dispatch_qty)
     date_range = "Date Range : " + str(start_date) + ' ~ ' + str(end_date)
     avg_dispatch_week = "AVG Dispatch per Week : " + str("{:.2f}".format(total_dispatch_qty * 7 / diff_days))
-    avg_dispatch_month = "AvG Dispatch per Month : " + str("{:.2f}".format(total_dispatch_qty * 30 / diff_days))
+    avg_dispatch_month = "AVG Dispatch per Month : " + str("{:.2f}".format(total_dispatch_qty * 30 / diff_days))
     return total_dispatch, date_range, avg_dispatch_week, avg_dispatch_month
 
 

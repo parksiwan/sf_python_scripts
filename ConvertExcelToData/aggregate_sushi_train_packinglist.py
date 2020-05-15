@@ -12,6 +12,7 @@ def convert_excel_date(excel_book, excel_date):
 def read_excels_and_aggregate():
     aggregated_df = pd.DataFrame()
     os.chdir('/home/siwanpark/ExcelData/sushi_train/ST')
+    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
     excel_files = glob.glob('*.xls*')    
     for excel_file in excel_files:        
         df = generate_data_frame_and_insert_to_db(excel_file)  #generate data frame   
@@ -33,7 +34,7 @@ def generate_data_frame_and_insert_to_db(file_path):
     else:
         dispatch_date = sheet.cell(6, 9).value
     
-    shipment_info = sheet.cell_value(7, 9)
+    shipment_info = file_path
     
     if 'NSW' in shipment_info:
         customer = 'STNSW'
@@ -59,15 +60,17 @@ def generate_data_frame_and_insert_to_db(file_path):
     while sheet.cell(i, 4).value != 'TOTAL':                                    
         if sheet.cell(i, 2).value != '' and sheet.cell(i, 5).value != '':  # when actual data is foundinsert_excel_to_db()
             if sheet.cell(i, 7).ctype == 3:
-                arrival_date = convert_excel_date(wb, sheet.cell(i, 7).value).date()                
+                arrival_date = convert_excel_date(wb, sheet.cell(i, 7).value).date()            
+            elif sheet.cell(i, 7).ctype == 1:
+                arrival_date = sheet.cell(i, 7).value    
             else:                
                 if sheet.cell(i, 7).value == '':
                     arrival_date = None                    
                 else:
-                    arrival_date = '2099-12-31'                        
+                    arrival_date = dispatch_date                   
 
             
-            pl_data = {'dispatch_date': dispatch_date, 'product_type': product_type, 'customer' : customer, 'sf_code' : sheet.cell(i, 2).value, 
+            pl_data = {'file_name': file_path, 'dispatch_date': dispatch_date, 'product_type': product_type, 'customer' : customer, 'sf_code' : sheet.cell(i, 2).value, 
                       'product_name': sheet.cell(i, 3).value, 'qty': sheet.cell(i, 5).value, 'unit' : sheet.cell(i, 6).value, 'arrival_date' : arrival_date }                     
             pl_list.append(pl_data)
         i += 1
