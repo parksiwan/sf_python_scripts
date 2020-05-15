@@ -39,7 +39,7 @@ well_type_options = [
     for well_type in WELL_TYPES
 ]
 
-# tetts
+# tetts dfdsf
 
 # Load data from DB
 db_conn = pg.connect("host='localhost' dbname=sfstock user=siwan password='psw1101714'")
