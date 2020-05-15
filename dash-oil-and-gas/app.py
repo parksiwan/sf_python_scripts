@@ -39,18 +39,6 @@ well_type_options = [
     for well_type in WELL_TYPES
 ]
 
-# Load data
-'''
-df = pd.read_csv(DATA_PATH.joinpath("wellspublic.csv"), low_memory=False)
-df["Date_Well_Completed"] = pd.to_datetime(df["Date_Well_Completed"])
-df = df[df["Date_Well_Completed"] > dt.datetime(1960, 1, 1)]
-
-trim = df[["API_WellNo", "Well_Type", "Well_Name"]]
-trim.index = trim["API_WellNo"]
-dataset = trim.to_dict(orient="index")
-
-points = pickle.load(open(DATA_PATH.joinpath("points.pkl"), "rb"))
-'''
 
 # Load data from DB
 db_conn = pg.connect("host='localhost' dbname=sfstock user=siwan password='psw1101714'")

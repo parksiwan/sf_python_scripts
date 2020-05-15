@@ -41,7 +41,7 @@ customer_list = np.concatenate((customer_list, a_customer))
 
 product_list = df['product_code'].unique()
 a_product = pd.Series(['All'])
-product_list = np.concatenate((product_list, a_product))print(year_slider[1])
+product_list = np.concatenate((product_list, a_product))
 
 def read_db_to_dataframe(customer_name, product_code, conn):
     if customer_name == 'All' and product_code != 'All':
