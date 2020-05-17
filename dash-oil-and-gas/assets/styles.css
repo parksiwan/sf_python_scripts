@@ -58,6 +58,15 @@ body {
   display: flex;
 }
 
+.summary-label {
+  font-weight: bold;
+  padding-right: 5px;
+}
+.summary-result {
+  font-weight: bold;
+  color: rgb(123, 199, 255);
+}
+
 #individual_graph,
 #aggregate_graph {
   width: calc(100% - 30px);

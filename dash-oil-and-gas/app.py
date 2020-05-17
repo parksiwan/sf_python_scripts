@@ -11,6 +11,7 @@ import psycopg2 as pg
 from dash.dependencies import Input, Output, State, ClientsideFunction
 import dash_core_components as dcc
 import dash_html_components as html
+import calendar
 
 # Multi-dropdown options. Read static values from controls.py
 from controls import COUNTIES, WELL_STATUSES, WELL_TYPES, WELL_COLORS
@@ -63,12 +64,17 @@ code_product_options = [
 layout = dict(
     autosize=True,
     automargin=True,
-    margin=dict(l=30, r=30, b=20, t=40),
+    margin=dict(l=30, r=30, b=30, t=40),
     hovermode="closest",
     plot_bgcolor="#F9F9F9",
     paper_bgcolor="#F9F9F9",
     legend=dict(font=dict(size=10), orientation="h"),
     title="Satellite Overview",
+    font=dict(
+        family="Courier New, monospace",
+        fontweight="bold",
+        color="#111111"
+    )
     #mapbox=dict(
     #    accesstoken=mapbox_access_token,
     #    style="light",
@@ -115,24 +121,24 @@ app.layout = html.Div(
                                 html.Div(
                                     [
                                         html.Div(
-                                            [html.H6(id="well_text"), html.P(id="total_dispatch")],
+                                            [html.P("Total Dispatch :  ", className="summary-label"), html.P(id="total_dispatch", className="summary-result")],
                                             id="div1",                                            
-                                            #className="mini_container",
+                                            className="flex-display",
                                         ),
                                         html.Div(
-                                            [html.H6(id="gasText"), html.P(id="date_range")],
+                                            [html.P("Date Range :  ", className="summary-label"), html.P(id="date_range", className="summary-result")],
                                             id="div2",
-                                            #className="mini_container",
+                                            className="flex-display",
                                         ),
                                         html.Div(
-                                            [html.H6(id="oilText"), html.P(id="avg_dispatch_week")],
+                                            [html.P("AVG Dispatch per Week :  ", className="summary-label"), html.P(id="avg_dispatch_week", className="summary-result")],
                                             id="div3",
-                                            #className="mini_container",
+                                            className="flex-display",
                                         ),
                                         html.Div(
-                                            [html.H6(id="waterText"), html.P(id="avg_dispatch_month")],
+                                            [html.P("AVG Dispatch per Month :  ", className="summary-label"), html.P(id="avg_dispatch_month", className="summary-result")],
                                             id="div4",
-                                            #className="mini_container",
+                                            className="flex-display",
                                         ),
                                     ],
                                     className="mini_container",                                    
@@ -140,24 +146,24 @@ app.layout = html.Div(
                             ]                                                     
                         ),
                         html.P(
-                            "Filter by dispatch date (or select range in histogram):",
-                            className="control_label",
+                            "Filter by Date :",
+                            className="summary-label control_label",
                         ),
                         dcc.RangeSlider(
                             id="year_slider",
-                            min=2016,
-                            max=2021,
+                            min=2017,
+                            max=2020,
                             step=1,
                             marks={
-                                2016: '2016',
-                                2021: '2021'
+                                2017: '2017',
+                                2020: '2020'
                             },
-                            value=[2016, 2021],
+                            value=[2017, 2020],
                             className="dcc_control",
                         ),
-                        html.P("Filter by products:", className="control_label"),                        
+                        html.P("Filter by Products:", className="summary-label control_label"),                        
                         dcc.Dropdown(
-                            id="well_statuses",
+                            id="product_code",
                             options=code_product_options,
                             #multi=True,
                             value='KYJ32',
@@ -194,54 +200,22 @@ app.layout = html.Div(
                 ),                                  
             ],
             className="row flex-display",
-        ),
-        
-        #html.Div(
-        #    [
-        #        dcc.RadioItems(
-        #           id='xaxis-type',
-        #            options=[
-        #                        {"label": "Total", "value": "all"},
-        #                        {"label": "Branch", "value": "one"},                              
-        #                    ],
-        #            value='all',
-        #            labelStyle={'display': 'inline-block'}
-        #        ),    
-        #        dcc.Dropdown(
-        #            id='yaxis-column',
-        #            options=[
-        #                        {"label": "STNSW", "value": "stnsw"},
-        #                        {"label": "STQLD", "value": "stqld"},                              
-        #                        {"label": "STADL", "value": "stadl"},                              
-        #                    ],    dcc.RadioItems(                       
-        #            value='STNSW'
-        #        ),
-        #    ],                        
-        #),
+        ),                
         
         html.Div(
             [   
                 html.Div(
-                    [
-                        html.P("Graph Mode: ", className="control_label"),  
-                        dcc.RadioItems(
-                            id='xaxis-type',
-                            options=[
-                                        {"label": "Total", "value": "all"},
-                                        {"label": "Branch", "value": "one"},                              
-                                    ],
-                            value='all',
-                            labelStyle={'display': 'inline-block'}
-                        ),  
-                        html.P("Select Branch: ", className="control_label"), 
+                    [                        
+                        html.P("Select Graph: ", className="control_label"), 
                         dcc.Dropdown(
-                            id='yaxis-column',
+                            id='st_branch',                            
                             options=[
-                                        {"label": "STNSW", "value": "stnsw"},
-                                        {"label": "STQLD", "value": "stqld"},                              
-                                        {"label": "STADL", "value": "stadl"},                              
+                                        {"label": "STNSW", "value": "STNSW"},
+                                        {"label": "STQLD", "value": "STQLD"},                              
+                                        {"label": "STADL", "value": "STADL"},                              
+                                        {"label": "ALL", "value": "ALL"},                              
                                     ],
-                            value='STNSW'
+                            value='ALL'
                         ),
                     ],
                     className="two columns",
@@ -260,19 +234,19 @@ app.layout = html.Div(
 
 
 # Helper functions
-def filter_dataframe(df, well_statuses, year_slider):    
+def filter_dataframe(df, product_code, year_slider):    
     if year_slider[0] == year_slider[1]:
         dff = df[
-            (df["sf_code"] == well_statuses)
+            (df["sf_code"] == product_code)
             & (df["dispatch_date"] >= dt.datetime(year_slider[0], 1, 1).date())
             & (df["dispatch_date"] <= dt.datetime(year_slider[1], 12, 31).date())
         ]
         return dff
     else:
         dff = df[
-            (df["sf_code"] == well_statuses)
-            & (df["dispatch_date"] > dt.datetime(year_slider[0], 1, 1).date())
-            & (df["dispatch_date"] < dt.datetime(year_slider[1], 1, 1).date())
+            (df["sf_code"] == product_code)
+            & (df["dispatch_date"] >= dt.datetime(year_slider[0], 1, 1).date())
+            & (df["dispatch_date"] <= dt.datetime(year_slider[1], 12, 31).date())
         ]
         return dff
 
@@ -281,13 +255,13 @@ def filter_dataframe(df, well_statuses, year_slider):
     [Output('total_dispatch', 'children'), Output('date_range', 'children'), 
      Output('avg_dispatch_week', 'children'), Output('avg_dispatch_month', 'children')],
     [
-        Input("well_statuses", "value"),        
+        Input("product_code", "value"),        
         Input("year_slider", "value"),
     ],
 )
-def generate_summary(well_statuses, year_slider):    
+def generate_summary(product_code, year_slider):    
 
-    dff = filter_dataframe(df, well_statuses, [year_slider[0], year_slider[1]])
+    dff = filter_dataframe(df, product_code, [year_slider[0], year_slider[1]])
     temp_df = dff[["dispatch_date", "qty"]]
     total_dispatch_qty = temp_df['qty'].sum()
     start_date = temp_df['dispatch_date'].min()
@@ -302,10 +276,11 @@ def generate_summary(well_statuses, year_slider):
     #grouped_df = temp_df.groupby(['dispatch_date', 'sf_code']).agg('sum')
     #reindex_df = grouped_df.reset_index()               
 
-    total_dispatch = "Total Dispatch : " + str(total_dispatch_qty)
-    date_range = "Date Range : " + str(start_date) + ' ~ ' + str(end_date)
-    avg_dispatch_week = "AVG Dispatch per Week : " + str("{:.2f}".format(total_dispatch_qty * 7 / diff_days))
-    avg_dispatch_month = "AVG Dispatch per Month : " + str("{:.2f}".format(total_dispatch_qty * 30 / diff_days))
+    total_dispatch = str(total_dispatch_qty)
+    #total_dispatch = "Total Dispatch : " + str(total_dispatch_qty)
+    date_range = str(start_date) + ' ~ ' + str(end_date)
+    avg_dispatch_week = str("{:.2f}".format(total_dispatch_qty * 7 / diff_days))
+    avg_dispatch_month = str("{:.2f}".format(total_dispatch_qty * 30 / diff_days))
     return total_dispatch, date_range, avg_dispatch_week, avg_dispatch_month
 
 
@@ -313,21 +288,21 @@ def generate_summary(well_statuses, year_slider):
 @app.callback(
     Output("count_graph", "figure"),
     [
-        Input("well_statuses", "value"),        
+        Input("product_code", "value"),        
         Input("year_slider", "value"),
     ],
 )
-def dispatch_total_qty(well_statuses, year_slider):
+def dispatch_total_qty(product_code, year_slider):
     layout_count = copy.deepcopy(layout)
 
-    dff = filter_dataframe(df, well_statuses, [2015, 2025])
+    dff = filter_dataframe(df, product_code, [2017, 2020])
     temp_df = dff[["dispatch_date", "sf_code", "qty"]]
     grouped_df = temp_df.groupby(['dispatch_date', 'sf_code']).agg('sum')
     reindex_df = grouped_df.reset_index()    
     
     colors = []    
     for i in list(reindex_df['dispatch_date'].unique()):    
-        if i.year >= int(year_slider[0]) and i.year < int(year_slider[1]):
+        if i.year >= int(year_slider[0]) and i.year <= int(year_slider[1]):
             colors.append("rgb(123, 199, 255)")
         else:
             colors.append("rgba(123, 199, 255, 0.2)")    
@@ -336,13 +311,15 @@ def dispatch_total_qty(well_statuses, year_slider):
         dict(                           
             type="bar",
             x=reindex_df['dispatch_date'],
-            y=reindex_df["qty"],
+            y=reindex_df["qty"],                        
             name="All Wells",
             marker=dict(color=colors),
         ),
     ]
 
-    layout_count["title"] = "Dispatched QTY"
+    layout_count["title"] = "QTY dispatched in total"
+    layout_count["xaxis"] = dict(title='Time')
+    layout_count["yaxis"] = dict(title='QTY (ctn)')
     layout_count["dragmode"] = "select"
     layout_count["showlegend"] = False
     layout_count["autosize"] = True
@@ -354,14 +331,14 @@ def dispatch_total_qty(well_statuses, year_slider):
 @app.callback(
     Output("dispatch_customer_graph", "figure"),
     [
-        Input("well_statuses", "value"),        
+        Input("product_code", "value"),        
         Input("year_slider", "value"),    
     ],
 )
-def dispatch_per_customers(well_statuses, year_slider):
+def dispatch_per_customers(product_code, year_slider):
     layout_individual = copy.deepcopy(layout)
 
-    dff = filter_dataframe(df, well_statuses, [year_slider[0], year_slider[1]])
+    dff = filter_dataframe(df, product_code, [year_slider[0], year_slider[1]])
     temp_df = dff[["customer", "dispatch_date", "sf_code", "qty"]]    
     grouped_df = temp_df.groupby(['customer', 'dispatch_date']).agg('sum')    
     reindex_df = grouped_df.reset_index()
@@ -402,7 +379,9 @@ def dispatch_per_customers(well_statuses, year_slider):
             marker=dict(symbol="diamond-open"),
         ),        
     ]
-    layout_individual["title"] = 'Dispatched QTY per Customers'
+    layout_individual["title"] = 'QTY dispatched as per branch'
+    layout_individual["xaxis"] = dict(title='Time')
+    layout_individual["yaxis"] = dict(title='QTY (ctn)')
 
     figure = dict(data=data, layout=layout_individual)
     return figure
@@ -410,14 +389,14 @@ def dispatch_per_customers(well_statuses, year_slider):
 @app.callback(
     Output("stocking_time_graph", "figure"),
     [
-        Input("well_statuses", "value"),        
+        Input("product_code", "value"),        
         Input("year_slider", "value"),    
     ],
 )
-def time_between_inward_dispatch(well_statuses, year_slider):
+def time_between_inward_dispatch(product_code, year_slider):
     layout_individual = copy.deepcopy(layout)
 
-    dff = filter_dataframe(df, well_statuses, [year_slider[0], year_slider[1]])
+    dff = filter_dataframe(df, product_code, [year_slider[0], year_slider[1]])
     temp_df = dff[["customer", "dispatch_date", "sf_code", "qty", "arrival_date"]]   
     temp_df['queuing_days'] = temp_df['dispatch_date'] - temp_df['arrival_date'] 
     temp_df['queuing_days'] = temp_df['queuing_days'] / np.timedelta64(1,'D')
@@ -435,10 +414,121 @@ def time_between_inward_dispatch(well_statuses, year_slider):
         ),
     ]
 
-    layout_individual["title"] = 'Queuing Time'
-    
+    layout_individual["title"] = 'Time taken until dispatching'
+    layout_individual["xaxis"] = dict(title='Days')
+    layout_individual["yaxis"] = dict(title='QTY (ctn)')
 
     figure = dict(data=data, layout=layout_individual)
+    return figure
+
+
+@app.callback(
+    Output("yearly_comparison_graph", "figure"),
+    [    
+        Input("product_code", "value"),   
+        Input("st_branch", "value")
+    ]
+)
+def comparison_graph_by_year(product_code, st_branch):
+    layout_yearly_graph = copy.deepcopy(layout)
+
+    dff = filter_dataframe(df, product_code, [2017, 2020])
+    temp_df = dff[["customer", "dispatch_date", "sf_code", "unit", "qty"]]    
+    temp_df['dispatch_date'] = pd.to_datetime(temp_df['dispatch_date']) 
+    #year_df = temp_df['dispatch_date'].dt.year  # to check if year's data exists
+    # error handling when no data in dataframe
+    if st_branch == 'ALL':  # total                                
+        layout_yearly_graph["title"] = 'Yearly Comparison in Total'        
+    elif st_branch == 'STNSW': 
+        temp_df = temp_df[temp_df['customer'] == 'STNSW']        
+        layout_yearly_graph["title"] = 'Yearly Comparison (STNSW)'        
+    elif st_branch == 'STQLD':
+        temp_df = temp_df[temp_df['customer'] == 'STQLD']        
+        layout_yearly_graph["title"] = 'Yearly Comparison (STQLD)'        
+    elif st_branch == 'STADL':      
+        temp_df = temp_df[temp_df['customer'] == 'STADL']
+        layout_yearly_graph["title"] = 'Yearly Comparison (STADL)'       
+
+    if len(temp_df) > 0:
+        year_df = temp_df['dispatch_date'].dt.year  # to check if year's data exists
+        grouped_df = temp_df.groupby([temp_df.dispatch_date.dt.month,temp_df.dispatch_date.dt.year]).agg(sum).unstack()
+        #grouped_df = temp_df.groupby(['dispatch_date']).agg('sum')    
+        reindex_df = grouped_df.reset_index()          
+        col_list = ['dispatch_month']
+        if 2017 in year_df.unique():
+            col_list.append('2017')
+        if 2018 in year_df.unique():
+            col_list.append('2018')
+        if 2019 in year_df.unique():
+            col_list.append('2019')
+        if 2020 in year_df.unique():
+            col_list.append('2020')
+
+        #reindex_df.columns = ['dispatch_month', '2017','2018','2019','2020']
+        reindex_df.columns = col_list
+        if '2017' in reindex_df.columns:
+            df_2017 = reindex_df[['dispatch_month', '2017']]
+        else:
+            df_2017 = pd.DataFrame(columns=['dispatch_month', '2017'])
+        if '2018' in reindex_df.columns:
+            df_2018 = reindex_df[['dispatch_month', '2018']]
+        else:
+            df_2018 = pd.DataFrame(columns=['dispatch_month', '2018'])
+        if '2019' in reindex_df.columns:
+            df_2019 = reindex_df[['dispatch_month', '2019']]
+        else:
+            df_2019 = pd.DataFrame(columns=['dispatch_month', '2019'])
+        if '2020' in reindex_df.columns:
+            df_2020 = reindex_df[['dispatch_month', '2020']]
+        else:
+            df_2020 = pd.DataFrame(columns=['dispatch_month', '2020'])
+        
+
+        data = [        
+            dict(
+                type="scatter",
+                mode="lines+markers",
+                name="2017",
+                x=df_2017['dispatch_month'].apply(lambda x: calendar.month_abbr[x]),        
+                y=df_2017['2017'],
+                line=dict(shape="spline", smoothing=2, width=1, color="#fac1b7"),
+                marker=dict(symbol="diamond-open"),
+            ),
+            dict(
+                type="scatter",
+                mode="lines+markers",
+                name="2018",
+                x=df_2018['dispatch_month'].apply(lambda x: calendar.month_abbr[x]),            
+                y=df_2018['2018'],         
+                line=dict(shape="spline", smoothing=2, width=1, color="#a9bb95"),
+                marker=dict(symbol="diamond-open"),
+            ),
+            dict(
+                type="scatter",
+                mode="lines+markers",
+                name="2019",
+                x=df_2019['dispatch_month'].apply(lambda x: calendar.month_abbr[x]),            
+                y=df_2019['2019'],                     
+                line=dict(shape="spline", smoothing=2, width=1, color="#92d8d8"),
+                marker=dict(symbol="diamond-open"),
+            ),   
+            dict(
+                type="scatter",
+                mode="lines+markers",
+                name="2020",
+                x=df_2020['dispatch_month'].apply(lambda x: calendar.month_abbr[x]),            
+                y=df_2020['2020'],                   
+                line=dict(shape="spline", smoothing=2, width=1, color="#34a529"),
+                marker=dict(symbol="diamond-open"),
+            ),             
+        ]    
+
+        layout_yearly_graph["xaxis"] = dict(title='Month')
+        layout_yearly_graph["yaxis"] = dict(title='QTY (ctn)')
+    
+        figure = dict(data=data, layout=layout_yearly_graph)
+        return figure                      
+    figure = dict(data=None, layout=None)
     return figure
 
 
