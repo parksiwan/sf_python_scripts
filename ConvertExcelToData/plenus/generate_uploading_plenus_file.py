@@ -62,13 +62,13 @@ def generate_data_frame(file_path):
     loc = (file_path)     
     wb = xlrd.open_workbook(loc) 
     sheet = wb.sheet_by_index(0)     
-    update_date = sheet.cell_value(1, 9).split(':')[1]
     
-    update_date = update_date.strip()
+    #update_date = sheet.cell_value(1, 9).split(':')[1]    
+    #update_date = update_date.strip()
 
     #for i in range(3, sheet.nrows):  
     stock_list = []
-    i = 4
+    i = 1
     while sheet.cell(i, 1).value != 'end':    
         # Convert excel date to python date       
         if sheet.cell(i, 5).ctype == 3:
@@ -91,6 +91,9 @@ def generate_data_frame(file_path):
         i += 1
     result = pd.DataFrame(stock_list)    
     return result, update_date
+
+    # usage fields => 'usage_month', 'product_type', 'customer', 'sf_code', 'plenus_code', 'product_name',  'description', 'qty',  'unit' 
+    # stock fields => 'stock_base_date', 'product_type', 'sf_code', 'plenus_code', 'product_name', 'description', 'qty',  'unit', 'bbd'
 
 
 def generate_usage_file_to_upload(df, file_name, update_date):    
