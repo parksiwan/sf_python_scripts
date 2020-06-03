@@ -17,7 +17,6 @@ def is_date(string, fuzzy=False):
     try: 
         parse(string, fuzzy=fuzzy)
         return True
-
     except ValueError:    
         return False
     
@@ -40,23 +39,19 @@ def convert_excel_date(excel_book, excel_date):
 
 
 def main():
-    # Change directory
-    #(filename=r"\\192.168.20.50\AlexServer\輸入共有\輸入共有フォルダー\SF Product Name & Code List(商品名確認票）\SF Product Name & Code List (商品名確認表)_for_test.xlsx", data_only=True)
-    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan")
-    os.chdir('/home/siwanpark/ExcelData/Alex/')
+    # Change directory    
+    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
+    #os.chdir('/home/siwanpark/ExcelData/Alex/')
     excel_files = glob.glob('*.xls*')
     print(excel_files)
-    for excel_file in excel_files:
-        # Give the location of the file 
-        #file_path = "Alex 2019 09 AUG D12-14.xlsm"
-        #print(excel_file)
+    for excel_file in excel_files:        
         file_name = excel_file.split('.')[0]
         df, update_date = generate_data_frame(excel_file)  #generate data frame
-        df1 = df.copy(deep=True)   
-        generate_usage_file_to_upload(df, file_name, update_date)        
-        generate_stock_file_to_upload(df1, file_name, update_date)
-        #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan")
-        os.chdir('/home/siwanpark/ExcelData/Alex/')
+        #df1 = df.copy(deep=True)           
+        generate_stock_file_to_upload(df, file_name, update_date)
+        os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")        
+        #os.chdir('/home/siwanpark/ExcelData/Alex/')
+
 
 def generate_data_frame(file_path):    
     loc = (file_path)     
@@ -67,67 +62,52 @@ def generate_data_frame(file_path):
     #update_date = update_date.strip()
 
     #for i in range(3, sheet.nrows):  
-    stock_list = []
+    stock_list = []    
     i = 1
+    previous_code = sheet.cell(1, 0).value    
+    previous_prodcut_name = sheet.cell(1, 1).value    
+    previous_description = sheet.cell(1, 2).value    
     while sheet.cell(i, 1).value != 'end':    
-        # Convert excel date to python date       
-        if sheet.cell(i, 5).ctype == 3:
-            inward_date = convert_excel_date(wb, sheet.cell(i, 5).value)
+        if sheet.cell(i, 0).value == previous_code or sheet.cell(i, 0).value == '':            
+            if sheet.cell(i, 9).value != '': # if stock data found
+                stock_data = create_stock_data(stock_base_date, product_type, sf_code, plenus_code, product_name, description, qty, unit, bbd)
+                stock_list.append(stock_data)
+                
+            # Convert excel date to python date       
+            if sheet.cell(i, 5).ctype == 3:
+                inward_date = convert_excel_date(wb, sheet.cell(i, 5).value)
+            else:
+                inward_date = sheet.cell(i, 5).value
+            # Convert excel date to python date       
+            if sheet.cell(i, 18).ctype == 3:            
+                bbd_date = convert_excel_date(wb, sheet.cell(i, 18).value)
+                #print('{} - {}'.format(sheet.cell(i, 18).ctype, py_date))
+            else:
+                bbd_date = sheet.cell(i, 18).value
+                #print('{} - {}'.format(sheet.cell(i, 18).ctype, sheet.cell(i, 18).value))
+            
+            stock_data = {'code' : sheet.cell(i, 4).value, 'origin' : sheet.cell(i, 0).value, 'Inward' : inward_date, 'Movement' : sheet.cell(i, 8).value, 
+                          'ITEM1' : sheet.cell(i, 9).value, 'ITEM2' : sheet.cell(i, 10).value, 'PreviousBalance' : sheet.cell(i, 12).value, 
+                          'unit': sheet.cell(i, 13).value, 'pickup' : sheet.cell(i, 14).value, 'NewBalance' : sheet.cell(i, 15).value, 
+                          'pmemo' : sheet.cell(i, 17).value, 'bbd' : bbd_date }                
+            stock_list.append(stock_data)        
         else:
-            inward_date = sheet.cell(i, 5).value
-        # Convert excel date to python date       
-        if sheet.cell(i, 18).ctype == 3:            
-            bbd_date = convert_excel_date(wb, sheet.cell(i, 18).value)
-            #print('{} - {}'.format(sheet.cell(i, 18).ctype, py_date))
-        else:
-            bbd_date = sheet.cell(i, 18).value
-            #print('{} - {}'.format(sheet.cell(i, 18).ctype, sheet.cell(i, 18).value))
+            previous_code = sheet.cell(i, 0).value
+            previous_prodcut_name = sheet.cell(i, 1).value    
+            previous_description = sheet.cell(i, 2).value              
+            if sheet.cell(i, 9).value != '': # if stock data found
+                stock_data = create_stock_data(stock_base_date, product_type, sf_code, plenus_code, product_name, description, qty, unit, bbd)
+                stock_list.append(stock_data)
         
-        stock_data = {'code' : sheet.cell(i, 4).value, 'origin' : sheet.cell(i, 0).value, 'Inward' : inward_date, 'Movement' : sheet.cell(i, 8).value, 
-                      'ITEM1' : sheet.cell(i, 9).value, 'ITEM2' : sheet.cell(i, 10).value, 'PreviousBalance' : sheet.cell(i, 12).value, 
-                      'unit': sheet.cell(i, 13).value, 'pickup' : sheet.cell(i, 14).value, 'NewBalance' : sheet.cell(i, 15).value, 
-                      'pmemo' : sheet.cell(i, 17).value, 'bbd' : bbd_date }                
-        stock_list.append(stock_data)
         i += 1
     result = pd.DataFrame(stock_list)    
     return result, update_date
 
-    # usage fields => 'usage_month', 'product_type', 'customer', 'sf_code', 'plenus_code', 'product_name',  'description', 'qty',  'unit' 
-    # stock fields => 'stock_base_date', 'product_type', 'sf_code', 'plenus_code', 'product_name', 'description', 'qty',  'unit', 'bbd'
 
-
-def generate_usage_file_to_upload(df, file_name, update_date):    
-    #print(df)
-    df['code'].replace('', np.nan, inplace=True)
-    df['pickup'].replace('', np.nan, inplace=True)
-    df['pmemo'].replace('', np.nan, inplace=True)   
-    #df.to_csv('test1.csv')
-    df.dropna(subset=['code', 'pickup', 'pmemo'], how='any', inplace=True)        
-    #df.to_csv('test2.csv')
-    df_preprocessed = df[['code', 'origin', 'Movement', 'ITEM1', 'ITEM2' 'unit', 'pickup', 'pmemo']]        
-    df_preprocessed['update_date'] = pd.to_datetime(update_date, format='%d/%m/%Y')
-    
-    if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'SR' in file_name or 'KKS' in file_name or 'Daily' in file_name):
-        df_preprocessed['product_type'] = 'FRZ'
-    else:
-        df_preprocessed['product_type'] = 'DRY'                                   
-    
-    df_preprocessed['id'] = ''
-    df_preprocessed['unit'] = df_preprocessed['unit'].str.lower()
-    df_preprocessed = df_preprocessed.reset_index()
-             
-    df_preprocessed_usage = df_preprocessed            
-
-    data = { 'id' : df_preprocessed_usage['id'], 'update_date' : df_preprocessed_usage['update_date'], 
-                'product_type' : df_preprocessed_usage['product_type'], 'sf_code' : df_preprocessed_usage['code'], 
-                'origin' : df_preprocessed['origin'], 'product_name' : df_preprocessed_usage['ITEM1'], 'product_name_jp' : df_preprocessed['ITEM2'],
-                'move' : df_preprocessed_usage['Movement'], 'unit' : df_preprocessed_usage['unit'], 
-                'pickup_qty' : df_preprocessed_usage['pickup'], 'memo' : df_preprocessed_usage['pmemo']}    
-    df_processed = pd.DataFrame(data)       
-    processed_file_name = file_name + '_processed_usage.xlsx'
-    os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
-    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan\uploading_files")
-    df_processed.to_excel(processed_file_name)
+def create_stock_data(stock_base_date, product_type, sf_code, plenus_code, product_name, description, qty, unit, bbd):
+    stock_data = {'stock_base_date': stock_base_date, 'product_type': product_type, 'sf_code': sf_code, 'plenus_code': plenus_code, 
+                  'product_name': product_name, 'description': description, 'qty': qty, 'unit': unit, 'bbd': bbd}                   
+    return stock_data
 
 
 def generate_stock_file_to_upload(df, file_name, update_date):
@@ -199,8 +179,8 @@ def generate_stock_file_to_upload(df, file_name, update_date):
                 'unit' : df_preprocessed['unit'], 'bbd' : df_preprocessed['bbd'], 'location' : df_preprocessed['location']}
     df_processed = pd.DataFrame(data)    
     processed_file_name = file_name + '_processed_stock.xlsx'
-    os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
-    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan\uploading_files")
+    #os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
+    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place\uploading_files")    
     df_processed.to_excel(processed_file_name)
 
 

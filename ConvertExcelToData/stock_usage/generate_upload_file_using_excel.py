@@ -6,6 +6,9 @@ import glob
 import pandas as pd
 import numpy as np
 
+'''
+Add HUBX condition and file path on 3/6/2020
+'''
 
 def is_date(string, fuzzy=False):
     """
@@ -42,8 +45,8 @@ def convert_excel_date(excel_book, excel_date):
 def main():
     # Change directory
     #(filename=r"\\192.168.20.50\AlexServer\輸入共有\輸入共有フォルダー\SF Product Name & Code List(商品名確認票）\SF Product Name & Code List (商品名確認表)_for_test.xlsx", data_only=True)
-    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan")
-    os.chdir('/home/siwanpark/ExcelData/Alex/')
+    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
+    #os.chdir('/home/siwanpark/ExcelData/Alex/')
     excel_files = glob.glob('*.xls*')
     print(excel_files)
     for excel_file in excel_files:
@@ -55,8 +58,9 @@ def main():
         df1 = df.copy(deep=True)   
         generate_usage_file_to_upload(df, file_name, update_date)        
         generate_stock_file_to_upload(df1, file_name, update_date)
+        os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
         #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan")
-        os.chdir('/home/siwanpark/ExcelData/Alex/')
+        #os.chdir('/home/siwanpark/ExcelData/Alex/')
 
 def generate_data_frame(file_path):    
     loc = (file_path)     
@@ -101,7 +105,7 @@ def generate_usage_file_to_upload(df, file_name, update_date):
     #df.to_csv('test1.csv')
     df.dropna(subset=['code', 'pickup', 'pmemo'], how='any', inplace=True)        
     #df.to_csv('test2.csv')
-    df_preprocessed = df[['code', 'origin', 'Movement', 'ITEM1', 'ITEM2' 'unit', 'pickup', 'pmemo']]        
+    df_preprocessed = df[['code', 'origin', 'Movement', 'ITEM1', 'ITEM2', 'unit', 'pickup', 'pmemo']]        
     df_preprocessed['update_date'] = pd.to_datetime(update_date, format='%d/%m/%Y')
     
     if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'SR' in file_name or 'KKS' in file_name or 'Daily' in file_name):
@@ -122,8 +126,8 @@ def generate_usage_file_to_upload(df, file_name, update_date):
                 'pickup_qty' : df_preprocessed_usage['pickup'], 'memo' : df_preprocessed_usage['pmemo']}    
     df_processed = pd.DataFrame(data)       
     processed_file_name = file_name + '_processed_usage.xlsx'
-    os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
-    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan\uploading_files")
+    #os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
+    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place\uploading_files")
     df_processed.to_excel(processed_file_name)
 
 
@@ -155,6 +159,8 @@ def generate_stock_file_to_upload(df, file_name, update_date):
         df_preprocessed['location'] = 'HE'  		    
     elif 'HAISON' in file_name:
         df_preprocessed['location'] = 'HS'  	
+    elif 'HUBX' in file_name:
+        df_preprocessed['location'] = 'HX'
     elif 'Alex' in file_name:
         df_preprocessed['location'] = 'Alex'	    
     elif 'Daily' in file_name:
@@ -196,8 +202,8 @@ def generate_stock_file_to_upload(df, file_name, update_date):
                 'unit' : df_preprocessed['unit'], 'bbd' : df_preprocessed['bbd'], 'location' : df_preprocessed['location']}
     df_processed = pd.DataFrame(data)    
     processed_file_name = file_name + '_processed_stock.xlsx'
-    os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
-    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan\uploading_files")
+    #os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
+    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place\uploading_files")
     df_processed.to_excel(processed_file_name)
 
 
