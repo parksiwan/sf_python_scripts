@@ -357,7 +357,7 @@ def dispatch_per_customers(product_code, year_slider):
             name="STNSW",
             x=stnsw_df['dispatch_date'],
             y=stnsw_df['qty'],
-            line=dict(shape="spline", smoothing=2, width=1, color="#fac1b7"),
+            line=dict(shape="spline", smoothing=2, width=1, color="#009688"),
             marker=dict(symbol="diamond-open"),
         ),
         dict(
@@ -366,7 +366,7 @@ def dispatch_per_customers(product_code, year_slider):
             name="STQLD",
             x=stqld_df['dispatch_date'],
             y=stqld_df['qty'],            
-            line=dict(shape="spline", smoothing=2, width=1, color="#a9bb95"),
+            line=dict(shape="spline", smoothing=2, width=1, color="#9c27b0"),
             marker=dict(symbol="diamond-open"),
         ),
         dict(
@@ -375,7 +375,7 @@ def dispatch_per_customers(product_code, year_slider):
             name="STADL",
             x=stadl_df['dispatch_date'],
             y=stadl_df['qty'],                        
-            line=dict(shape="spline", smoothing=2, width=1, color="#92d8d8"),
+            line=dict(shape="spline", smoothing=2, width=1, color="#8bc34a"),
             marker=dict(symbol="diamond-open"),
         ),        
     ]
@@ -491,7 +491,7 @@ def comparison_graph_by_year(product_code, st_branch):
                 name="2017",
                 x=df_2017['dispatch_month'].apply(lambda x: calendar.month_abbr[x]),        
                 y=df_2017['2017'],
-                line=dict(shape="spline", smoothing=2, width=1, color="#fac1b7"),
+                line=dict(shape="spline", smoothing=2, width=1, color="#009688"),
                 marker=dict(symbol="diamond-open"),
             ),
             dict(
@@ -500,7 +500,7 @@ def comparison_graph_by_year(product_code, st_branch):
                 name="2018",
                 x=df_2018['dispatch_month'].apply(lambda x: calendar.month_abbr[x]),            
                 y=df_2018['2018'],         
-                line=dict(shape="spline", smoothing=2, width=1, color="#a9bb95"),
+                line=dict(shape="spline", smoothing=2, width=1, color="#9c27b0"),
                 marker=dict(symbol="diamond-open"),
             ),
             dict(
@@ -509,7 +509,7 @@ def comparison_graph_by_year(product_code, st_branch):
                 name="2019",
                 x=df_2019['dispatch_month'].apply(lambda x: calendar.month_abbr[x]),            
                 y=df_2019['2019'],                     
-                line=dict(shape="spline", smoothing=2, width=1, color="#92d8d8"),
+                line=dict(shape="spline", smoothing=2, width=1, color="#8bc34a"),
                 marker=dict(symbol="diamond-open"),
             ),   
             dict(
@@ -518,7 +518,7 @@ def comparison_graph_by_year(product_code, st_branch):
                 name="2020",
                 x=df_2020['dispatch_month'].apply(lambda x: calendar.month_abbr[x]),            
                 y=df_2020['2020'],                   
-                line=dict(shape="spline", smoothing=2, width=1, color="#34a529"),
+                line=dict(shape="spline", smoothing=2, width=1, color="#ff5722"),
                 marker=dict(symbol="diamond-open"),
             ),             
         ]    
