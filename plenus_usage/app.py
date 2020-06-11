@@ -47,14 +47,17 @@ db_conn = pg.connect("host='localhost' dbname=sfstock user=siwan password='psw11
 cursor = db_conn.cursor()
 select_query = "select * from plenus_monthlyusage"
 df = pd.read_sql_query(select_query, con=db_conn)
+df['sf_code'] = df['sf_code'].str.strip()  # remove blank space 
+
+df_customer_list = df['customer'].unique()
 df_code_list = pd.DataFrame(df['sf_code'].unique())
 df_code_list.columns = ['sf_code']
 df_code_list['product_name'] = ''
 for i in range(len(df_code_list)):
-    df_code_list.iat[i, 1] = (df[df['sf_code'] == df_code_list.iat[i, 0]].head(1)).iat[0, 5]
+    df_code_list.iat[i, 1] = (df[df['sf_code'] == df_code_list.iat[i, 0]].head(1)).iat[0, 6]  
 
 code_product_options = [
-    {"label": code_product[2], "value": code_product[1]} for code_product in df_code_list.itertuples()
+    {"label": code_product[2], "value": code_product[1].strip()} for code_product in df_code_list.itertuples()
 ]
 
 
@@ -166,7 +169,7 @@ app.layout = html.Div(
                             id="product_code",
                             options=code_product_options,
                             #multi=True,
-                            value='KYJ32',
+                            value="PD01",  # changed on 11/6
                             className="dcc_control",
                         ),                                                           
                     ],
@@ -238,15 +241,15 @@ def filter_dataframe(df, product_code, year_slider):
     if year_slider[0] == year_slider[1]:
         dff = df[
             (df["sf_code"] == product_code)
-            & (df["dispatch_date"] >= dt.datetime(year_slider[0], 1, 1).date())
-            & (df["dispatch_date"] <= dt.datetime(year_slider[1], 12, 31).date())
+            & (df["usage_month"] >= dt.datetime(year_slider[0], 1, 1).date())
+            & (df["usage_month"] <= dt.datetime(year_slider[1], 12, 31).date())
         ]
         return dff
     else:
         dff = df[
             (df["sf_code"] == product_code)
-            & (df["dispatch_date"] >= dt.datetime(year_slider[0], 1, 1).date())
-            & (df["dispatch_date"] <= dt.datetime(year_slider[1], 12, 31).date())
+            & (df["usage_month"] >= dt.datetime(year_slider[0], 1, 1).date())
+            & (df["usage_month"] <= dt.datetime(year_slider[1], 12, 31).date())
         ]
         return dff
 
@@ -267,10 +270,12 @@ def generate_summary(product_code, year_slider):
     start_date = temp_df['usage_month'].min()
     end_date = temp_df['usage_month'].max()
 
-    delta_dates = end_date - start_date
+    #delta_dates = end_date - start_date
+    diff_days = (end_date - start_date).days
     
     #diff_days = delta_dates / np.timedelta64(1,'D')
-    diff_days = delta_dates.total_seconds() / (3600 * 24) # 2
+    #diff_days = delta_dates.total_seconds() / (3600 * 24) # 2
+    #diff_days = delta_dates.dt.seconds / (3600 * 24) # 2
 
 
     #grouped_df = temp_df.groupby(['dispatch_date', 'sf_code']).agg('sum')
@@ -355,7 +360,7 @@ def dispatch_per_customers(product_code, year_slider):
             type="scatter",
             mode="lines+markers",
             name="STNSW",
-            x=stnsw_df['dispatch_date'],
+            x=stnsw_df['usage_month'],
             y=stnsw_df['qty'],
             line=dict(shape="spline", smoothing=2, width=1, color="#fac1b7"),
             marker=dict(symbol="diamond-open"),
@@ -364,7 +369,7 @@ def dispatch_per_customers(product_code, year_slider):
             type="scatter",
             mode="lines+markers",
             name="STQLD",
-            x=stqld_df['dispatch_date'],
+            x=stqld_df['usage_month'],
             y=stqld_df['qty'],            
             line=dict(shape="spline", smoothing=2, width=1, color="#a9bb95"),
             marker=dict(symbol="diamond-open"),
@@ -373,7 +378,7 @@ def dispatch_per_customers(product_code, year_slider):
             type="scatter",
             mode="lines+markers",
             name="STADL",
-            x=stadl_df['dispatch_date'],
+            x=stadl_df['usage_month'],
             y=stadl_df['qty'],                        
             line=dict(shape="spline", smoothing=2, width=1, color="#92d8d8"),
             marker=dict(symbol="diamond-open"),
@@ -451,7 +456,7 @@ def comparison_graph_by_year(product_code, st_branch):
 
     if len(temp_df) > 0:
         year_df = temp_df['usage_month'].dt.year  # to check if year's data exists
-        grouped_df = temp_df.groupby([temp_df.dispatch_date.dt.month,temp_df.dispatch_date.dt.year]).agg(sum).unstack()
+        grouped_df = temp_df.groupby([temp_df.usage_month.dt.month,temp_df.usage_month.dt.year]).agg(sum).unstack()
         #grouped_df = temp_df.groupby(['dispatch_date']).agg('sum')    
         reindex_df = grouped_df.reset_index()          
         col_list = ['usage_month']

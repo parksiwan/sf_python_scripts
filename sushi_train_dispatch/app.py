@@ -267,10 +267,10 @@ def generate_summary(product_code, year_slider):
     start_date = temp_df['dispatch_date'].min()
     end_date = temp_df['dispatch_date'].max()
 
-    delta_dates = end_date - start_date
-    
+    diff_days = (end_date - start_date).days
+    #delta_dates = end_date - start_date
     #diff_days = delta_dates / np.timedelta64(1,'D')
-    diff_days = delta_dates.total_seconds() / (3600 * 24) # 2
+    #diff_days = delta_dates.total_seconds() / (3600 * 24) # 2
 
 
     #grouped_df = temp_df.groupby(['dispatch_date', 'sf_code']).agg('sum')
