@@ -11,6 +11,7 @@ import psycopg2 as pg
 from dash.dependencies import Input, Output, State, ClientsideFunction
 import dash_core_components as dcc
 import dash_html_components as html
+import plotly.express as px
 import calendar
 
 # Multi-dropdown options. Read static values from controls.py
@@ -40,8 +41,19 @@ well_type_options = [
     for well_type in WELL_TYPES
 ]
 
-# tetts dfdsf
-
+customer_color = {
+    'YAYOI_Chatswood' : "#009688", 
+    'YAYOI_Galeries' : "#9c27b0", 
+    'YAYOI_Garden' : "#607d8b", 
+    'Hottomotto' : "#ffab91",
+    'YAYOI_Westfield_Sydney' : "#8bc34a", 
+    'Plenus_Aus_Office' : "#3e2723", 
+    'Plenus_Aus(Cash)' : "#69f0ae",
+    'YAYOI_Market_City' : "#ff5722", 
+    'Plenus_Central_Kitchen' : "#ff1744",
+    'YAYOI_World_Square' : "#00b0ff", 
+    'YAYOI_Hurstville' : "#f9a825"
+}
 # Load data from DB
 db_conn = pg.connect("host='localhost' dbname=sfstock user=siwan password='psw1101714'")
 cursor = db_conn.cursor()
@@ -60,10 +72,7 @@ code_product_options = [
     {"label": code_product[2], "value": code_product[1].strip()} for code_product in df_code_list.itertuples()
 ]
 
-
 # Create global chart template
-#mapbox_access_token = "pk.eyJ1IjoiamFja2x1byIsImEiOiJjajNlcnh3MzEwMHZtMzNueGw3NWw5ZXF5In0.fk8k06T96Ml9CLGgKmk81w"
-
 layout = dict(
     autosize=True,
     automargin=True,
@@ -194,12 +203,18 @@ app.layout = html.Div(
         html.Div(
             [                                 
                 html.Div(
-                    [dcc.Graph(id="stocking_time_graph")],
-                    className="pretty_container five columns",
+                
+                    [dcc.Graph(id="dispatch_customer_pie_graph")],
+                    className="pretty_container four columns",
                 ),            
                 html.Div(
-                    [dcc.Graph(id="dispatch_customer_graph")],
-                    className="pretty_container seven columns",
+                    [
+                        html.Div(
+                            [dcc.Graph(id="dispatch_customer_graph")],
+                            className="pretty_container",
+                        ),
+                    ],
+                    className="eight columns",
                 ),                                  
             ],
             className="row flex-display",
@@ -211,12 +226,20 @@ app.layout = html.Div(
                     [                        
                         html.P("Select Graph: ", className="control_label"), 
                         dcc.Dropdown(
-                            id='st_branch',                            
-                            options=[
-                                        {"label": "STNSW", "value": "STNSW"},
-                                        {"label": "STQLD", "value": "STQLD"},                              
-                                        {"label": "STADL", "value": "STADL"},                              
-                                        {"label": "ALL", "value": "ALL"},                              
+                            id='plenus_branch',                            
+                            options=[                                                              
+                                        {"label": "ALL", "value": "ALL"},                   
+                                        {"label": 'YAYOI Chatswood', "value" : 'YAYOI_Chatswood'}, 
+                                        {"label": 'YAYOI Galeries', "value" : 'YAYOI_Galeries'}, 
+                                        {"label": 'YAYOI Garden', "value" : 'YAYOI_Garden'}, 
+                                        {"label": 'Hottomotto', "value" : 'Hottomotto'},
+                                        {"label": 'YAYOI Westfield Sydney', "value" : 'YAYOI_Westfield_Sydney'}, 
+                                        {"label": 'Plenus Aus Office', "value" : 'Plenus_Aus_Office'}, 
+                                        {"label": 'Plenus Aus(Cash)', "value" : 'Plenus_Aus(Cash)'},
+                                        {"label": 'YAYOI Market City', "value" : 'YAYOI_Market_City'}, 
+                                        {"label": 'Plenus Central Kitchen', "value" : 'Plenus_Central_Kitchen'},
+                                        {"label": 'YAYOI World Square', "value" : 'YAYOI_World_Square'}, 
+                                        {"label": 'YAYOI Hurstville', "value" : 'YAYOI_Hurstville'}           
                                     ],
                             value='ALL'
                         ),
@@ -348,93 +371,57 @@ def dispatch_per_customers(product_code, year_slider):
     grouped_df = temp_df.groupby(['customer', 'usage_month']).agg('sum')    
     reindex_df = grouped_df.reset_index()
     
-    stadl_df = reindex_df[reindex_df['customer'] == 'STADL']
-    stnsw_df = reindex_df[reindex_df['customer'] == 'STNSW']
-    stqld_df = reindex_df[reindex_df['customer'] == 'STQLD']
-    stadl_df = stadl_df.reset_index()
-    stnsw_df = stnsw_df.reset_index()
-    stqld_df = stqld_df.reset_index()
-    
-    data = [        
-        dict(
-            type="scatter",
-            mode="lines+markers",
-            name="STNSW",
-            x=stnsw_df['usage_month'],
-            y=stnsw_df['qty'],
-            line=dict(shape="spline", smoothing=2, width=1, color="#fac1b7"),
-            marker=dict(symbol="diamond-open"),
-        ),
-        dict(
-            type="scatter",
-            mode="lines+markers",
-            name="STQLD",
-            x=stqld_df['usage_month'],
-            y=stqld_df['qty'],            
-            line=dict(shape="spline", smoothing=2, width=1, color="#a9bb95"),
-            marker=dict(symbol="diamond-open"),
-        ),
-        dict(
-            type="scatter",
-            mode="lines+markers",
-            name="STADL",
-            x=stadl_df['usage_month'],
-            y=stadl_df['qty'],                        
-            line=dict(shape="spline", smoothing=2, width=1, color="#92d8d8"),
-            marker=dict(symbol="diamond-open"),
-        ),        
-    ]
+    data = []
+    for customer in df_customer_list:
+        customer_df = reindex_df[reindex_df['customer'] == customer]
+        customer_df = customer_df.reset_index()    
+        data.append(
+            dict(
+                ype="scatter",
+                mode="lines+markers",
+                name=customer,
+                x=customer_df['usage_month'],
+                y=customer_df['qty'],
+                line=dict(shape="spline", smoothing=2, width=1, color=customer_color[customer]),
+                marker=dict(symbol="diamond-open"),
+            )
+        )   
+
     layout_individual["title"] = 'QTY dispatched as per branch'
     layout_individual["xaxis"] = dict(title='Time')
     layout_individual["yaxis"] = dict(title='QTY (ctn)')
 
     figure = dict(data=data, layout=layout_individual)
     return figure
-'''
+
+
 @app.callback(
-    Output("stocking_time_graph", "figure"),
+    Output("dispatch_customer_pie_graph", "figure"),
     [
         Input("product_code", "value"),        
         Input("year_slider", "value"),    
     ],
 )
-def time_between_inward_dispatch(product_code, year_slider):
-    layout_individual = copy.deepcopy(layout)
-
+def dispatch_per_customers_pie_graph(product_code, year_slider):    
     dff = filter_dataframe(df, product_code, [year_slider[0], year_slider[1]])
-    temp_df = dff[["customer", "dispatch_date", "sf_code", "qty", "arrival_date"]]   
-    temp_df['queuing_days'] = temp_df['dispatch_date'] - temp_df['arrival_date'] 
-    temp_df['queuing_days'] = temp_df['queuing_days'] / np.timedelta64(1,'D')
+    temp_df = dff[["customer", "usage_month", "sf_code", "qty"]]    
+    grouped_df = temp_df.groupby(['customer', 'usage_month']).agg('sum')    
+    reindex_df = grouped_df.reset_index()
 
-    grouped_df = temp_df.groupby(['queuing_days']).agg('sum')    
-    reindex_df = grouped_df.reset_index()    
-    
-    data = [     
-        dict(                           
-            type="bar",
-            x=reindex_df['queuing_days'],
-            y=reindex_df['qty'],
-            name="All Wells",
-            marker=dict(color="#59C3C3"),
-        ),
-    ]
-
-    layout_individual["title"] = 'Time taken until dispatching'
-    layout_individual["xaxis"] = dict(title='Days')
-    layout_individual["yaxis"] = dict(title='QTY (ctn)')
-
-    figure = dict(data=data, layout=layout_individual)
+    fig = px.pie(reindex_df, values='qty', names='customer', title='Dispatch QTY per customer')
+        
+    figure = fig
     return figure
-'''
+
 
 @app.callback(
     Output("yearly_comparison_graph", "figure"),
     [    
         Input("product_code", "value"),   
-        Input("st_branch", "value")
+        Input("plenus_branch", "value")
     ]
 )
-def comparison_graph_by_year(product_code, st_branch):
+def comparison_graph_by_year(product_code, plenus_branch):
     layout_yearly_graph = copy.deepcopy(layout)
 
     dff = filter_dataframe(df, product_code, [2017, 2020])
@@ -442,17 +429,11 @@ def comparison_graph_by_year(product_code, st_branch):
     temp_df['usage_month'] = pd.to_datetime(temp_df['usage_month']) 
     #year_df = temp_df['dispatch_date'].dt.year  # to check if year's data exists
     # error handling when no data in dataframe
-    if st_branch == 'ALL':  # total                                
+    if plenus_branch == 'ALL':  # total                                
         layout_yearly_graph["title"] = 'Yearly Comparison in Total'        
-    elif st_branch == 'STNSW': 
-        temp_df = temp_df[temp_df['customer'] == 'STNSW']        
-        layout_yearly_graph["title"] = 'Yearly Comparison (STNSW)'        
-    elif st_branch == 'STQLD':
-        temp_df = temp_df[temp_df['customer'] == 'STQLD']        
-        layout_yearly_graph["title"] = 'Yearly Comparison (STQLD)'        
-    elif st_branch == 'STADL':      
-        temp_df = temp_df[temp_df['customer'] == 'STADL']
-        layout_yearly_graph["title"] = 'Yearly Comparison (STADL)'       
+    else: 
+        temp_df = temp_df[temp_df['customer'] == plenus_branch]        
+        layout_yearly_graph["title"] = 'Yearly Comparison (' + plenus_branch + ')'            
 
     if len(temp_df) > 0:
         year_df = temp_df['usage_month'].dt.year  # to check if year's data exists
