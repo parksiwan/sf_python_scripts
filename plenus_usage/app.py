@@ -519,4 +519,4 @@ def comparison_graph_by_year(product_code, plenus_branch):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(host='0.0.0.0', port=8051, debug=True)
