@@ -26,7 +26,7 @@ def is_date(string, fuzzy=False):
 
 
 def convert_string_to_date(date_string):
-    for date_format in ('%Y-%m-%d %H:%M:%S', '%d-%m-%Y', '%d.%m.%Y', '%Y.%m.%d', '%d.%m.%y', '%d/%m/%Y', '%d/%m/%Y %H:%M:%S'):
+    for date_format in ('%Y-%m-%d', '%Y-%m-%d %H:%M:%S', '%d-%m-%Y', '%d.%m.%Y', '%Y.%m.%d', '%d.%m.%y', '%d/%m/%Y', '%d/%m/%Y %H:%M:%S'):
         try:
             return datetime.datetime.strptime(date_string, date_format)
         except ValueError:
