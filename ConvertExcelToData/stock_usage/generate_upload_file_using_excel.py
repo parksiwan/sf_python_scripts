@@ -26,7 +26,7 @@ def is_date(string, fuzzy=False):
 
 
 def convert_string_to_date(date_string):
-    for date_format in ('%Y-%m-%d', '%Y-%m-%d %H:%M:%S', '%d-%m-%Y', '%d.%m.%Y', '%Y.%m.%d', '%d.%m.%y', '%d/%m/%Y', '%d/%m/%Y %H:%M:%S'):
+    for date_format in ('%Y-%m-%d','%Y-%m-%d %H:%M:%S', '%d-%m-%Y', '%d.%m.%Y', '%Y.%m.%d', '%d.%m.%y', '%d/%m/%Y', '%d/%m/%Y %H:%M:%S'):
         try:
             return datetime.datetime.strptime(date_string, date_format)
         except ValueError:
@@ -162,7 +162,7 @@ def generate_stock_file_to_upload(df, file_name, update_date):
 
     df_preprocessed['update_date'] = pd.to_datetime(update_date, format='%d/%m/%Y')  # Windows => pd.to_datetime(update_date, format='%Y-%m-%d')
 
-    if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'SR' in file_name or 'KKS' in file_name or 'Daily' in file_name):
+    if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'SR' in file_name or 'KKS' in file_name or 'Daily' in file_name or 'Botany' in file_name):
         df_preprocessed['product_type'] = 'FRZ'
     else:
         df_preprocessed['product_type'] = 'DRY'
@@ -184,6 +184,8 @@ def generate_stock_file_to_upload(df, file_name, update_date):
         df_preprocessed['location'] = 'Alex'
     elif 'Daily' in file_name:
         df_preprocessed['location'] = 'Alex'
+    elif 'Botany' in file_name:
+        df_preprocessed['location'] = 'MPM'
 
     df_preprocessed['id'] = ''
     df_preprocessed['unit'] = df_preprocessed['unit'].str.lower()
@@ -195,6 +197,7 @@ def generate_stock_file_to_upload(df, file_name, update_date):
         if is_date(str(df_preprocessed.at[i, 'Inward'])) == False:
             df_preprocessed.at[i, 'Inward'] = pd.to_datetime('1999-01-01', format='%Y-%m-%d')
         else:
+            #print(str(df_preprocessed.at[i, 'Inward']))
             df_preprocessed.at[i, 'Inward'] = convert_string_to_date(str(df_preprocessed.at[i, 'Inward']))
 
         if is_date(str(df_preprocessed.at[i, 'bbd'])) == True:
