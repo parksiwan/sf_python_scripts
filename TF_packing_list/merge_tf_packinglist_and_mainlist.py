@@ -84,8 +84,8 @@ def read_excel_for_packing_list():
     
     po_df = data_frame_from_purchase_order(po_file[0]) 
     
-    outer_joined_df = po_df.merge(stock_pickup_df, on='code', how='outer')    
-    result_df = outer_joined_df[['code', 'Inward', 'ITEM1', 'ITEM2', 'description', 'unit', 'po_unit', 'po_qty', 'pickup', 'pmemo', 'bbd']]
+    outer_joined_df = stock_pickup_df.merge(po_df, on='code', how='outer')    
+    result_df = outer_joined_df[['code', 'Inward', 'ITEM1', 'ITEM2', 'description', 'unit', 'pickup', 'pmemo', 'bbd', 'po_unit', 'po_qty','po_prod_name' ]]
     #left_joined_df['NewBalance'] = left_joined_df['NewBalance'].fillna(0)
     
     return result_df
@@ -101,7 +101,7 @@ def data_frame_from_purchase_order(file_path):
     #inward_date = '2020-02-01'
     #bbd_date = '2020-01-01'
     while sheet.cell(i, 0).value != 'end':                                                                           
-        po_data = {'code' : sheet.cell(i, 1).value, 'po_qty': sheet.cell(i, 5).value, 'po_unit' : sheet.cell(i, 6).value }                        
+        po_data = {'code' : sheet.cell(i, 1).value, 'po_prod_name': sheet.cell(i, 3).value, 'po_qty': sheet.cell(i, 5).value, 'po_unit' : sheet.cell(i, 6).value }                        
         po_list.append(po_data)
         i += 1
     result = pd.DataFrame(po_list)    
