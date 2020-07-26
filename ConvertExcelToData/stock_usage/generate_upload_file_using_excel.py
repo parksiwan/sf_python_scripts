@@ -1,6 +1,7 @@
 from dateutil.parser import parse
 import xlrd
 import os
+import platform
 import datetime
 import glob
 import pandas as pd
@@ -44,8 +45,11 @@ def convert_excel_date(excel_book, excel_date):
 
 def main():
     # Change directory
+    if platform.system() == 'Linux':
+        os.chdir('/home/siwanpark/ExcelData/')
+    else:
+        os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
     #(filename=r"\\192.168.20.50\AlexServer\輸入共有\輸入共有フォルダー\SF Product Name & Code List(商品名確認票）\SF Product Name & Code List (商品名確認表)_for_test.xlsx", data_only=True)
-    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
     #os.chdir('/home/siwanpark/ExcelData/Alex/')
     excel_files = glob.glob('*.xls*')
     print(excel_files)
@@ -58,9 +62,11 @@ def main():
         df1 = df.copy(deep=True)
         generate_usage_file_to_upload(df, file_name, update_date)
         generate_stock_file_to_upload(df1, file_name, update_date)
-        os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
-        #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Alex\Alex 2020\siwan")
-        #os.chdir('/home/siwanpark/ExcelData/Alex/')
+        if platform.system() == 'Linux':
+            os.chdir('/home/siwanpark/ExcelData/')
+        else:
+            os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
+
 
 def generate_data_frame(file_path):
     loc = (file_path)
@@ -86,7 +92,7 @@ def generate_data_frame(file_path):
         elif sheet.cell(i, 5).ctype == 1:
             inward_date = datetime.datetime.strptime('01/01/2020', "%d/%m/%Y").date()
         else:
-            inward_date = datetime.datetime.strptime('01/01/2020', "%d/%m/%Y").date()                        
+            inward_date = datetime.datetime.strptime('01/01/2020', "%d/%m/%Y").date()
         # Convert excel date to python date
         #if sheet.cell(i, 18).ctype == 3:
         #    bbd_date = convert_excel_date(wb, sheet.cell(i, 18).value)
@@ -145,8 +151,10 @@ def generate_usage_file_to_upload(df, file_name, update_date):
                 'pickup_qty' : df_preprocessed_usage['pickup'], 'memo' : df_preprocessed_usage['pmemo']}
     df_processed = pd.DataFrame(data)
     processed_file_name = file_name + '_processed_usage.xlsx'
-    #os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
-    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place\uploading_files")
+    if platform.system() == 'Linux':
+        os.chdir('/home/siwanpark/ExcelData/Alex')
+    else:
+        os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place\uploading_files")
     df_processed.to_excel(processed_file_name)
 
 
@@ -224,8 +232,10 @@ def generate_stock_file_to_upload(df, file_name, update_date):
                 'unit' : df_preprocessed['unit'], 'bbd' : df_preprocessed['bbd'], 'location' : df_preprocessed['location']}
     df_processed = pd.DataFrame(data)
     processed_file_name = file_name + '_processed_stock.xlsx'
-    #os.chdir('/home/siwanpark/ExcelData/convert_xlsm_to_csv/uploading_file')
-    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place\uploading_files")
+    if platform.system() == 'Linux':
+        os.chdir('/home/siwanpark/ExcelData/Alex')
+    else:
+        os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place\uploading_files")
     df_processed.to_excel(processed_file_name)
 
 
