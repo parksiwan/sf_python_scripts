@@ -53,9 +53,8 @@ def main():
     print(excel_files)
     for excel_file in excel_files:        
         file_name = excel_file.split('.')[0]
-        df, update_date = generate_data_frame(excel_file)  #generate data frame
-        df1 = df.copy(deep=True)
-        generate_usage_file_to_upload(df, file_name, update_date)
+        df = generate_data_frame(excel_file)  #generate data frame        
+        generate_excel_file(df, file_name)
         
         if platform.system() == 'Linux':
             os.chdir('/home/siwanpark/ExcelData/')
@@ -66,80 +65,48 @@ def main():
 def generate_data_frame(file_path):
     loc = (file_path)
     wb = xlrd.open_workbook(loc)
-    sheet = wb.sheet_by_index(0)
-    update_date = sheet.cell_value(1, 9).split(':')[1]
-
-    update_date = update_date.strip()
-
-    #for i in range(3, sheet.nrows):
-    stock_list = []
-    i = 4
-    while sheet.cell(i, 1).value != 'end':
-        # Convert excel date to python date
-        #if sheet.cell(i, 5).ctype == 3:
-        #    inward_date = convert_excel_date(wb, sheet.cell(i, 5).value)
-        #else:
-        #    inward_date = sheet.cell(i, 5).value
-        if sheet.cell(i, 5).ctype == 3 or sheet.cell(i, 5).ctype == 2:
-            inward_date = convert_excel_date(wb, sheet.cell(i, 5).value).date()
-        elif sheet.cell(i, 5).ctype == 0:
-            inward_date = datetime.datetime.strptime('01/01/2020', "%d/%m/%Y").date()
-        elif sheet.cell(i, 5).ctype == 1:
-            inward_date = datetime.datetime.strptime('01/01/2020', "%d/%m/%Y").date()
+    sheet = wb.sheet_by_index(0)    
+    
+    usage_list = []
+    memo_list = []
+    i = 1
+    while sheet.cell(i, 0).value != 'end':        
+        if sheet.cell(i, 1).ctype == 3 or sheet.cell(i, 1).ctype == 2:
+            update_date = convert_excel_date(wb, sheet.cell(i, 1).value).date()
+        elif sheet.cell(i, 1).ctype == 0:
+            update_date = datetime.datetime.strptime('01/01/2020', "%d/%m/%Y").date()
+        elif sheet.cell(i, 1).ctype == 1:
+            update_date = datetime.datetime.strptime('01/01/2020', "%d/%m/%Y").date()
         else:
-            inward_date = datetime.datetime.strptime('01/01/2020', "%d/%m/%Y").date()
-        # Convert excel date to python date
-        #if sheet.cell(i, 18).ctype == 3:
-        #    bbd_date = convert_excel_date(wb, sheet.cell(i, 18).value)
-        #else:
-        #    bbd_date = sheet.cell(i, 18).value
-        if sheet.cell(i, 18).ctype == 3 or sheet.cell(i, 18).ctype == 2:
-            bbd_date = convert_excel_date(wb, sheet.cell(i, 18).value).date()
-        elif sheet.cell(i, 18).ctype == 0:
-            bbd_date = inward_date
-        elif sheet.cell(i, 18).ctype == 1:
-            if sheet.cell(i, 18).value == '-':
-                bbd_date = datetime.datetime.strptime('31/12/2099', "%d/%m/%Y").date()
-            elif sheet.cell(i, 18).value == 'Check BBD':
-                one_year = datetime.timedelta(weeks=52)
-                bbd_date = inward_date + one_year
-            else:
-                one_year = datetime.timedelta(weeks=52)
-                bbd_date = inward_date + one_yeargenerate_stock_file_to_upload(df1, file_name, update_date)
+            update_date = datetime.datetime.strptime('01/01/2020', "%d/%m/%Y").date()
+        
+        memo_list = parse_pickup_memo(sheet.cell(i, 7).value)
+        if len(memo_list) == 1:
+            usage_data = {'id' : sheet.cell(i, 0).value, 'update_date' : update_date, 'product_type' : sheet.cell(i, 2).value, 
+                          'sf_code' : sheet.cell(i, 3).value, 'product_name' : sheet.cell(i, 4).value, 'pickup_qty' : sheet.cell(i, 5).value, 
+                          'unit' : sheet.cell(i, 6).value, 'memo' : sheet.cell(i, 7).value, 'origin': sheet.cell(i, 8).value, 
+                          'product_name_jp' : sheet.cell(i, 9).value }
+            usage_list.append(usage_data)
+        else:
+            for usage_count in range(len(memo_list)):
+                usage_data = {'id' : sheet.cell(i, 0).value, 'update_date' : update_date, 'product_type' : sheet.cell(i, 2).value, 
+                          'sf_code' : sheet.cell(i, 3).value, 'product_name' : sheet.cell(i, 4).value, 'pickup_qty' : sheet.cell(i, 5).value, 
+                          'unit' : sheet.cell(i, 6).value, 'memo' : memo_list[usage_count], 'origin': sheet.cell(i, 8).value, 
+                          'product_name_jp' : sheet.cell(i, 9).value }
+                usage_list.append(usage_data)
 
-        stock_data = {'code' : sheet.cell(i, 4).value, 'origin' : sheet.cell(i, 0).value, 'Inward' : inward_date, 'Movement' : sheet.cell(i, 8).value,
-                      'ITEM1' : sheet.cell(i, 9).value, 'ITEM2' : sheet.cell(i, 10).value, 'PreviousBalance' : sheet.cell(i, 12).value,
-                      'unit': sheet.cell(i, 13).value, 'pickup' : sheet.cell(i, 14).value, 'NewBalance' : sheet.cell(i, 15).value,
-                      'pmemo' : sheet.cell(i, 17).value, 'bbd' : bbd_date }
-        stock_list.append(stock_data)
         i += 1
-    result = pd.DataFrame(stock_list)
-    return result, update_date
+    result = pd.DataFrame(usage_list)
+    return result
 
 
-def generate_usage_file_to_upload(df, file_name, update_date):
-    #print(df)
-    df['code'].replace('', np.nan, inplace=True)
-    df['pickup'].replace('', np.nan, inplace=True)
-    df['pmemo'].replace('', np.nan, inplace=True)
-    #df.to_csv('test1.csv')
-    df.dropna(subset=['code', 'pickup', 'pmemo'], how='any', inplace=True)
-    #df.to_csv('test2.csv')
-    df_preprocessed = df[['code', 'origin', 'Movement', 'ITEM1', 'ITEM2', 'unit', 'pickup', 'pmemo']]
-    df_preprocessed['update_date'] = pd.to_datetime(update_date, format='%d/%m/%Y')
+def parse_pickup_memo(memo_string):
+    memo_list = memo_string.split(',')
+    return memo_list
 
-    if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'SR' in file_name or 'KKS' in file_name or 'Daily' in file_name):
-        df_preprocessed['product_type'] = 'FRZ'
-    else:
-        df_preprocessed['product_type'] = 'DRY'
 
-    df_preprocessed['id'] = ''
-    df_preprocessed['unit'] = df_preprocessed['unit'].str.lower()
-    df_preprocessed = df_preprocessed.reset_index()
-
-    df_preprocessed_usage = df_preprocessed
-
-    data = { 'id' : df_preprocessed_usage['id'], 'update_date' : df_preprocessed_usage['update_date'],
+def generate_excel_file(df, file_name):
+    data = { 'id' : df['id'], 'update_date' : df['update_date'],
                 'product_type' : df_preprocessed_usage['product_type'], 'sf_code' : df_preprocessed_usage['code'],
                 'origin' : df_preprocessed['origin'], 'product_name' : df_preprocessed_usage['ITEM1'], 'product_name_jp' : df_preprocessed['ITEM2'],
                 'move' : df_preprocessed_usage['Movement'], 'unit' : df_preprocessed_usage['unit'],
