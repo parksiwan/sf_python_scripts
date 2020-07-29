@@ -53,8 +53,8 @@ def main():
     print(excel_files)
     for excel_file in excel_files:        
         file_name = excel_file.split('.')[0]
-        df = generate_data_frame(excel_file)  #generate data frame        
-        generate_excel_file(df, file_name)
+        generate_data_frame(excel_file, file_name)  #generate data frame        
+        #generate_excel_file(df, file_name)
         
         if platform.system() == 'Linux':
             os.chdir('/home/siwanpark/ExcelData/')
@@ -62,7 +62,7 @@ def main():
             os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
 
 
-def generate_data_frame(file_path):
+def generate_data_frame(file_path, file_name):
     loc = (file_path)
     wb = xlrd.open_workbook(loc)
     sheet = wb.sheet_by_index(0)    
@@ -96,28 +96,16 @@ def generate_data_frame(file_path):
                 usage_list.append(usage_data)
 
         i += 1
+
     result = pd.DataFrame(usage_list)
+    processed_file_name = file_name + '_processed_usage.xlsx'
+    result.to_excel(processed_file_name)
     return result
 
 
 def parse_pickup_memo(memo_string):
     memo_list = memo_string.split(',')
     return memo_list
-
-
-def generate_excel_file(df, file_name):
-    data = { 'id' : df['id'], 'update_date' : df['update_date'],
-                'product_type' : df_preprocessed_usage['product_type'], 'sf_code' : df_preprocessed_usage['code'],
-                'origin' : df_preprocessed['origin'], 'product_name' : df_preprocessed_usage['ITEM1'], 'product_name_jp' : df_preprocessed['ITEM2'],
-                'move' : df_preprocessed_usage['Movement'], 'unit' : df_preprocessed_usage['unit'],
-                'pickup_qty' : df_preprocessed_usage['pickup'], 'memo' : df_preprocessed_usage['pmemo']}
-    df_processed = pd.DataFrame(data)
-    processed_file_name = file_name + '_processed_usage.xlsx'
-    if platform.system() == 'Linux':
-        os.chdir('/home/siwanpark/ExcelData/Alex')
-    else:
-        os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place\uploading_files")
-    df_processed.to_excel(processed_file_name)
 
 
 if __name__ == "__main__":
