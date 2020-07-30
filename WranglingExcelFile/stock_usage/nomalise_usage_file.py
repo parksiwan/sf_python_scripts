@@ -84,16 +84,19 @@ def generate_data_frame(file_path, file_name):
         if len(memo_list) == 1:
             usage_data = {'id' : sheet.cell(i, 0).value, 'update_date' : update_date, 'product_type' : sheet.cell(i, 2).value, 
                           'sf_code' : sheet.cell(i, 3).value, 'product_name' : sheet.cell(i, 4).value, 'pickup_qty' : sheet.cell(i, 5).value, 
-                          'unit' : sheet.cell(i, 6).value, 'memo' : sheet.cell(i, 7).value, 'origin': sheet.cell(i, 8).value, 
+                          'unit' : sheet.cell(i, 6).value, 'split' : '', 'split_qty' : '', 'memo' : sheet.cell(i, 7).value, 'origin': sheet.cell(i, 8).value, 
                           'product_name_jp' : sheet.cell(i, 9).value }
             usage_list.append(usage_data)
         else:
             for usage_count in range(len(memo_list)):
-                usage_data = {'id' : sheet.cell(i, 0).value, 'update_date' : update_date, 'product_type' : sheet.cell(i, 2).value, 
-                          'sf_code' : sheet.cell(i, 3).value, 'product_name' : sheet.cell(i, 4).value, 'pickup_qty' : sheet.cell(i, 5).value, 
-                          'unit' : sheet.cell(i, 6).value, 'memo' : memo_list[usage_count], 'origin': sheet.cell(i, 8).value, 
-                          'product_name_jp' : sheet.cell(i, 9).value }
-                usage_list.append(usage_data)
+                if memo_list[usage_count] != ' ':
+                    pickup_qty = parse_pickup_qty(memo_list[usage_count])
+                    #print(pickup_qty)
+                    usage_data = {'id' : sheet.cell(i, 0).value, 'update_date' : update_date, 'product_type' : sheet.cell(i, 2).value, 
+                            'sf_code' : sheet.cell(i, 3).value, 'product_name' : sheet.cell(i, 4).value, 'pickup_qty' : sheet.cell(i, 5).value, 
+                            'unit' : sheet.cell(i, 6).value, 'split' : '*', 'split_qty' : pickup_qty, 'memo' : memo_list[usage_count], 'origin': sheet.cell(i, 8).value, 
+                            'product_name_jp' : sheet.cell(i, 9).value }
+                    usage_list.append(usage_data)
 
         i += 1
 
@@ -101,6 +104,15 @@ def generate_data_frame(file_path, file_name):
     processed_file_name = file_name + '_processed_usage.xlsx'
     result.to_excel(processed_file_name)
     return result
+
+
+def parse_pickup_qty(pickup_string):    
+    pickup_qty = pickup_string.split('-')[1]
+    #print('{} - {}'.format(pickup_string, pickup_qty))
+    if pickup_qty.strip().isdigit() == True:
+        return float(pickup_qty)
+    else:
+        return 0
 
 
 def parse_pickup_memo(memo_string):
