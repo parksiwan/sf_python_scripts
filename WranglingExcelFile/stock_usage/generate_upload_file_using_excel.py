@@ -111,15 +111,41 @@ def generate_data_frame(file_path):
             else:
                 one_year = datetime.timedelta(weeks=52)
                 bbd_date = inward_date + one_year
+        
+        memo_list = parse_pickup_memo(sheet.cell(i, 17).value)
+        if len(memo_list) == 1:            
+            stock_data = {'code' : sheet.cell(i, 4).value, 'origin' : sheet.cell(i, 0).value, 'Inward' : inward_date, 'Movement' : sheet.cell(i, 8).value,
+                        'ITEM1' : sheet.cell(i, 9).value, 'ITEM2' : sheet.cell(i, 10).value, 'PreviousBalance' : sheet.cell(i, 12).value,
+                        'unit': sheet.cell(i, 13).value, 'pickup' : sheet.cell(i, 14).value, 'NewBalance' : sheet.cell(i, 15).value,
+                        'split' : '', 'split_qty' : '', 'pmemo' : sheet.cell(i, 17).value, 'bbd' : bbd_date }
+            stock_list.append(stock_data)
+        else:
+            for usage_count in range(len(memo_list)):
+                if memo_list[usage_count] != ' ':
+                    pickup_qty = parse_pickup_qty(memo_list[usage_count])
+                    stock_data = {'code' : sheet.cell(i, 4).value, 'origin' : sheet.cell(i, 0).value, 'Inward' : inward_date, 'Movement' : sheet.cell(i, 8).value,
+                        'ITEM1' : sheet.cell(i, 9).value, 'ITEM2' : sheet.cell(i, 10).value, 'PreviousBalance' : sheet.cell(i, 12).value,
+                        'unit': sheet.cell(i, 13).value, 'pickup' : sheet.cell(i, 14).value, 'NewBalance' : sheet.cell(i, 15).value,
+                        'split' : '*', 'split_qty' : pickup_qty, 'pmemo' : memo_list[usage_count], 'bbd' : bbd_date }
+                    stock_list.append(stock_data)
 
-        stock_data = {'code' : sheet.cell(i, 4).value, 'origin' : sheet.cell(i, 0).value, 'Inward' : inward_date, 'Movement' : sheet.cell(i, 8).value,
-                      'ITEM1' : sheet.cell(i, 9).value, 'ITEM2' : sheet.cell(i, 10).value, 'PreviousBalance' : sheet.cell(i, 12).value,
-                      'unit': sheet.cell(i, 13).value, 'pickup' : sheet.cell(i, 14).value, 'NewBalance' : sheet.cell(i, 15).value,
-                      'pmemo' : sheet.cell(i, 17).value, 'bbd' : bbd_date }
-        stock_list.append(stock_data)
         i += 1
     result = pd.DataFrame(stock_list)
     return result, update_date
+
+
+def parse_pickup_qty(pickup_string):    
+    pickup_qty = pickup_string.split('-')[1]
+    #print('{} - {}'.format(pickup_string, pickup_qty))
+    if pickup_qty.strip().isdigit() == True:
+        return float(pickup_qty)
+    else:
+        return 0
+
+
+def parse_pickup_memo(memo_string):
+    memo_list = memo_string.split(',')
+    return memo_list
 
 
 def generate_usage_file_to_upload(df, file_name, update_date):
@@ -130,10 +156,10 @@ def generate_usage_file_to_upload(df, file_name, update_date):
     #df.to_csv('test1.csv')
     df.dropna(subset=['code', 'pickup', 'pmemo'], how='any', inplace=True)
     #df.to_csv('test2.csv')
-    df_preprocessed = df[['code', 'origin', 'Movement', 'ITEM1', 'ITEM2', 'unit', 'pickup', 'pmemo']]
+    df_preprocessed = df[['code', 'origin', 'Movement', 'ITEM1', 'ITEM2', 'unit', 'pickup', 'split', 'split_qty', 'pmemo']]
     df_preprocessed['update_date'] = pd.to_datetime(update_date, format='%d/%m/%Y')
 
-    if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'SR' in file_name or 'KKS' in file_name or 'Daily' in file_name):
+    if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'KKS' in file_name or 'Daily' in file_name):
         df_preprocessed['product_type'] = 'FRZ'
     else:
         df_preprocessed['product_type'] = 'DRY'
@@ -147,8 +173,8 @@ def generate_usage_file_to_upload(df, file_name, update_date):
     data = { 'id' : df_preprocessed_usage['id'], 'update_date' : df_preprocessed_usage['update_date'],
                 'product_type' : df_preprocessed_usage['product_type'], 'sf_code' : df_preprocessed_usage['code'],
                 'origin' : df_preprocessed['origin'], 'product_name' : df_preprocessed_usage['ITEM1'], 'product_name_jp' : df_preprocessed['ITEM2'],
-                'move' : df_preprocessed_usage['Movement'], 'unit' : df_preprocessed_usage['unit'],
-                'pickup_qty' : df_preprocessed_usage['pickup'], 'memo' : df_preprocessed_usage['pmemo']}
+                'move' : df_preprocessed_usage['Movement'], 'unit' : df_preprocessed_usage['unit'], 'pickup_qty' : df_preprocessed_usage['pickup'], 
+                'split' : df_preprocessed_usage['split'], 'split_qty' : df_preprocessed_usage['split_qty'], 'memo' : df_preprocessed_usage['pmemo']}
     df_processed = pd.DataFrame(data)
     processed_file_name = file_name + '_processed_usage.xlsx'
     if platform.system() == 'Linux':
@@ -170,7 +196,7 @@ def generate_stock_file_to_upload(df, file_name, update_date):
 
     df_preprocessed['update_date'] = pd.to_datetime(update_date, format='%d/%m/%Y')  # Windows => pd.to_datetime(update_date, format='%Y-%m-%d')
 
-    if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'SR' in file_name or 'KKS' in file_name or 'Daily' in file_name or 'Botany' in file_name):
+    if ('Freezer' in file_name or 'Lucky' in file_name or 'OSP' in file_name or 'KKS' in file_name or 'Daily' in file_name or 'Botany' in file_name):
         df_preprocessed['product_type'] = 'FRZ'
     else:
         df_preprocessed['product_type'] = 'DRY'
