@@ -113,28 +113,30 @@ def generate_data_frame(file_path):
                 bbd_date = inward_date + one_year
         
         memo_list = parse_pickup_memo(sheet.cell(i, 17).value)
-        if len(memo_list) == 1:            
-            stock_data = {'code' : sheet.cell(i, 4).value, 'origin' : sheet.cell(i, 0).value, 'Inward' : inward_date, 'Movement' : sheet.cell(i, 8).value,
-                        'ITEM1' : sheet.cell(i, 9).value, 'ITEM2' : sheet.cell(i, 10).value, 'PreviousBalance' : sheet.cell(i, 12).value,
-                        'unit': sheet.cell(i, 13).value, 'pickup' : sheet.cell(i, 14).value, 'NewBalance' : sheet.cell(i, 15).value,
-                        'split' : '', 'split_qty' : '', 'pmemo' : sheet.cell(i, 17).value, 'bbd' : bbd_date }
-            stock_list.append(stock_data)
-        else:
-            for usage_count in range(len(memo_list)):
-                if memo_list[usage_count] != ' ':
-                    pickup_qty = parse_pickup_qty(memo_list[usage_count])
-                    stock_data = {'code' : sheet.cell(i, 4).value, 'origin' : sheet.cell(i, 0).value, 'Inward' : inward_date, 'Movement' : sheet.cell(i, 8).value,
-                        'ITEM1' : sheet.cell(i, 9).value, 'ITEM2' : sheet.cell(i, 10).value, 'PreviousBalance' : sheet.cell(i, 12).value,
-                        'unit': sheet.cell(i, 13).value, 'pickup' : sheet.cell(i, 14).value, 'NewBalance' : sheet.cell(i, 15).value,
-                        'split' : '*', 'split_qty' : pickup_qty, 'pmemo' : memo_list[usage_count], 'bbd' : bbd_date }
-                    stock_list.append(stock_data)
+        if len(memo_list) > 0:
+            if len(memo_list) == 1:            
+                stock_data = {'code' : sheet.cell(i, 4).value, 'origin' : sheet.cell(i, 0).value, 'Inward' : inward_date, 'Movement' : sheet.cell(i, 8).value,
+                            'ITEM1' : sheet.cell(i, 9).value, 'ITEM2' : sheet.cell(i, 10).value, 'PreviousBalance' : sheet.cell(i, 12).value,
+                            'unit': sheet.cell(i, 13).value, 'pickup' : sheet.cell(i, 14).value, 'NewBalance' : sheet.cell(i, 15).value,
+                            'split' : '', 'split_qty' : '', 'pmemo' : sheet.cell(i, 17).value, 'bbd' : bbd_date }
+                stock_list.append(stock_data)
+            else:
+                for usage_count in range(len(memo_list)):
+                    if memo_list[usage_count] != "":
+                        pickup_qty = parse_pickup_qty(memo_list[usage_count])
+                        stock_data = {'code' : sheet.cell(i, 4).value, 'origin' : sheet.cell(i, 0).value, 'Inward' : inward_date, 'Movement' : sheet.cell(i, 8).value,
+                            'ITEM1' : sheet.cell(i, 9).value, 'ITEM2' : sheet.cell(i, 10).value, 'PreviousBalance' : sheet.cell(i, 12).value,
+                            'unit': sheet.cell(i, 13).value, 'pickup' : sheet.cell(i, 14).value, 'NewBalance' : sheet.cell(i, 15).value,
+                            'split' : '*', 'split_qty' : pickup_qty, 'pmemo' : memo_list[usage_count], 'bbd' : bbd_date }
+                        stock_list.append(stock_data)
 
         i += 1
     result = pd.DataFrame(stock_list)
     return result, update_date
 
 
-def parse_pickup_qty(pickup_string):    
+def parse_pickup_qty(pickup_string):  
+    print(pickup_string)
     pickup_qty = pickup_string.split('-')[1]
     #print('{} - {}'.format(pickup_string, pickup_qty))
     if pickup_qty.strip().isdigit() == True:
