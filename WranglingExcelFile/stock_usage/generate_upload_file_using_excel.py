@@ -166,6 +166,27 @@ def generate_usage_file_to_upload(df, file_name, update_date):
     else:
         df_preprocessed['product_type'] = 'DRY'
 
+    # Assign location of pickup
+    if 'Lucky' in file_name:
+        df_preprocessed['location'] = 'LW'
+    elif 'OSP' in file_name :
+        df_preprocessed['location'] = 'OSP'
+    elif 'KKS' in file_name:
+        df_preprocessed['location'] = 'KKS'
+    elif 'HELLMANN' in file_name:
+        df_preprocessed['location'] = 'HE'
+    elif 'HAISON' in file_name:
+        df_preprocessed['location'] = 'HS'
+    elif 'HUBX' in file_name:
+        df_preprocessed['location'] = 'HX'
+    elif 'Alex' in file_name:
+        df_preprocessed['location'] = 'Alex'
+    elif 'Daily' in file_name:
+        df_preprocessed['location'] = 'Alex'
+    elif 'Botany' in file_name:
+        df_preprocessed['location'] = 'MPM'
+
+
     df_preprocessed['id'] = ''
     df_preprocessed['unit'] = df_preprocessed['unit'].str.lower()
     df_preprocessed = df_preprocessed.reset_index()
@@ -176,7 +197,8 @@ def generate_usage_file_to_upload(df, file_name, update_date):
                 'product_type' : df_preprocessed_usage['product_type'], 'sf_code' : df_preprocessed_usage['code'],
                 'origin' : df_preprocessed['origin'], 'product_name' : df_preprocessed_usage['ITEM1'], 'product_name_jp' : df_preprocessed['ITEM2'],
                 'move' : df_preprocessed_usage['Movement'], 'unit' : df_preprocessed_usage['unit'], 'pickup_qty' : df_preprocessed_usage['pickup'], 
-                'split' : df_preprocessed_usage['split'], 'split_qty' : df_preprocessed_usage['split_qty'], 'memo' : df_preprocessed_usage['pmemo']}
+                'split' : df_preprocessed_usage['split'], 'split_qty' : df_preprocessed_usage['split_qty'], 'memo' : df_preprocessed_usage['pmemo'],
+                'location' : df_preprocessed['location']}
     df_processed = pd.DataFrame(data)
     processed_file_name = file_name + '_processed_usage.xlsx'
     if platform.system() == 'Linux':
