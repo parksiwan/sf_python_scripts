@@ -61,7 +61,9 @@ def generate_data_frame(file_path):
     
     previous_code = sheet.cell(1, 0).value        
     sf_code = previous_code.split('/')[0]
+    sf_code = sf_code.strip()
     plenus_code = previous_code.split('/')[1]
+    plenus_code = plenus_code.strip()
     product_name = sheet.cell(1, 1).value    
     description = sheet.cell(1, 2).value    
 
@@ -99,7 +101,9 @@ def generate_data_frame(file_path):
         else:
             previous_code = sheet.cell(i, 0).value
             sf_code = previous_code.split('/')[0]
+            sf_code = sf_code.strip()
             plenus_code = previous_code.split('/')[1]
+            plenus_code = plenus_code.strip()
             product_name = sheet.cell(i, 1).value    
             description = sheet.cell(i, 2).value   
             if sheet.cell(i, 3).value != '':  # if 1st month usage data found

@@ -38,14 +38,14 @@ def convert_excel_date(excel_book, excel_date):
 
 def main():
     # Change directory
-    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
-    os.chdir('/home/siwanpark/ExcelData/plenus/')
+    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
+    #os.chdir('/home/siwanpark/ExcelData/plenus/')
     excel_files = glob.glob('*.xls*')
     print(excel_files)
     for excel_file in excel_files:
         generate_data_frame(excel_file)  #generate data frame
-        #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
-        os.chdir('/home/siwanpark/ExcelData/plenus/')
+        os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
+        #os.chdir('/home/siwanpark/ExcelData/plenus/')
 
 
 def generate_data_frame(file_path):
@@ -61,7 +61,9 @@ def generate_data_frame(file_path):
     stock_base_date = datetime.datetime.today().date()
     previous_code = sheet.cell(1, 0).value
     sf_code = previous_code.split('/')[0]
+    sf_code = sf_code.strip()
     plenus_code = previous_code.split('/')[1]
+    plenus_code = plenus_code.strip()
     product_name = sheet.cell(1, 1).value
     description = sheet.cell(1, 2).value
 
@@ -75,7 +77,9 @@ def generate_data_frame(file_path):
         else:
             previous_code = sheet.cell(i, 0).value
             sf_code = previous_code.split('/')[0]
+            sf_code = sf_code.strip()
             plenus_code = previous_code.split('/')[1]
+            plenus_code = plenus_code.strip()
             product_name = sheet.cell(i, 1).value
             description = sheet.cell(i, 2).value
             if sheet.cell(i, 9).value != '': # if stock data found
@@ -87,12 +91,13 @@ def generate_data_frame(file_path):
 
     df_usage = pd.DataFrame(stock_list)
     stock_file_name = file_name + '_processed_stock.xlsx'
-    os.chdir('/home/siwanpark/ExcelData/plenus')
-    #os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place\uploading_files")
+    #os.chdir('/home/siwanpark/ExcelData/plenus')
+    os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place\uploading_files")
     df_usage.to_excel(stock_file_name)
 
 
 def extract_stock_data(input_string):
+    #print(input_string)
     input_list = input_string.split()
     stock_qty = input_list[0]
     temp_string = input_list[1]
