@@ -68,7 +68,7 @@ def generate_data_frame(file_path, file_name):
     sheet = wb.sheet_by_index(0)    
     
     usage_list = []
-    memo_list = []
+    customer_name_set = set()
     i = 1
     while sheet.cell(i, 0).value != 'end':       
         update_date = sheet.cell(i, 1).value
@@ -83,12 +83,13 @@ def generate_data_frame(file_path, file_name):
             update_date = datetime.datetime.strptime('01/01/2020', "%d/%m/%Y").date()
         '''
         
-        memo_list = parse_pickup_memo(sheet.cell(i, 7).value)
+        customer_temp_name = parse_pickup_memo(sheet.cell(i, 7).value)
+        customer_name_set.add(customer_temp_name.upper())  # add customer name to set
         #if len(memo_list) >= 2:
         usage_data = {'id' : sheet.cell(i, 0).value, 'update_date' : update_date, 'product_type' : sheet.cell(i, 2).value, 
                       'sf_code' : sheet.cell(i, 3).value, 'product_name' : sheet.cell(i, 4).value, 'pickup_qty' : sheet.cell(i, 5).value, 
                       'unit' : sheet.cell(i, 6).value, 'split' : '', 'split_qty' : '', 'memo' : sheet.cell(i, 7).value, 'origin': sheet.cell(i, 8).value, 
-                      'product_name_jp' : sheet.cell(i, 9).value, 'customer' : memo_list[0] }
+                      'product_name_jp' : sheet.cell(i, 9).value, 'customer_temp' : customer_temp_name.upper() }
         usage_list.append(usage_data)
         #else:
         #    for usage_count in range(len(memo_list)):
@@ -106,7 +107,13 @@ def generate_data_frame(file_path, file_name):
     result = pd.DataFrame(usage_list)
     processed_file_name = file_name + '_processed_customer.xlsx'
     result.to_excel(processed_file_name)
-    return result
+
+    # generates excel of SET for customer name
+    customer_name_list = list(customer_name_set)
+    customer_name_df = pd.DataFrame(customer_name_list)
+    customer_name_df.to_excel('customer_name_set.xlsx')
+
+    #return result
 
 '''
 def parse_pickup_qty(pickup_string):    
@@ -123,7 +130,12 @@ def parse_pickup_qty(pickup_string):
 
 def parse_pickup_memo(memo_string):
     memo_list = memo_string.split('-')
-    return memo_list
+    memo_list[0] = memo_list[0].strip()  # remove leading and trailing spaces
+    customer_string = memo_list[0].split(' ')
+    if customer_string[0].upper() == 'FOR':
+        return customer_string[1]
+    else:
+        return memo_list[0]
 
 
 if __name__ == "__main__":
