@@ -167,8 +167,10 @@ def generate_usage_file_to_upload(df, file_name, update_date):
         df_preprocessed['product_type'] = 'DRY'
 
     # Assign location of pickup
-    if 'Lucky' in file_name:
+    if 'LuckyWinner Frozen'  in file_name:
         df_preprocessed['location'] = 'LW'
+    elif 'LuckyWinner Dry'  in file_name:
+        df_preprocessed['location'] = 'LW(D)'
     elif 'OSP' in file_name :
         df_preprocessed['location'] = 'OSP'
     elif 'KKS' in file_name:
@@ -226,8 +228,10 @@ def generate_stock_file_to_upload(df, file_name, update_date):
         df_preprocessed['product_type'] = 'DRY'
 
     # Assign location of storage
-    if 'Lucky' in file_name:
+    if 'LuckyWinner Frozen'  in file_name:
         df_preprocessed['location'] = 'LW'
+    elif 'LuckyWinner Dry'  in file_name:
+        df_preprocessed['location'] = 'LW(D)'    
     elif 'OSP' in file_name :
         df_preprocessed['location'] = 'OSP'
     elif 'KKS' in file_name:

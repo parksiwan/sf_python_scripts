@@ -88,8 +88,8 @@ def generate_data_frame(file_path, file_name):
         #if len(memo_list) >= 2:
         usage_data = {'id' : sheet.cell(i, 0).value, 'update_date' : update_date, 'product_type' : sheet.cell(i, 2).value, 
                       'sf_code' : sheet.cell(i, 3).value, 'product_name' : sheet.cell(i, 4).value, 'pickup_qty' : sheet.cell(i, 5).value, 
-                      'unit' : sheet.cell(i, 6).value, 'split' : '', 'split_qty' : '', 'memo' : sheet.cell(i, 7).value, 'origin': sheet.cell(i, 8).value, 
-                      'product_name_jp' : sheet.cell(i, 9).value, 'customer_temp' : customer_temp_name.upper() }
+                      'unit' : sheet.cell(i, 6).value, 'split' : '', 'split_qty' : '', 'memo' : sheet.cell(i, 7).value, 'location': sheet.cell(i, 8).value, 
+                      'origin' : sheet.cell(i, 9).value, 'product_name_jp' : sheet.cell(i, 10).value, 'cust_name' : customer_temp_name.upper() }
         usage_list.append(usage_data)
         #else:
         #    for usage_count in range(len(memo_list)):
