@@ -58,17 +58,73 @@ def main():
         #file_path = "Alex 2019 09 AUG D12-14.xlsm"
         #print(excel_file)
         file_name = excel_file.split('.')[0]
-        df, update_date = generate_data_frame(excel_file)  #generate data frame
-        df1 = df.copy(deep=True)
-        generate_usage_file_to_upload(df, file_name, update_date)
-        generate_stock_file_to_upload(df1, file_name, update_date)
+        df_usage, update_date = generate_data_frame_for_usage(excel_file)  #generate data frame
+        df_stock, update_date = generate_data_frame_for_stock(excel_file)
+        #df1 = df.copy(deep=True)
+        generate_usage_file_to_upload(df_usage, file_name, update_date)
+        generate_stock_file_to_upload(df_stock, file_name, update_date)
         if platform.system() == 'Linux':
             os.chdir('/home/siwanpark/ExcelData/')
         else:
             os.chdir(r"\\192.168.20.50\AlexServer\SD共有\ボタニーパレット\Siwan\StockFiles\working_place")
 
 
-def generate_data_frame(file_path):
+def generate_data_frame_for_stock(file_path):
+    loc = (file_path)
+    wb = xlrd.open_workbook(loc)
+    sheet = wb.sheet_by_index(0)
+    update_date = sheet.cell_value(1, 9).split(':')[1]
+
+    update_date = update_date.strip()
+
+    #for i in range(3, sheet.nrows):
+    stock_list = []
+    i = 4
+    while sheet.cell(i, 1).value != 'end':
+        # Convert excel date to python date
+        #if sheet.cell(i, 5).ctype == 3:
+        #    inward_date = convert_excel_date(wb, sheet.cell(i, 5).value)
+        #else:
+        #    inward_date = sheet.cell(i, 5).value
+        if sheet.cell(i, 5).ctype == 3 or sheet.cell(i, 5).ctype == 2:
+            inward_date = convert_excel_date(wb, sheet.cell(i, 5).value).date()
+        elif sheet.cell(i, 5).ctype == 0:
+            inward_date = datetime.datetime.strptime('01/01/2020', "%d/%m/%Y").date()
+        elif sheet.cell(i, 5).ctype == 1:
+            inward_date = datetime.datetime.strptime('01/01/2020', "%d/%m/%Y").date()
+        else:
+            inward_date = datetime.datetime.strptime('01/01/2020', "%d/%m/%Y").date()
+        # Convert excel date to python date
+        #if sheet.cell(i, 18).ctype == 3:
+        #    bbd_date = convert_excel_date(wb, sheet.cell(i, 18).value)
+        #else:
+        #    bbd_date = sheet.cell(i, 18).value
+        if sheet.cell(i, 18).ctype == 3 or sheet.cell(i, 18).ctype == 2:
+            bbd_date = convert_excel_date(wb, sheet.cell(i, 18).value).date()
+        elif sheet.cell(i, 18).ctype == 0:
+            bbd_date = inward_date
+        elif sheet.cell(i, 18).ctype == 1:
+            if sheet.cell(i, 18).value == '-':
+                bbd_date = datetime.datetime.strptime('31/12/2099', "%d/%m/%Y").date()
+            elif sheet.cell(i, 18).value == 'Check BBD':
+                one_year = datetime.timedelta(weeks=52)
+                bbd_date = inward_date + one_year
+            else:
+                one_year = datetime.timedelta(weeks=52)
+                bbd_date = inward_date + one_year
+        
+        
+        stock_data = {'code' : sheet.cell(i, 4).value, 'origin' : sheet.cell(i, 0).value, 'Inward' : inward_date, 'Movement' : sheet.cell(i, 8).value,
+                    'ITEM1' : sheet.cell(i, 9).value, 'ITEM2' : sheet.cell(i, 10).value, 'PreviousBalance' : sheet.cell(i, 12).value,
+                    'unit': sheet.cell(i, 13).value, 'pickup' : sheet.cell(i, 14).value, 'NewBalance' : sheet.cell(i, 15).value,
+                    'split' : '', 'split_qty' : '', 'pmemo' : sheet.cell(i, 17).value, 'bbd' : bbd_date }
+        stock_list.append(stock_data)            
+        i += 1
+    result = pd.DataFrame(stock_list)
+    return result, update_date
+
+
+def generate_data_frame_for_usage(file_path):
     loc = (file_path)
     wb = xlrd.open_workbook(loc)
     sheet = wb.sheet_by_index(0)
@@ -215,9 +271,13 @@ def generate_stock_file_to_upload(df, file_name, update_date):
     df['PreviousBalance'].replace('', np.nan, inplace=True)
     df['NewBalance'].replace('', np.nan, inplace=True)
     df.dropna(subset=['code', 'PreviousBalance', 'NewBalance'], how='any', inplace=True)
-
+    
+    #print(df)
     df_preprocessed = df[['code', 'origin', 'Inward', 'ITEM1', 'ITEM2', 'unit', 'NewBalance', 'bbd']]
+    print(df_preprocessed['NewBalance'])
     df_preprocessed['NewBalance'] = df_preprocessed['NewBalance'].astype(float)
+    #df_preprocessed['NewBalance'].apply(pd.to_numeric,errors='coerce')
+    
     df_preprocessed = df_preprocessed[df_preprocessed['NewBalance'] > 0.001]
 
     df_preprocessed['update_date'] = pd.to_datetime(update_date, format='%d/%m/%Y')  # Windows => pd.to_datetime(update_date, format='%Y-%m-%d')
