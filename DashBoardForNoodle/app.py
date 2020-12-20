@@ -59,6 +59,13 @@ db_conn = pg.connect("host='localhost' dbname=sfstock user=siwan password='psw11
 cursor = db_conn.cursor()
 select_query = "select * from inventory_noodleusage"
 df = pd.read_sql_query(select_query, con=db_conn)
+
+
+#df = pd.read_excel('noodle_upload.xlsx')
+#df['update_date'] = df['update_date'].apply(lambda x: x.strftime('%Y-%m-%d'))
+
+
+
 df['sf_code'] = df['sf_code'].str.strip()  # remove blank space 
 
 df_customer_list = df['customer'].unique()
@@ -133,23 +140,28 @@ app.layout = html.Div(
                                 html.Div(
                                     [
                                         html.Div(
-                                            [html.P("Total Dispatch :  ", className="summary-label"), html.P(id="total_dispatch", className="summary-result")],
+                                            [html.P("TODAY :  ", className="summary-label"), html.P(id="current_day", className="summary-result")],
                                             id="div1",                                            
                                             className="flex-display",
                                         ),
                                         html.Div(
-                                            [html.P("Date Range :  ", className="summary-label"), html.P(id="date_range", className="summary-result")],
-                                            id="div2",
+                                            [html.P("This Week Dispatch :  ", className="summary-label"), html.P(id="total_dispatch", className="summary-result")],
+                                            id="div2",                                            
                                             className="flex-display",
                                         ),
                                         html.Div(
-                                            [html.P("AVG Dispatch per Week :  ", className="summary-label"), html.P(id="avg_dispatch_week", className="summary-result")],
+                                            [html.P("This Month Dispatch :  ", className="summary-label"), html.P(id="date_range", className="summary-result")],
                                             id="div3",
                                             className="flex-display",
                                         ),
                                         html.Div(
-                                            [html.P("AVG Dispatch per Month :  ", className="summary-label"), html.P(id="avg_dispatch_month", className="summary-result")],
+                                            [html.P("Last Week Dispatch :  ", className="summary-label"), html.P(id="avg_dispatch_week", className="summary-result")],
                                             id="div4",
+                                            className="flex-display",
+                                        ),
+                                        html.Div(
+                                            [html.P("Last Month Dispatch :  ", className="summary-label"), html.P(id="avg_dispatch_month", className="summary-result")],
+                                            id="div5",
                                             className="flex-display",
                                         ),
                                     ],
@@ -197,7 +209,7 @@ app.layout = html.Div(
                     className="eight columns",
                 ),
             ],
-            className="row flex-display",
+            className="row flex-display"
         ),
         
         html.Div(
@@ -271,21 +283,21 @@ def filter_dataframe(df, product_code, year_slider):
     if year_slider[0] == year_slider[1]:
         dff = df[
             (df["sf_code"] == product_code)
-            & (df["usage_month"] >= dt.datetime(year_slider[0], 1, 1).date())
-            & (df["usage_month"] <= dt.datetime(year_slider[1], 12, 31).date())
+            & (df["update_date"] >= dt.datetime(year_slider[0], 1, 1).date())
+            & (df["update_date"] <= dt.datetime(year_slider[1], 12, 31).date())
         ]
         return dff
     else:
         dff = df[
             (df["sf_code"] == product_code)
-            & (df["usage_month"] >= dt.datetime(year_slider[0], 1, 1).date())
-            & (df["usage_month"] <= dt.datetime(year_slider[1], 12, 31).date())
+            & (df["update_date"] >= dt.datetime(year_slider[0], 1, 1).date())
+            & (df["update_date"] <= dt.datetime(year_slider[1], 12, 31).date())
         ]
         return dff
 
 
 @app.callback(
-    [Output('total_dispatch', 'children'), Output('date_range', 'children'), 
+    [Output('current_day', 'children'), Output('total_dispatch', 'children'), Output('date_range', 'children'), 
      Output('avg_dispatch_week', 'children'), Output('avg_dispatch_month', 'children')],
     [
         Input("product_code", "value"),        
@@ -295,11 +307,11 @@ def filter_dataframe(df, product_code, year_slider):
 def generate_summary(product_code, year_slider):    
 
     dff = filter_dataframe(df, product_code, [year_slider[0], year_slider[1]])
-    temp_df = dff[["usage_month", "qty"]]
+    temp_df = dff[["update_date", "qty"]]
     total_dispatch_qty = temp_df['qty'].sum()
-    start_date = temp_df['usage_month'].min()
-    end_date = temp_df['usage_month'].max()
-
+    start_date = temp_df['update_date'].min()
+    end_date = temp_df['update_date'].max()
+    print(start_date)
     #delta_dates = end_date - start_date
     diff_days = (end_date - start_date).days
     
@@ -310,13 +322,16 @@ def generate_summary(product_code, year_slider):
 
     #grouped_df = temp_df.groupby(['dispatch_date', 'sf_code']).agg('sum')
     #reindex_df = grouped_df.reset_index()               
+    current_day = (dt.datetime.today()).strftime("%d/%m/%Y")
+
+    print(current_day)
 
     total_dispatch = str(total_dispatch_qty)
     #total_dispatch = "Total Dispatch : " + str(total_dispatch_qty)
     date_range = str(start_date) + ' ~ ' + str(end_date)
     avg_dispatch_week = str("{:.2f}".format(total_dispatch_qty * 7 / diff_days))
     avg_dispatch_month = str("{:.2f}".format(total_dispatch_qty * 30 / diff_days))
-    return total_dispatch, date_range, avg_dispatch_week, avg_dispatch_month
+    return current_day, total_dispatch, date_range, avg_dispatch_week, avg_dispatch_month
 
 
 # Selectors -> count graph
@@ -331,12 +346,12 @@ def dispatch_total_qty(product_code, year_slider):
     layout_count = copy.deepcopy(layout)
 
     dff = filter_dataframe(df, product_code, [2017, 2020])
-    temp_df = dff[["usage_month", "sf_code", "qty"]]
-    grouped_df = temp_df.groupby(['usage_month', 'sf_code']).agg('sum')
+    temp_df = dff[["update_date", "sf_code", "qty"]]
+    grouped_df = temp_df.groupby(['update_date', 'sf_code']).agg('sum')
     reindex_df = grouped_df.reset_index()    
     
     colors = []    
-    for i in list(reindex_df['usage_month'].unique()):    
+    for i in list(reindex_df['update_date'].unique()):    
         if i.year >= int(year_slider[0]) and i.year <= int(year_slider[1]):
             colors.append("rgb(123, 199, 255)")
         else:
@@ -345,7 +360,7 @@ def dispatch_total_qty(product_code, year_slider):
     data = [     
         dict(                           
             type="bar",
-            x=reindex_df['usage_month'],
+            x=reindex_df['update_date'],
             y=reindex_df["qty"],                        
             name="All Wells",
             marker=dict(color=colors),
@@ -374,8 +389,8 @@ def dispatch_per_customers(product_code, year_slider):
     layout_individual = copy.deepcopy(layout)
 
     dff = filter_dataframe(df, product_code, [year_slider[0], year_slider[1]])
-    temp_df = dff[["customer", "usage_month", "sf_code", "qty"]]    
-    grouped_df = temp_df.groupby(['customer', 'usage_month']).agg('sum')    
+    temp_df = dff[["customer", "update_date", "sf_code", "qty"]]    
+    grouped_df = temp_df.groupby(['customer', 'update_date']).agg('sum')    
     reindex_df = grouped_df.reset_index()
     
     data = []
@@ -387,7 +402,7 @@ def dispatch_per_customers(product_code, year_slider):
                 ype="scatter",
                 mode="lines+markers",
                 name=customer,
-                x=customer_df['usage_month'],
+                x=customer_df['update_date'],
                 y=customer_df['qty'],
                 line=dict(shape="spline", smoothing=2, width=1, color=customer_color[customer]),
                 marker=dict(symbol="diamond-open"),
@@ -411,8 +426,8 @@ def dispatch_per_customers(product_code, year_slider):
 )
 def dispatch_per_customers_pie_graph(product_code, year_slider):    
     dff = filter_dataframe(df, product_code, [year_slider[0], year_slider[1]])
-    temp_df = dff[["customer", "usage_month", "sf_code", "qty"]]    
-    grouped_df = temp_df.groupby(['customer', 'usage_month']).agg('sum')    
+    temp_df = dff[["customer", "update_date", "sf_code", "qty"]]    
+    grouped_df = temp_df.groupby(['customer', 'update_date']).agg('sum')    
     reindex_df = grouped_df.reset_index()
 
     fig = px.pie(reindex_df, values='qty', names='customer', title='Dispatch QTY per customer')
@@ -432,8 +447,8 @@ def comparison_graph_by_year(product_code, plenus_branch):
     layout_yearly_graph = copy.deepcopy(layout)
 
     dff = filter_dataframe(df, product_code, [2017, 2020])
-    temp_df = dff[["customer", "usage_month", "sf_code", "unit", "qty"]]    
-    temp_df['usage_month'] = pd.to_datetime(temp_df['usage_month']) 
+    temp_df = dff[["customer", "update_date", "sf_code", "unit", "qty"]]    
+    temp_df['update_date'] = pd.to_datetime(temp_df['update_date']) 
     #year_df = temp_df['dispatch_date'].dt.year  # to check if year's data exists
     # error handling when no data in dataframe
     if plenus_branch == 'ALL':  # total                                
@@ -443,11 +458,11 @@ def comparison_graph_by_year(product_code, plenus_branch):
         layout_yearly_graph["title"] = 'Yearly Comparison (' + plenus_branch + ')'            
 
     if len(temp_df) > 0:
-        year_df = temp_df['usage_month'].dt.year  # to check if year's data exists
-        grouped_df = temp_df.groupby([temp_df.usage_month.dt.month,temp_df.usage_month.dt.year]).agg(sum).unstack()
+        year_df = temp_df['update_date'].dt.year  # to check if year's data exists
+        grouped_df = temp_df.groupby([temp_df.update_date.dt.month,temp_df.update_date.dt.year]).agg(sum).unstack()
         #grouped_df = temp_df.groupby(['dispatch_date']).agg('sum')    
         reindex_df = grouped_df.reset_index()          
-        col_list = ['usage_month']
+        col_list = ['update_date']
         if 2017 in year_df.unique():
             col_list.append('2017')
         if 2018 in year_df.unique():
@@ -460,21 +475,21 @@ def comparison_graph_by_year(product_code, plenus_branch):
         #reindex_df.columns = ['dispatch_month', '2017','2018','2019','2020']
         reindex_df.columns = col_list
         if '2017' in reindex_df.columns:
-            df_2017 = reindex_df[['usage_month', '2017']]
+            df_2017 = reindex_df[['update_date', '2017']]
         else:
-            df_2017 = pd.DataFrame(columns=['usage_month', '2017'])
+            df_2017 = pd.DataFrame(columns=['update_date', '2017'])
         if '2018' in reindex_df.columns:
-            df_2018 = reindex_df[['usage_month', '2018']]
+            df_2018 = reindex_df[['update_date', '2018']]
         else:
-            df_2018 = pd.DataFrame(columns=['usage_month', '2018'])
+            df_2018 = pd.DataFrame(columns=['update_date', '2018'])
         if '2019' in reindex_df.columns:
-            df_2019 = reindex_df[['usage_month', '2019']]
+            df_2019 = reindex_df[['update_date', '2019']]
         else:
-            df_2019 = pd.DataFrame(columns=['usage_month', '2019'])
+            df_2019 = pd.DataFrame(columns=['update_date', '2019'])
         if '2020' in reindex_df.columns:
-            df_2020 = reindex_df[['usage_month', '2020']]
+            df_2020 = reindex_df[['update_date', '2020']]
         else:
-            df_2020 = pd.DataFrame(columns=['usage_month', '2020'])
+            df_2020 = pd.DataFrame(columns=['update_date', '2020'])
         
 
         data = [        
@@ -482,7 +497,7 @@ def comparison_graph_by_year(product_code, plenus_branch):
                 type="scatter",
                 mode="lines+markers",
                 name="2017",
-                x=df_2017['usage_month'].apply(lambda x: calendar.month_abbr[x]),        
+                x=df_2017['update_date'].apply(lambda x: calendar.month_abbr[x]),        
                 y=df_2017['2017'],
                 line=dict(shape="spline", smoothing=2, width=1, color="#009688"),
                 marker=dict(symbol="diamond-open"),
@@ -491,7 +506,7 @@ def comparison_graph_by_year(product_code, plenus_branch):
                 type="scatter",
                 mode="lines+markers",
                 name="2018",
-                x=df_2018['usage_month'].apply(lambda x: calendar.month_abbr[x]),            
+                x=df_2018['update_date'].apply(lambda x: calendar.month_abbr[x]),            
                 y=df_2018['2018'],         
                 line=dict(shape="spline", smoothing=2, width=1, color="#9c27b0"),
                 marker=dict(symbol="diamond-open"),
@@ -500,7 +515,7 @@ def comparison_graph_by_year(product_code, plenus_branch):
                 type="scatter",
                 mode="lines+markers",
                 name="2019",
-                x=df_2019['usage_month'].apply(lambda x: calendar.month_abbr[x]),            
+                x=df_2019['update_date'].apply(lambda x: calendar.month_abbr[x]),            
                 y=df_2019['2019'],                     
                 line=dict(shape="spline", smoothing=2, width=1, color="#8bc34a"),
                 marker=dict(symbol="diamond-open"),
@@ -509,7 +524,7 @@ def comparison_graph_by_year(product_code, plenus_branch):
                 type="scatter",
                 mode="lines+markers",
                 name="2020",
-                x=df_2020['usage_month'].apply(lambda x: calendar.month_abbr[x]),            
+                x=df_2020['update_date'].apply(lambda x: calendar.month_abbr[x]),            
                 y=df_2020['2020'],                   
                 line=dict(shape="spline", smoothing=2, width=1, color="#ff5722"),
                 marker=dict(symbol="diamond-open"),
