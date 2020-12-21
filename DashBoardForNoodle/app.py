@@ -5,6 +5,7 @@ import pathlib
 import dash
 import math
 import datetime as dt
+from dateutil.relativedelta import relativedelta
 import pandas as pd
 import numpy as np
 import psycopg2 as pg
@@ -54,26 +55,23 @@ customer_color = {
     'YAYOI_World_Square' : "#00b0ff", 
     'YAYOI_Hurstville' : "#f9a825"
 }
+
 # Load data from DB
 db_conn = pg.connect("host='localhost' dbname=sfstock user=siwan password='psw1101714'")
 cursor = db_conn.cursor()
 select_query = "select * from inventory_noodleusage"
 df = pd.read_sql_query(select_query, con=db_conn)
 
-
-#df = pd.read_excel('noodle_upload.xlsx')
-#df['update_date'] = df['update_date'].apply(lambda x: x.strftime('%Y-%m-%d'))
-
-
-
 df['sf_code'] = df['sf_code'].str.strip()  # remove blank space 
 
+# customer_list need to be generated upon request
 df_customer_list = df['customer'].unique()
+
 df_code_list = pd.DataFrame(df['sf_code'].unique())
 df_code_list.columns = ['sf_code']
-df_code_list['product_name'] = ''
+df_code_list['simple_name'] = ''
 for i in range(len(df_code_list)):
-    df_code_list.iat[i, 1] = (df[df['sf_code'] == df_code_list.iat[i, 0]].head(1)).iat[0, 6]  
+    df_code_list.iat[i, 1] = (df[df['sf_code'] == df_code_list.iat[i, 0]].head(1)).iat[0, 4]  
 
 code_product_options = [
     {"label": code_product[2], "value": code_product[1].strip()} for code_product in df_code_list.itertuples()
@@ -145,22 +143,22 @@ app.layout = html.Div(
                                             className="flex-display",
                                         ),
                                         html.Div(
-                                            [html.P("This Week Dispatch :  ", className="summary-label"), html.P(id="total_dispatch", className="summary-result")],
+                                            [html.P("This Week Dispatch :  ", className="summary-label"), html.P(id="this_week_dispatch", className="summary-result")],
                                             id="div2",                                            
                                             className="flex-display",
                                         ),
                                         html.Div(
-                                            [html.P("This Month Dispatch :  ", className="summary-label"), html.P(id="date_range", className="summary-result")],
+                                            [html.P("This Month Dispatch :  ", className="summary-label"), html.P(id="this_month_dispatch", className="summary-result")],
                                             id="div3",
                                             className="flex-display",
                                         ),
                                         html.Div(
-                                            [html.P("Last Week Dispatch :  ", className="summary-label"), html.P(id="avg_dispatch_week", className="summary-result")],
+                                            [html.P("Last Week Dispatch :  ", className="summary-label"), html.P(id="last_week_dispatch", className="summary-result")],
                                             id="div4",
                                             className="flex-display",
                                         ),
                                         html.Div(
-                                            [html.P("Last Month Dispatch :  ", className="summary-label"), html.P(id="avg_dispatch_month", className="summary-result")],
+                                            [html.P("Last Month Dispatch :  ", className="summary-label"), html.P(id="last_month_dispatch", className="summary-result")],
                                             id="div5",
                                             className="flex-display",
                                         ),
@@ -190,7 +188,7 @@ app.layout = html.Div(
                             id="product_code",
                             options=code_product_options,
                             #multi=True,
-                            value="PD01",  # changed on 11/6
+                            value="KONO01",  # changed on 11/6
                             className="dcc_control",
                         ),                                                           
                     ],
@@ -297,41 +295,52 @@ def filter_dataframe(df, product_code, year_slider):
 
 
 @app.callback(
-    [Output('current_day', 'children'), Output('total_dispatch', 'children'), Output('date_range', 'children'), 
-     Output('avg_dispatch_week', 'children'), Output('avg_dispatch_month', 'children')],
+    [Output('current_day', 'children'), Output('this_week_dispatch', 'children'), Output('this_month_dispatch', 'children'), 
+     Output('last_week_dispatch', 'children'), Output('last_month_dispatch', 'children')],
     [
         Input("product_code", "value"),        
         Input("year_slider", "value"),
     ],
 )
 def generate_summary(product_code, year_slider):    
-
     dff = filter_dataframe(df, product_code, [year_slider[0], year_slider[1]])
-    temp_df = dff[["update_date", "qty"]]
-    total_dispatch_qty = temp_df['qty'].sum()
-    start_date = temp_df['update_date'].min()
-    end_date = temp_df['update_date'].max()
-    print(start_date)
-    #delta_dates = end_date - start_date
-    diff_days = (end_date - start_date).days
+    temp_df = dff[["update_date", "qty"]]                   
+    #today = datetime.date.today()
+    today = dt.date(2020, 10, 5)
+
+    distance_to_sunday = (today.weekday() + 1) % 7  
+    this_sunday = today - dt.timedelta(distance_to_sunday)
+    last_sunday = today - dt.timedelta(distance_to_sunday + 7)   
+
+    df_previous_week = temp_df[temp_df['update_date'] == last_sunday]
+    df_current_week = temp_df[temp_df['update_date'] == this_sunday]
+    this_week_dispatch = str("{:.2f}".format(df_current_week['qty'].sum())) 
+    last_week_dispatch = str("{:.2f}".format(df_previous_week['qty'].sum())) 
+
+    # To get current and next month
+    current_month = today
+    previous_month = current_month + relativedelta(months=-1)
+    next_month = current_month + relativedelta(months=1)
+
+    first_day_current_month = current_month.replace(day=1) 
+    first_day_previous_month = previous_month.replace(day=1)
+    first_day_next_month = next_month.replace(day=1)
+
+    p_month = first_day_previous_month
+    c_month = first_day_current_month
+    n_month = first_day_next_month
+    #print(c_month)
+    df_current_month = temp_df[(temp_df['update_date'] >= c_month) & (temp_df['update_date'] < n_month)]
+    df_previous_month = temp_df[(temp_df['update_date'] >= p_month) & (temp_df['update_date'] < c_month)]
+    this_month_dispatch = str("{:.2f}".format(df_current_month['qty'].sum())) 
+    last_month_dispatch = str("{:.2f}".format(df_previous_month['qty'].sum())) 
+
+
+    #total_dispatch = "Total Dispatch : " + str(total_dispolors = []
     
-    #diff_days = delta_dates / np.timedelta64(1,'D')
-    #diff_days = delta_dates.total_seconds() / (3600 * 24) # 2
-    #diff_days = delta_dates.dt.seconds / (3600 * 24) # 2
-
-
-    #grouped_df = temp_df.groupby(['dispatch_date', 'sf_code']).agg('sum')
-    #reindex_df = grouped_df.reset_index()               
-    current_day = (dt.datetime.today()).strftime("%d/%m/%Y")
-
-    print(current_day)
-
-    total_dispatch = str(total_dispatch_qty)
-    #total_dispatch = "Total Dispatch : " + str(total_dispatch_qty)
-    date_range = str(start_date) + ' ~ ' + str(end_date)
-    avg_dispatch_week = str("{:.2f}".format(total_dispatch_qty * 7 / diff_days))
-    avg_dispatch_month = str("{:.2f}".format(total_dispatch_qty * 30 / diff_days))
-    return current_day, total_dispatch, date_range, avg_dispatch_week, avg_dispatch_month
+    current_day = today.strftime("%d/%m/%Y") 
+    #date_range = str(start_date) + ' ~ ' + str(end_date)    
+    return current_day, this_week_dispatch, this_month_dispatch, last_week_dispatch, last_month_dispatch
 
 
 # Selectors -> count graph
