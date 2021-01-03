@@ -4,6 +4,7 @@ import copy
 import pathlib
 import dash
 import math
+import random
 import datetime as dt
 from dateutil.relativedelta import relativedelta
 import pandas as pd
@@ -42,30 +43,24 @@ well_type_options = [
     for well_type in WELL_TYPES
 ]
 
-customer_color = {
-    'YAYOI_Chatswood' : "#009688", 
-    'YAYOI_Galeries' : "#9c27b0", 
-    'YAYOI_Garden' : "#607d8b", 
-    'Hottomotto' : "#ffab91",
-    'YAYOI_Westfield_Sydney' : "#8bc34a", 
-    'Plenus_Aus_Office' : "#3e2723", 
-    'Plenus_Aus(Cash)' : "#69f0ae",
-    'YAYOI_Market_City' : "#ff5722", 
-    'Plenus_Central_Kitchen' : "#ff1744",
-    'YAYOI_World_Square' : "#00b0ff", 
-    'YAYOI_Hurstville' : "#f9a825"
-}
+def generate_color_list(number_of_colors):
+    color_list = []
+    for _ in range(number_of_colors):
+        rgb = ''
+        for _ in 'RGB': 
+            i = random.randrange(0, 2**8) 
+            rgb += i.to_bytes(1, "big").hex() 
+        rgb = "#" + rgb
+        color_list.append(rgb)
+    return color_list 
+
 
 # Load data from DB
 db_conn = pg.connect("host='localhost' dbname=sfstock user=siwan password='psw1101714'")
 cursor = db_conn.cursor()
 select_query = "select * from inventory_noodleusage"
 df = pd.read_sql_query(select_query, con=db_conn)
-
 df['sf_code'] = df['sf_code'].str.strip()  # remove blank space 
-
-# customer_list need to be generated upon request
-df_customer_list = df['customer'].unique()
 
 df_code_list = pd.DataFrame(df['sf_code'].unique())
 df_code_list.columns = ['sf_code']
@@ -73,9 +68,25 @@ df_code_list['simple_name'] = ''
 for i in range(len(df_code_list)):
     df_code_list.iat[i, 1] = (df[df['sf_code'] == df_code_list.iat[i, 0]].head(1)).iat[0, 4]  
 
+# Create code & code name dictionary
 code_product_options = [
     {"label": code_product[2], "value": code_product[1].strip()} for code_product in df_code_list.itertuples()
 ]
+
+# customer_list need to be generated upon request
+df_customer_list = pd.DataFrame(df['customer'].unique())
+df_customer_list.columns = ['customer']
+color_list = generate_color_list(len(df_customer_list))
+customer_color = {}
+for i in range(len(df_customer_list)):
+    customer_color[df_customer_list.iat[i, 0]] = color_list[i]    
+
+# Create customer & color dictionary
+customer_options = [
+    {"label": key, "value": key } for key in customer_color
+]
+customer_options.insert(0, {"label": "ALL", "value": "ALL"})
+
 
 # Create global chart template
 layout = dict(
@@ -100,7 +111,7 @@ layout = dict(
     #),
 )
 
-# Create app layout
+# Create app layout#print(c_month)
 app.layout = html.Div(
     [
         dcc.Store(id="aggregate_data"),
@@ -148,15 +159,15 @@ app.layout = html.Div(
                                             className="flex-display",
                                         ),
                                         html.Div(
-                                            [html.P("This Month Dispatch :  ", className="summary-label"), html.P(id="this_month_dispatch", className="summary-result")],
-                                            id="div3",
-                                            className="flex-display",
-                                        ),
-                                        html.Div(
                                             [html.P("Last Week Dispatch :  ", className="summary-label"), html.P(id="last_week_dispatch", className="summary-result")],
                                             id="div4",
                                             className="flex-display",
                                         ),
+                                        html.Div(
+                                            [html.P("This Month Dispatch :  ", className="summary-label"), html.P(id="this_month_dispatch", className="summary-result")],
+                                            id="div3",
+                                            className="flex-display",
+                                        ),                                        
                                         html.Div(
                                             [html.P("Last Month Dispatch :  ", className="summary-label"), html.P(id="last_month_dispatch", className="summary-result")],
                                             id="div5",
@@ -220,14 +231,10 @@ app.layout = html.Div(
                         ),
                     ],
                     className="twelve columns",
-                ),                 
-
-                                                
+                ),                                                                 
             ],
             className="row flex-display",
         ),  
-
-
 
         html.Div(
             [                                 
@@ -239,23 +246,10 @@ app.layout = html.Div(
 
                 html.Div(
                     [                        
-                        html.P("Select Graph: ", className="control_label"), 
+                        html.P("Select Customer: ", className="control_label"), 
                         dcc.Dropdown(
-                            id='plenus_branch',                            
-                            options=[                                                              
-                                        {"label": "ALL", "value": "ALL"},                   
-                                        {"label": 'YAYOI Chatswood', "value" : 'YAYOI_Chatswood'}, 
-                                        {"label": 'YAYOI Galeries', "value" : 'YAYOI_Galeries'}, 
-                                        {"label": 'YAYOI Garden', "value" : 'YAYOI_Garden'}, 
-                                        {"label": 'Hottomotto', "value" : 'Hottomotto'},
-                                        {"label": 'YAYOI Westfield Sydney', "value" : 'YAYOI_Westfield_Sydney'}, 
-                                        {"label": 'Plenus Aus Office', "value" : 'Plenus_Aus_Office'}, 
-                                        {"label": 'Plenus Aus(Cash)', "value" : 'Plenus_Aus(Cash)'},
-                                        {"label": 'YAYOI Market City', "value" : 'YAYOI_Market_City'}, 
-                                        {"label": 'Plenus Central Kitchen', "value" : 'Plenus_Central_Kitchen'},
-                                        {"label": 'YAYOI World Square', "value" : 'YAYOI_World_Square'}, 
-                                        {"label": 'YAYOI Hurstville', "value" : 'YAYOI_Hurstville'}           
-                                    ],
+                            id='noodle_customer',                            
+                            options=customer_options,
                             value='ALL'
                         ),
                     ],
@@ -329,15 +323,12 @@ def generate_summary(product_code, year_slider):
     p_month = first_day_previous_month
     c_month = first_day_current_month
     n_month = first_day_next_month
-    #print(c_month)
+    
     df_current_month = temp_df[(temp_df['update_date'] >= c_month) & (temp_df['update_date'] < n_month)]
     df_previous_month = temp_df[(temp_df['update_date'] >= p_month) & (temp_df['update_date'] < c_month)]
     this_month_dispatch = str("{:.2f}".format(df_current_month['qty'].sum())) 
     last_month_dispatch = str("{:.2f}".format(df_previous_month['qty'].sum())) 
-
-
-    #total_dispatch = "Total Dispatch : " + str(total_dispolors = []
-    
+        
     current_day = today.strftime("%d/%m/%Y") 
     #date_range = str(start_date) + ' ~ ' + str(end_date)    
     return current_day, this_week_dispatch, this_month_dispatch, last_week_dispatch, last_month_dispatch
@@ -376,7 +367,7 @@ def dispatch_total_qty(product_code, year_slider):
         ),
     ]
 
-    layout_count["title"] = "QTY dispatched in total"
+    layout_count["title"] = "Total Dispatch QTY"
     layout_count["xaxis"] = dict(title='Time')
     layout_count["yaxis"] = dict(title='QTY (ctn)')
     layout_count["dragmode"] = "select"
@@ -403,9 +394,9 @@ def dispatch_per_customers(product_code, year_slider):
     reindex_df = grouped_df.reset_index()
     
     data = []
-    for customer in df_customer_list:
+    for customer in df_customer_list['customer'].unique():
         customer_df = reindex_df[reindex_df['customer'] == customer]
-        customer_df = customer_df.reset_index()    
+        customer_df = customer_df.reset_index()            
         data.append(
             dict(
                 ype="scatter",
@@ -418,7 +409,7 @@ def dispatch_per_customers(product_code, year_slider):
             )
         )   
 
-    layout_individual["title"] = 'QTY dispatched as per branch'
+    layout_individual["title"] = 'Dispatch QTY per customer (Line)'
     layout_individual["xaxis"] = dict(title='Time')
     layout_individual["yaxis"] = dict(title='QTY (ctn)')
 
@@ -439,8 +430,7 @@ def dispatch_per_customers_pie_graph(product_code, year_slider):
     grouped_df = temp_df.groupby(['customer', 'update_date']).agg('sum')    
     reindex_df = grouped_df.reset_index()
 
-    fig = px.pie(reindex_df, values='qty', names='customer', title='Dispatch QTY per customer')
-        
+    fig = px.pie(reindex_df, values='qty', names='customer', title='Dispatch QTY per customer (Pie)')        
     figure = fig
     return figure
 
@@ -449,10 +439,10 @@ def dispatch_per_customers_pie_graph(product_code, year_slider):
     Output("yearly_comparison_graph", "figure"),
     [    
         Input("product_code", "value"),   
-        Input("plenus_branch", "value")
+        Input("noodle_customer", "value")
     ]
 )
-def comparison_graph_by_year(product_code, plenus_branch):
+def comparison_graph_by_year(product_code, noodle_customer):
     layout_yearly_graph = copy.deepcopy(layout)
 
     dff = filter_dataframe(df, product_code, [2017, 2020])
@@ -460,37 +450,27 @@ def comparison_graph_by_year(product_code, plenus_branch):
     temp_df['update_date'] = pd.to_datetime(temp_df['update_date']) 
     #year_df = temp_df['dispatch_date'].dt.year  # to check if year's data exists
     # error handling when no data in dataframe
-    if plenus_branch == 'ALL':  # total                                
-        layout_yearly_graph["title"] = 'Yearly Comparison in Total'        
+    #print(temp_df)
+    if noodle_customer == 'ALL':  # total                                
+        layout_yearly_graph["title"] = 'Yearly Comparison of Dispatch QTY'        
     else: 
-        temp_df = temp_df[temp_df['customer'] == plenus_branch]        
-        layout_yearly_graph["title"] = 'Yearly Comparison (' + plenus_branch + ')'            
+        temp_df = temp_df[temp_df['customer'] == noodle_customer]        
+        layout_yearly_graph["title"] = 'Yearly Comparison (' + noodle_customer + ')'            
+        #print(noodle_customer)
 
     if len(temp_df) > 0:
-        year_df = temp_df['update_date'].dt.year  # to check if year's data exists
+        year_df = temp_df['update_date'].dt.year  # to check if year's data exists        
         grouped_df = temp_df.groupby([temp_df.update_date.dt.month,temp_df.update_date.dt.year]).agg(sum).unstack()
         #grouped_df = temp_df.groupby(['dispatch_date']).agg('sum')    
         reindex_df = grouped_df.reset_index()          
-        col_list = ['update_date']
-        if 2017 in year_df.unique():
-            col_list.append('2017')
-        if 2018 in year_df.unique():
-            col_list.append('2018')
+        col_list = ['update_date']        
         if 2019 in year_df.unique():
             col_list.append('2019')
         if 2020 in year_df.unique():
             col_list.append('2020')
 
         #reindex_df.columns = ['dispatch_month', '2017','2018','2019','2020']
-        reindex_df.columns = col_list
-        if '2017' in reindex_df.columns:
-            df_2017 = reindex_df[['update_date', '2017']]
-        else:
-            df_2017 = pd.DataFrame(columns=['update_date', '2017'])
-        if '2018' in reindex_df.columns:
-            df_2018 = reindex_df[['update_date', '2018']]
-        else:
-            df_2018 = pd.DataFrame(columns=['update_date', '2018'])
+        reindex_df.columns = col_list        
         if '2019' in reindex_df.columns:
             df_2019 = reindex_df[['update_date', '2019']]
         else:
@@ -501,25 +481,7 @@ def comparison_graph_by_year(product_code, plenus_branch):
             df_2020 = pd.DataFrame(columns=['update_date', '2020'])
         
 
-        data = [        
-            dict(
-                type="scatter",
-                mode="lines+markers",
-                name="2017",
-                x=df_2017['update_date'].apply(lambda x: calendar.month_abbr[x]),        
-                y=df_2017['2017'],
-                line=dict(shape="spline", smoothing=2, width=1, color="#009688"),
-                marker=dict(symbol="diamond-open"),
-            ),
-            dict(
-                type="scatter",
-                mode="lines+markers",
-                name="2018",
-                x=df_2018['update_date'].apply(lambda x: calendar.month_abbr[x]),            
-                y=df_2018['2018'],         
-                line=dict(shape="spline", smoothing=2, width=1, color="#9c27b0"),
-                marker=dict(symbol="diamond-open"),
-            ),
+        data = [                    
             dict(
                 type="scatter",
                 mode="lines+markers",
